@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 519970704}
   - component: {fileID: 519970703}
   - component: {fileID: 519970702}
+  - component: {fileID: 519970705}
   m_Layer: 0
   m_Name: SkinM
   m_TagString: Untagged
@@ -422,7 +423,7 @@ Transform:
   m_GameObject: {fileID: 519970699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2000, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 50, y: 50, z: 1}
   m_Children: []
   m_Father: {fileID: 1351709131}
   m_RootOrder: 1
@@ -440,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Overcoat_Skin:
-  - name: null
+  - name: nullskin
     enable: 0
     overcoatSlot: 
     overcoatKey: 
@@ -461,24 +462,24 @@ MonoBehaviour:
     overcoatBSlot: overcoatB
     overcoatBKey: overcoatB00
   Top_Skin:
-  - name: null
+  - name: nullskin
     enable: 0
     bodySlot: body
-    bodyKey: body00
+    bodyKey: body
     bodyBSlot: bodyB
-    bodyBKey: bodyB00
+    bodyBKey: 
     armL_highSlot: armL_high
     armL_highKey: armL_high
     armL_middleSlot: armL_middle
     armL_middleKey: armL_middle
-    armL_lowSlot: armR_low
+    armL_lowSlot: armL_low
     armL_lowKey: armL_low
     armR_highSlot: armR_high
     armR_highKey: armR_high
     armR_middleSlot: armR_middle
     armR_middleKey: armR_middle
     armR_lowSlot: armR_low
-    armR_lowKey: armL_low
+    armR_lowKey: armR_low
   - name: "\uC0C1\uC75800"
     enable: 0
     bodySlot: body
@@ -497,6 +498,23 @@ MonoBehaviour:
     armR_middleKey: armR_middle
     armR_lowSlot: armR_low
     armR_lowKey: armR_low
+  Bottom_Skin:
+  - name: nullskin
+    enable: 0
+    waistSlot: waist
+    waistKey: waist
+    legL_highSlot: legL_high
+    legL_highKey: legL_high
+    legL_middleSlot: legL_middle
+    legL_middleKey: legL_middle
+    legL_lowSlot: legL_low
+    legL_lowKey: legL_low
+    legR_highSlot: legR_high
+    legR_highKey: legR_high
+    legR_middleSlot: legR_middle
+    legR_middleKey: legR_middle
+    legR_lowSlot: legR_low
+    legR_lowKey: legR_low
 --- !u!33 &519970702
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -584,6 +602,69 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &519970705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519970699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98b0b241b33eee4c988eb0b030828ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseskin:
+    skeleton_ani: {fileID: 1601851124}
+    baseSkinName: default
+    baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
+    baseOvercoat:
+      name: 
+      enable: 1
+      overcoatSlot: overcoat
+      overcoatKey: 
+      overcoatLSlot: overcoatL
+      overcoatLKey: 
+      overcoatRSlot: overcoatR
+      overcoatRKey: 
+      overcoatBSlot: overcoatB
+      overcoatBKey: 
+    baseTop:
+      name: 
+      enable: 1
+      bodySlot: body
+      bodyKey: 
+      bodyBSlot: bodyB
+      bodyBKey: 
+      armL_highSlot: armL_high
+      armL_highKey: 
+      armL_middleSlot: armL_middle
+      armL_middleKey: 
+      armL_lowSlot: armL_low
+      armL_lowKey: 
+      armR_highSlot: armR_high
+      armR_highKey: 
+      armR_middleSlot: armR_middle
+      armR_middleKey: 
+      armR_lowSlot: armR_low
+      armR_lowKey: 
+    baseBottom:
+      name: 
+      enable: 1
+      waistSlot: waist
+      waistKey: 
+      legL_highSlot: legL_high
+      legL_highKey: 
+      legL_middleSlot: legL_middle
+      legL_middleKey: 
+      legL_lowSlot: legL_low
+      legL_lowKey: 
+      legR_highSlot: legR_high
+      legR_highKey: 
+      legR_middleSlot: legR_middle
+      legR_middleKey: 
+      legR_lowSlot: legR_low
+      legR_lowKey: 
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,36 +1337,53 @@ MonoBehaviour:
     skeleton_ani: {fileID: 1601851124}
     baseSkinName: default
     baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
-    baseovercoat:
+    baseOvercoat:
       name: 
-      enable: 0
-      overcoatSlot: 
+      enable: 1
+      overcoatSlot: overcoat
       overcoatKey: 
-      overcoatLSlot: 
+      overcoatLSlot: overcoatL
       overcoatLKey: 
-      overcoatRSlot: 
+      overcoatRSlot: overcoatR
       overcoatRKey: 
-      overcoatBSlot: 
+      overcoatBSlot: overcoatB
       overcoatBKey: 
-    basetop:
+    baseTop:
       name: 
-      enable: 0
-      bodySlot: 
+      enable: 1
+      bodySlot: body
       bodyKey: 
-      bodyBSlot: 
+      bodyBSlot: bodyB
       bodyBKey: 
-      armL_highSlot: 
+      armL_highSlot: armL_high
       armL_highKey: 
-      armL_middleSlot: 
+      armL_middleSlot: armL_middle
       armL_middleKey: 
-      armL_lowSlot: 
+      armL_lowSlot: armL_low
       armL_lowKey: 
-      armR_highSlot: 
+      armR_highSlot: armR_high
       armR_highKey: 
-      armR_middleSlot: 
+      armR_middleSlot: armR_middle
       armR_middleKey: 
-      armR_lowSlot: 
+      armR_lowSlot: armR_low
       armR_lowKey: 
+    baseBottom:
+      name: 
+      enable: 1
+      waistSlot: waist
+      waistKey: 
+      legL_highSlot: legL_high
+      legL_highKey: 
+      legL_middleSlot: legL_middle
+      legL_middleKey: 
+      legL_lowSlot: legL_low
+      legL_lowKey: 
+      legR_highSlot: legR_high
+      legR_highKey: 
+      legR_middleSlot: legR_middle
+      legR_middleKey: 
+      legR_lowSlot: legR_low
+      legR_lowKey: 
 --- !u!1 &1678632436
 GameObject:
   m_ObjectHideFlags: 0

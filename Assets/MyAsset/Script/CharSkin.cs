@@ -9,8 +9,9 @@ public class CharSkin : MonoBehaviour
 
     private void Start()
     {
+        baseskin.ClearClothes();
         //테스트용.
-        baseskin.ChangeClothes(CLOTHESTYPE.TOP, GameManager.inst.skinM.Top_Skin[1].name);
-        baseskin.ChangeClothes(CLOTHESTYPE.OVERCOAT, GameManager.inst.skinM.Overcoat_Skin[1].name);
+        //baseskin.ChangeClothes(CLOTHESTYPE.TOP, GameManager.inst.skinM.Top_Skin[1].name);
+        //baseskin.ChangeClothes(CLOTHESTYPE.OVERCOAT, GameManager.inst.skinM.Overcoat_Skin[1].name);
     }
 }

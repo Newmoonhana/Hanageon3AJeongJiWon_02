@@ -8,6 +8,7 @@ public enum PERSONA //성격 종류.
     SN, 
     TF,  //사고 & 감정.
     JP,
+
     _MAX    //(마지막 값)
 }
 
