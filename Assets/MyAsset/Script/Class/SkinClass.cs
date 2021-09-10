@@ -11,6 +11,7 @@ public enum PARTSTYPE //부위 별 분류.
     EYELID,  //눈꺼풀
     EYEBALL,  //눈동자
     EYEWHITE, //눈 흰자
+    CHEEK,  //볼
     HEAD,   //두상
     REARHAIR,   //뒷머리
 
@@ -30,7 +31,7 @@ public class SkinParts
     public string name = null;
     [SerializeField]
     bool enable = true;    //기본 옷 켜짐/꺼짐(이벤트에서 사용).
-    public Color color = new Color(255f, 255f, 255f, 255f);
+    public Color color = new Color(255, 255, 255, 255);
     public Sprite sprite = null;
 
     public void ChangeParts(SkeletonAnimation _skeleton_ani, string[] _slot, string[] _key)
@@ -43,6 +44,7 @@ public class SkinParts
 
         for (int i = 0; i < _slot.Length; i++)
         {
+            //Debug.Log(i + "번째 슬롯 : " + _slot[i] + "\n파츠 : " + _key[i]);
             if (_slot[i] == null)
             {
                 GameManager.inst.debugM.Log("슬롯 이름이 존재하지 않습니다.\n이름: " + _slot[i], LogType.Error);
@@ -63,6 +65,7 @@ public class SkinParts
     }
 }
 
+//**************머리**************//
 //앞머리.
 [System.Serializable]
 public class Fronthair : SkinParts
@@ -123,7 +126,209 @@ public class Hat : SkinParts
 {
 
 }
+//**************얼굴**************//
+//눈썹.
+[System.Serializable]
+public class Eyeblow : SkinParts
+{
+    [SpineSlot] public string eyeblowLSlot;
+    [SpineAttachment] public string eyeblowLKey;
+    [SpineSlot] public string eyeblowRSlot;
+    [SpineAttachment] public string eyeblowRKey;
 
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeblow _change)
+    {
+        if (_change == null)
+        {
+            GameManager.inst.debugM.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        base.name = _change.name;
+        base.sprite = _change.sprite;
+
+        eyeblowLKey = _change.eyeblowLKey;
+        eyeblowRKey = _change.eyeblowRKey;
+        //Debug.Log(eyeblowLSlot);
+        //Debug.Log(eyeblowLKey);
+
+        string[] slots = { eyeblowLSlot, eyeblowRSlot };
+        string[] keys = { eyeblowLKey, eyeblowRKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+}
+
+//눈꺼풀.
+[System.Serializable]
+public class Eyelid : SkinParts
+{
+    [SpineSlot] public string eyelidLUSlot;
+    [SpineAttachment] public string eyelidLUKey;
+    [SpineSlot] public string eyelidLDSlot;
+    [SpineAttachment] public string eyelidLDKey;
+    [SpineSlot] public string eyelidRUSlot;
+    [SpineAttachment] public string eyelidRUKey;
+    [SpineSlot] public string eyelidRDSlot;
+    [SpineAttachment] public string eyelidRDKey;
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyelid _change)
+    {
+        if (_change == null)
+        {
+            GameManager.inst.debugM.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        base.name = _change.name;
+        base.sprite = _change.sprite;
+
+        eyelidLUKey = _change.eyelidLUKey;
+        eyelidLDKey = _change.eyelidLDKey;
+        eyelidRUKey = _change.eyelidRUKey;
+        eyelidRDKey = _change.eyelidRDKey;
+
+        string[] slots = { eyelidLUSlot, eyelidLDSlot, eyelidRUSlot, eyelidRDSlot };
+        string[] keys = { eyelidLUKey, eyelidLDKey, eyelidRUKey, eyelidRDKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+}
+
+//눈동자.
+[System.Serializable]
+public class Eyeball : SkinParts
+{
+    [SpineSlot] public string eyeballLSlot;
+    [SpineAttachment] public string eyeballLKey;
+    [SpineSlot] public string eyeballRSlot;
+    [SpineAttachment] public string eyeballRKey;
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeball _change)
+    {
+        if (_change == null)
+        {
+            GameManager.inst.debugM.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        base.name = _change.name;
+        base.sprite = _change.sprite;
+
+        eyeballLKey = _change.eyeballLKey;
+        eyeballRKey = _change.eyeballRKey;
+
+        string[] slots = { eyeballLSlot, eyeballRSlot };
+        string[] keys = { eyeballLKey, eyeballRKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+}
+
+//눈 흰자.
+[System.Serializable]
+public class Eyewhite : SkinParts
+{
+    [SpineSlot] public string eyewhiteLSlot;
+    [SpineAttachment] public string eyewhiteLKey;
+    [SpineSlot] public string eyewhiteRSlot;
+    [SpineAttachment] public string eyewhiteRKey;
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyewhite _change)
+    {
+        if (_change == null)
+        {
+            GameManager.inst.debugM.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        base.name = _change.name;
+        base.sprite = _change.sprite;
+
+        eyewhiteLKey = _change.eyewhiteLKey;
+        eyewhiteRKey = _change.eyewhiteRKey;
+
+        string[] slots = { eyewhiteLSlot, eyewhiteRSlot };
+        string[] keys = { eyewhiteLKey, eyewhiteRKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+}
+
+//입.
+[System.Serializable]
+public class Mouth : SkinParts
+{
+    [SpineSlot] public string mouthSlot;
+    [SpineAttachment] public string mouthKey;
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Mouth _change)
+    {
+        if (_change == null)
+        {
+            GameManager.inst.debugM.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        base.name = _change.name;
+        base.sprite = _change.sprite;
+
+        mouthKey = _change.mouthKey;
+
+        string[] slots = { mouthSlot };
+        string[] keys = { mouthKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+}
+
+//볼.
+[System.Serializable]
+public class Cheek : SkinParts
+{
+    [SpineSlot] public string cheekSlot;
+    [SpineAttachment] public string cheekKey;
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Cheek _change)
+    {
+        if (_change == null)
+        {
+            GameManager.inst.debugM.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        base.name = _change.name;
+        base.sprite = _change.sprite;
+
+        cheekKey = _change.cheekKey;
+
+        string[] slots = { cheekSlot };
+        string[] keys = { cheekKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+}
+//**************두상-기타**************//
+//머리.
+[System.Serializable]
+public class Head : SkinParts
+{
+    [SpineSlot] public string headSlot;
+    [SpineAttachment] public string headKey;
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Head _change)
+    {
+        if (_change == null)
+        {
+            GameManager.inst.debugM.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        base.name = _change.name;
+        base.sprite = _change.sprite;
+
+        headKey = _change.headKey;
+
+        string[] slots = { headSlot };
+        string[] keys = { headKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+}
+//**************상체**************//
 //코트.
 [System.Serializable]
 public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle, low)
@@ -215,6 +420,7 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
 }
 
 [System.Serializable]
+//**************하체**************//
 //하의
 public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
 {
@@ -275,6 +481,13 @@ public class Skin
     //스킨 목록.
     public Fronthair baseFronthair;
     public Rearhair baseRearhair;
+    public Eyeblow baseEyeblow;
+    public Eyelid baseEyelid;
+    public Eyeball baseEyeball;
+    public Eyewhite baseEyewhite;
+    public Mouth baseMouth;
+    public Cheek baseCheek;
+    public Head baseHead;
     public Overcoat baseOvercoat;
     public Top baseTop;
     public Bottom baseBottom;
@@ -283,8 +496,31 @@ public class Skin
     {
         ChangeParts(PARTSTYPE.FRONTHAIR, "nullskin");
         ChangeParts(PARTSTYPE.REARHAIR, "nullskin");
+        ChangeParts(PARTSTYPE.EYEBLOW, "nullskin");
+        ChangeParts(PARTSTYPE.EYELID, "nullskin");
+        ChangeParts(PARTSTYPE.EYEBALL, "nullskin");
+        ChangeParts(PARTSTYPE.EYEWHITE, "nullskin");
+        ChangeParts(PARTSTYPE.MOUTH, "nullskin");
+        ChangeParts(PARTSTYPE.CHEEK, "nullskin");
+        ChangeParts(PARTSTYPE.HEAD, "nullskin");
         ChangeParts(PARTSTYPE.OVERCOAT, "nullskin");
         ChangeParts(PARTSTYPE.TOP, "nullskin");
+        ChangeParts(PARTSTYPE.BOTTOM, "nullskin");
+    }
+
+    public void DefaultCustom()
+    {
+        ChangeParts(PARTSTYPE.FRONTHAIR, "기본");
+        ChangeParts(PARTSTYPE.REARHAIR, "기본");
+        ChangeParts(PARTSTYPE.EYEBLOW, "기본");
+        ChangeParts(PARTSTYPE.EYELID, "nullskin");
+        ChangeParts(PARTSTYPE.EYEBALL, "기본");
+        ChangeParts(PARTSTYPE.EYEWHITE, "nullskin");
+        ChangeParts(PARTSTYPE.MOUTH, "기본");
+        ChangeParts(PARTSTYPE.CHEEK, "기본");
+        ChangeParts(PARTSTYPE.HEAD, "기본");
+        ChangeParts(PARTSTYPE.OVERCOAT, "nullskin");
+        ChangeParts(PARTSTYPE.TOP, "기본");
         ChangeParts(PARTSTYPE.BOTTOM, "nullskin");
     }
 
@@ -293,34 +529,43 @@ public class Skin
         switch (_type)
         {
             case PARTSTYPE.FRONTHAIR:
-                {
-                    baseFronthair.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindFronthairSkin(_clothes));
-                }
+                baseFronthair.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindFronthairSkin(_clothes));
                 break;
             case PARTSTYPE.REARHAIR:
-                {
-                    baseRearhair.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindRearhairSkin(_clothes));
-                }
+                baseRearhair.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindRearhairSkin(_clothes));
+                break;
+            case PARTSTYPE.EYEBLOW:
+                baseEyeblow.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindEyeblowSkin(_clothes));
+                break;
+            case PARTSTYPE.EYELID:
+                baseEyelid.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindEyelidSkin(_clothes));
+                break;
+            case PARTSTYPE.EYEBALL:
+                baseEyeball.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindEyeballSkin(_clothes));
+                break;
+            case PARTSTYPE.EYEWHITE:
+                baseEyewhite.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindEyewhiteSkin(_clothes));
+                break;
+            case PARTSTYPE.MOUTH:
+                baseMouth.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindMouthSkin(_clothes));
+                break;
+            case PARTSTYPE.CHEEK:
+                baseCheek.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindCheekSkin(_clothes));
+                break;
+            case PARTSTYPE.HEAD:
+                baseHead.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindHeadSkin(_clothes));
                 break;
             case PARTSTYPE.OVERCOAT:
-                {
-                    baseOvercoat.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindOvercoatSkin(_clothes));
-                }
+                baseOvercoat.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindOvercoatSkin(_clothes));
                 break;
             case PARTSTYPE.TOP:
-                {
-                    baseTop.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindTopSkin(_clothes));
-                }
+                baseTop.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindTopSkin(_clothes));
                 break;
             case PARTSTYPE.BOTTOM:
-                {
-                    baseBottom.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindBottomSkin(_clothes));
-                }
+                baseBottom.ChangeSkin(skeleton_ani, GameManager.inst.skinM.FindBottomSkin(_clothes));
                 break;
             default:
-                {
-                    GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
-                }
+                GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
                 break;
         }
     }

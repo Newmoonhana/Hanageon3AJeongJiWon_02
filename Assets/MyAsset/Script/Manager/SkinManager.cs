@@ -7,7 +7,14 @@ public class SkinManager : MonoBehaviour    //얼굴과 옷 둘다 담당할 예
 {
     [Header("머리 커스텀 파츠 목록")]
     public Fronthair[] Fronthair_Skin;  //앞머리 스킨 목록.
-    public Rearhair[] Rearhair_Skin;  //앞머리 스킨 목록.
+    public Rearhair[] Rearhair_Skin;  //뒷머리 스킨 목록.
+    public Eyeblow[] Eyeblow_Skin;  //눈썹 스킨 목록.
+    public Eyelid[] Eyelid_Skin;    //눈꺼풀 스킨 목록.
+    public Eyeball[] Eyeball_Skin;  //눈동자 스킨 목록.
+    public Eyewhite[] Eyewhite_Skin;    //눈 흰자 스킨 목록.
+    public Mouth[] Mouth_Skin;  //입 스킨 목록.
+    public Cheek[] Cheek_Skin;  //볼 스킨 목록.
+    public Head[] Head_Skin;    //머리 스킨 목록.
     [Space(25)]
 
     [Header("옷 커스텀 파츠 목록")]
@@ -18,11 +25,7 @@ public class SkinManager : MonoBehaviour    //얼굴과 옷 둘다 담당할 예
 
     public CharSkin []character;
 
-    private void Awake()
-    {
-        
-    }
-
+    //스킨 찾기 함수.
     public Fronthair FindFronthairSkin(string _parts)
     {
         for (int i = 0; i < Fronthair_Skin.Length; i++)
@@ -42,6 +45,90 @@ public class SkinManager : MonoBehaviour    //얼굴과 옷 둘다 담당할 예
             if (Rearhair_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
             {
                 return Rearhair_Skin[i];
+            }
+        }
+        GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Eyeblow FindEyeblowSkin(string _parts)
+    {
+        for (int i = 0; i < Eyeblow_Skin.Length; i++)
+        {
+            if (Eyeblow_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            {
+                return Eyeblow_Skin[i];
+            }
+        }
+        GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Eyelid FindEyelidSkin(string _parts)
+    {
+        for (int i = 0; i < Eyelid_Skin.Length; i++)
+        {
+            if (Eyelid_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            {
+                return Eyelid_Skin[i];
+            }
+        }
+        GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Eyeball FindEyeballSkin(string _parts)
+    {
+        for (int i = 0; i < Eyeball_Skin.Length; i++)
+        {
+            if (Eyeball_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            {
+                return Eyeball_Skin[i];
+            }
+        }
+        GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Eyewhite FindEyewhiteSkin(string _parts)
+    {
+        for (int i = 0; i < Eyewhite_Skin.Length; i++)
+        {
+            if (Eyewhite_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            {
+                return Eyewhite_Skin[i];
+            }
+        }
+        GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Mouth FindMouthSkin(string _parts)
+    {
+        for (int i = 0; i <Mouth_Skin.Length; i++)
+        {
+            if (Mouth_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            {
+                return Mouth_Skin[i];
+            }
+        }
+        GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Cheek FindCheekSkin(string _parts)
+    {
+        for (int i = 0; i < Cheek_Skin.Length; i++)
+        {
+            if (Cheek_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            {
+                return Cheek_Skin[i];
+            }
+        }
+        GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Head FindHeadSkin(string _parts)
+    {
+        for (int i = 0; i < Head_Skin.Length; i++)
+        {
+            if (Head_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            {
+                return Head_Skin[i];
             }
         }
         GameManager.inst.debugM.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
