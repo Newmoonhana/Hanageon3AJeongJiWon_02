@@ -30,18 +30,10 @@ public class DebugManager : MonoBehaviour
     {
         switch (_type)
         {
-            case LogType.None:
-                logtext_txt.text += "<color=#ffffff>>>";
-                break;
-            case LogType.Log:
-                logtext_txt.text += "<color=#cccccc>>>";
-                break;
-            case LogType.Warning:
-                logtext_txt.text += "<color=#ffff00>>>Warning:";
-                break;
-            case LogType.Error:
-                logtext_txt.text += "<color=#ff0000>>>Error:";
-                break;
+            case LogType.None:    logtext_txt.text += "<color=#ffffff>>>";  break;
+            case LogType.Log:     logtext_txt.text += "<color=#cccccc>>>";  break;
+            case LogType.Warning: logtext_txt.text += "<color=#ffff00>>>Warning:";  break;
+            case LogType.Error:   logtext_txt.text += "<color=#ff0000>>>Error:";    break;
         }
         logtext_txt.text += "\t" + _log + " </color>\n";
         //scrollY_sb.value = 0;

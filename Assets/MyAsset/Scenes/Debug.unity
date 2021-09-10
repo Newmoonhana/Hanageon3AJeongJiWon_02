@@ -440,19 +440,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555d734f8160fd249ab9eb3614f11ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fronthair_Skin:
+  - name: nullskin
+    enable: 0
+    color: {r: 1, g: 1, b: 1, a: 0}
+    antennahairSlot: antennahair
+    antennahairKey: 
+    fronthairSlot: fronthair
+    fronthairKey: 
+  - name: "\uD5E4\uC5B400"
+    enable: 0
+    color: {r: 1, g: 1, b: 1, a: 0}
+    antennahairSlot: antennahair
+    antennahairKey: antennahair00
+    fronthairSlot: fronthair
+    fronthairKey: fronthair00
+  Rearhair_Skin:
+  - name: nullskin
+    enable: 0
+    color: {r: 1, g: 1, b: 1, a: 0}
+    rearhairSlot: rearhair
+    rearhairKey: 
+  - name: "\uD5E4\uC5B400"
+    enable: 0
+    color: {r: 1, g: 1, b: 1, a: 0}
+    rearhairSlot: rearhair
+    rearhairKey: rearhair00
   Overcoat_Skin:
   - name: nullskin
     enable: 0
-    overcoatSlot: 
+    color: {r: 255, g: 255, b: 255, a: 255}
+    overcoatSlot: overcoat
     overcoatKey: 
-    overcoatLSlot: 
+    overcoatLSlot: overcoatL
     overcoatLKey: 
-    overcoatRSlot: 
+    overcoatRSlot: overcoatR
     overcoatRKey: 
-    overcoatBSlot: 
+    overcoatBSlot: overcoatB
     overcoatBKey: 
   - name: "\uCF54\uD2B800"
     enable: 0
+    color: {r: 255, g: 255, b: 255, a: 255}
     overcoatSlot: overcoat
     overcoatKey: overcoat00
     overcoatLSlot: overcoatL
@@ -464,6 +492,7 @@ MonoBehaviour:
   Top_Skin:
   - name: nullskin
     enable: 0
+    color: {r: 255, g: 255, b: 255, a: 255}
     bodySlot: body
     bodyKey: body
     bodyBSlot: bodyB
@@ -482,6 +511,7 @@ MonoBehaviour:
     armR_lowKey: armR_low
   - name: "\uC0C1\uC75800"
     enable: 0
+    color: {r: 255, g: 255, b: 255, a: 255}
     bodySlot: body
     bodyKey: body_MO00
     bodyBSlot: bodyB
@@ -501,6 +531,7 @@ MonoBehaviour:
   Bottom_Skin:
   - name: nullskin
     enable: 0
+    color: {r: 255, g: 255, b: 255, a: 255}
     waistSlot: waist
     waistKey: waist
     legL_highSlot: legL_high
@@ -515,6 +546,12 @@ MonoBehaviour:
     legR_middleKey: legR_middle
     legR_lowSlot: legR_low
     legR_lowKey: legR_low
+  character:
+  - {fileID: 1601851128}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!33 &519970702
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -618,9 +655,24 @@ MonoBehaviour:
     skeleton_ani: {fileID: 1601851124}
     baseSkinName: default
     baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
+    baseFronthair:
+      name: 
+      enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
+      antennahairSlot: antennahair
+      antennahairKey: 
+      fronthairSlot: fronthair
+      fronthairKey: 
+    baseRearhair:
+      name: 
+      enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
+      rearhairSlot: rearhair
+      rearhairKey: 
     baseOvercoat:
       name: 
       enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
       overcoatSlot: overcoat
       overcoatKey: 
       overcoatLSlot: overcoatL
@@ -632,6 +684,7 @@ MonoBehaviour:
     baseTop:
       name: 
       enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
       bodySlot: body
       bodyKey: 
       bodyBSlot: bodyB
@@ -651,6 +704,7 @@ MonoBehaviour:
     baseBottom:
       name: 
       enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
       waistSlot: waist
       waistKey: 
       legL_highSlot: legL_high
@@ -1337,9 +1391,24 @@ MonoBehaviour:
     skeleton_ani: {fileID: 1601851124}
     baseSkinName: default
     baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
+    baseFronthair:
+      name: 
+      enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
+      antennahairSlot: antennahair
+      antennahairKey: 
+      fronthairSlot: fronthair
+      fronthairKey: 
+    baseRearhair:
+      name: 
+      enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
+      rearhairSlot: rearhair
+      rearhairKey: 
     baseOvercoat:
       name: 
       enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
       overcoatSlot: overcoat
       overcoatKey: 
       overcoatLSlot: overcoatL
@@ -1351,6 +1420,7 @@ MonoBehaviour:
     baseTop:
       name: 
       enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
       bodySlot: body
       bodyKey: 
       bodyBSlot: bodyB
@@ -1370,6 +1440,7 @@ MonoBehaviour:
     baseBottom:
       name: 
       enable: 1
+      color: {r: 255, g: 255, b: 255, a: 255}
       waistSlot: waist
       waistKey: 
       legL_highSlot: legL_high
