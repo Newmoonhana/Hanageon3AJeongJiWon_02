@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     //매니저 스크립트.
     public CharacterManager characterM;
     public SkinManager skinM;
+    public AnimationManager aniM;
     public DebugManager debugM;
 
     private void Awake()

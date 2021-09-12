@@ -600,9 +600,9 @@ MonoBehaviour:
     color: {r: 255, g: 255, b: 255, a: 255}
     sprite: {fileID: 21300000, guid: 0859f1c20fcdf004d8474a5cd47d05af, type: 3}
     bodySlot: body
-    bodyKey: body_MO00
+    bodyKey: body00
     bodyBSlot: bodyB
-    bodyBKey: bodyB_MO00
+    bodyBKey: 
     armL_highSlot: armL_high
     armL_highKey: armL_high00
     armL_middleSlot: armL_middle
@@ -786,6 +786,13 @@ MonoBehaviour:
       legR_middleKey: 
       legR_lowSlot: legR_low
       legR_lowKey: 
+  charaSetting:
+    persona:
+      persona:
+      - 0.5
+      - 0.5
+      - 0.5
+      - 0.5
 --- !u!33 &382056584
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1427,6 +1434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterM: {fileID: 1497975959}
   skinM: {fileID: 382056582}
+  aniM: {fileID: 1485905796}
   debugM: {fileID: 2102628814}
 --- !u!4 &1351709131
 Transform:
@@ -1442,9 +1450,53 @@ Transform:
   - {fileID: 1497975958}
   - {fileID: 2102628815}
   - {fileID: 382056587}
+  - {fileID: 1485905795}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1485905794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1485905795}
+  - component: {fileID: 1485905796}
+  m_Layer: 0
+  m_Name: AnimationM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1485905795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485905794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1351709131}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1485905796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485905794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4944df5bf43a9b2479b561e3f9f35119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1497975957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,6 +1540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499aa6959673e1446bb734e2e93cc61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  char_lst: []
 --- !u!1 &1601851123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,6 +1808,13 @@ MonoBehaviour:
       legR_middleKey: 
       legR_lowSlot: legR_low
       legR_lowKey: 
+  charaSetting:
+    persona:
+      persona:
+      - 0.5
+      - 0.5
+      - 0.5
+      - 0.5
 --- !u!1 &1678632436
 GameObject:
   m_ObjectHideFlags: 0

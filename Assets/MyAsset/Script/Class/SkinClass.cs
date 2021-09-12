@@ -59,9 +59,13 @@ public class SkinParts
             {
                 //GameManager.inst.debugM.Log("파츠 변경 : [" + _slot[i] + " <- " + _key[i] + "]", LogType.Log);
                 _skeleton_ani.skeleton.SetAttachment(_slot[i], _key[i]);
+                //_skeleton_ani.skeleton.FindSlot(_slot[i]).SetColor(color);
             }
         }
-        GameManager.inst.debugM.Log("스킨 변경 : " + name, LogType.Log);
+        if (name != "nullskin" && name != "기본")
+        {
+            GameManager.inst.debugM.Log("스킨 변경 : " + name, LogType.Log);
+        }
     }
 }
 
@@ -93,6 +97,10 @@ public class Fronthair : SkinParts
         string[] keys = { antennahairKey, fronthairKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
     }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
+    }
 }
 //뒷머리.
 [System.Serializable]
@@ -117,6 +125,10 @@ public class Rearhair : SkinParts
         string[] slots = { rearhairSlot };
         string[] keys = { rearhairKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
     }
 }
 
@@ -156,6 +168,10 @@ public class Eyeblow : SkinParts
         string[] keys = { eyeblowLKey, eyeblowRKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
     }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
+    }
 }
 
 //눈꺼풀.
@@ -191,6 +207,10 @@ public class Eyelid : SkinParts
         string[] keys = { eyelidLUKey, eyelidLDKey, eyelidRUKey, eyelidRDKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
     }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
+    }
 }
 
 //눈동자.
@@ -219,6 +239,10 @@ public class Eyeball : SkinParts
         string[] slots = { eyeballLSlot, eyeballRSlot };
         string[] keys = { eyeballLKey, eyeballRKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
     }
 }
 
@@ -249,6 +273,10 @@ public class Eyewhite : SkinParts
         string[] keys = { eyewhiteLKey, eyewhiteRKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
     }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
+    }
 }
 
 //입.
@@ -274,6 +302,10 @@ public class Mouth : SkinParts
         string[] slots = { mouthSlot };
         string[] keys = { mouthKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
     }
 }
 
@@ -301,6 +333,10 @@ public class Cheek : SkinParts
         string[] keys = { cheekKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
     }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
+    }
 }
 //**************두상-기타**************//
 //머리.
@@ -326,6 +362,10 @@ public class Head : SkinParts
         string[] slots = { headSlot };
         string[] keys = { headKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
     }
 }
 //**************상체**************//
@@ -362,6 +402,10 @@ public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle
         string[] slots = { overcoatSlot, overcoatLSlot, overcoatRSlot, overcoatBSlot };
         string[] keys = { overcoatKey, overcoatLKey, overcoatRKey, overcoatBKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
     }
 }
 
@@ -417,6 +461,10 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
                             armR_highKey, armR_middleKey, armR_lowKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
     }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
+    }
 }
 
 [System.Serializable]
@@ -468,6 +516,10 @@ public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
                            legL_highKey, legL_middleKey, legL_lowKey,
                             legR_highKey, legR_middleKey, legR_lowKey };
         base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, this);
     }
 }
 
@@ -522,6 +574,22 @@ public class Skin
         ChangeParts(PARTSTYPE.OVERCOAT, "nullskin");
         ChangeParts(PARTSTYPE.TOP, "기본");
         ChangeParts(PARTSTYPE.BOTTOM, "nullskin");
+    }
+
+    public void RefreshCustom(Skin _skin)
+    {
+        _skin.baseFronthair.RefreshSkin(skeleton_ani);
+        _skin.baseRearhair.RefreshSkin(skeleton_ani);
+        _skin.baseEyeblow.RefreshSkin(skeleton_ani);
+        _skin.baseEyelid.RefreshSkin(skeleton_ani);
+        _skin.baseEyeball.RefreshSkin(skeleton_ani);
+        _skin.baseEyewhite.RefreshSkin(skeleton_ani);
+        _skin.baseMouth.RefreshSkin(skeleton_ani);
+        _skin.baseCheek.RefreshSkin(skeleton_ani);
+        _skin.baseHead.RefreshSkin(skeleton_ani);
+        _skin.baseOvercoat.RefreshSkin(skeleton_ani);
+        _skin.baseTop.RefreshSkin(skeleton_ani);
+        _skin.baseBottom.RefreshSkin(skeleton_ani);
     }
 
     public void ChangeParts(PARTSTYPE _type, string _clothes) //옷 변경.

@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Customize_Scroll : MonoBehaviour
+public class CustomizeScene : MonoBehaviour
 {
     public CharSkin basechar;
     Skin basechar_skin;
+    public GameObject skinbuttom_pre;
 
-    [Header("커스텀 카테고리 목록")]
+    GameObject customPresentCategory;
+    [Header("메인 카테고리 오브젝트 목록")]
+    public GameObject customHeadCategory;
+    public GameObject customPersonaCategory;
+
     GameObject presentCategory;
+    [Header("커스텀 카테고리 목록")]
     public GameObject hairCategory;
     public GameObject faceCategory;
     public GameObject otherCategory;
@@ -25,11 +31,16 @@ public class Customize_Scroll : MonoBehaviour
     public Transform cheeklst_tns;
     public Transform headlst_tns;
 
-    public GameObject skinbuttom_pre;
+    [Header("성격 스크롤바 목록")]
+    public Scrollbar EI_scroll;
+    public Scrollbar SN_scroll;
+    public Scrollbar TF_scroll;
+    public Scrollbar JP_scroll;
 
     private void Awake()
     {
         basechar_skin = basechar.baseskin;
+        customPresentCategory = customHeadCategory;
         presentCategory = hairCategory;
 
         RefreshSkinList(fronthairlst_tns, PARTSTYPE.FRONTHAIR);
@@ -45,6 +56,28 @@ public class Customize_Scroll : MonoBehaviour
         basechar_skin.DefaultCustom();
     }
 
+    //버튼 입력 시 메인 카테고리 UI 변경.
+    public void ChangeMainCustomCategory_button(string _type)
+    {
+        switch (_type)
+        {
+            case "head":    //머리카락
+                customPresentCategory.SetActive(false);
+                customHeadCategory.SetActive(true);
+                customPresentCategory = customHeadCategory;
+                break;
+            case "persona": //얼굴
+                customPresentCategory.SetActive(false);
+                customPersonaCategory.SetActive(true);
+                customPresentCategory = customPersonaCategory;
+                break;
+            default:
+                GameManager.inst.debugM.Log("없는 스킨 카테고리입니다.", LogType.Error);
+                return;
+        }
+    }
+
+    //스킨 목록 생성.
     public void RefreshSkinList(Transform _tns, PARTSTYPE _type)
     {
         int size = 0;
@@ -186,5 +219,89 @@ public class Customize_Scroll : MonoBehaviour
                 GameManager.inst.debugM.Log("없는 스킨 카테고리입니다.", LogType.Error);
                 return;
         }
+    }
+
+    //스크롤바 조작해 변수 위치 분배.
+    public void CheckPersonaScrollvar(PERSONA_component _type)
+    {
+        float center = 0.5f;
+        Scrollbar tmp;
+        switch (_type.persona)
+        {
+            case PERSONA.EI:
+                tmp = EI_scroll;
+            break;
+            case PERSONA.SN:
+                tmp = SN_scroll;
+                break;
+            case PERSONA.TF:
+                tmp = TF_scroll;
+                break;
+            case PERSONA.JP:
+                tmp = JP_scroll;
+                break;
+            default:
+                GameManager.inst.debugM.Log("없는 성격 타입입니다.", LogType.Error);
+                return;
+        }
+        tmp.value = Mathf.RoundToInt(tmp.value * 10) * 0.1f;
+
+        string tmp_string = null;   //0.5f는 표정변화 x.
+        switch (_type.persona)  //표정 예시 보여주기.
+        {
+            case PERSONA.EI:
+                if (tmp.value > center) //E
+                    tmp_string = "personality/E/smile_E";
+                else if (tmp.value < center)   //I
+                    tmp_string = "personality/I/smile_I";
+                break;
+            case PERSONA.SN:
+                if (tmp.value < center) //S
+                    tmp_string = "personality/S/thinking_S";
+                else if (tmp.value > center)    //N
+                    tmp_string = "personality/N/thinking_N";
+                break;
+            case PERSONA.TF:
+                if (tmp.value < center) //T
+                    tmp_string = "personality/T/reaction_T";
+                else if (tmp.value > center)    //F
+                    tmp_string = "personality/F/reaction_F";
+                break;
+            case PERSONA.JP:
+                if (tmp.value > center) //J
+                    tmp_string = "personality/J/success_J";
+                else if (tmp.value < center)    //P
+                    tmp_string = "personality/P/success_P";
+                break;
+        }
+        GameManager.inst.aniM.ChangeCharaAni(GameManager.inst.skinM.character[0].baseskin, TRACKTYPE.FACE, tmp_string, false);
+    }
+
+    public void CustomColor(Scrollbar _this)
+    {
+        Image color_img = _this.transform.parent.GetChild(1).GetComponent<Image>();
+        Image scroll_img = _this.GetComponent<Image>();
+        Color c = color_img.color;
+        Color scroll = Color.black;
+        switch (_this.name)
+        {
+            case "R":
+                c.r = _this.value;
+                scroll.r = _this.value;
+                break;
+            case "G":
+                c.g = _this.value;
+                scroll.g = _this.value;
+                break;
+            case "B":
+                c.b = _this.value;
+                scroll.b = _this.value;
+                break;
+            case "A":
+                c.a = _this.value;
+                break;
+        }
+        color_img.color = c;
+        scroll_img.color = scroll;
     }
 }
