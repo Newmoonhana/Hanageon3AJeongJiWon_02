@@ -32,10 +32,10 @@ public class CustomizeScene : MonoBehaviour
     public Transform headlst_tns;
 
     [Header("성격 스크롤바 목록")]
-    public Scrollbar EI_scroll;
-    public Scrollbar SN_scroll;
-    public Scrollbar TF_scroll;
-    public Scrollbar JP_scroll;
+    public Slider EI_slider;
+    public Slider SN_slider;
+    public Slider TF_slider;
+    public Slider JP_slider;
 
     private void Awake()
     {
@@ -179,7 +179,7 @@ public class CustomizeScene : MonoBehaviour
             Button btn = tmp.transform.GetChild(0).GetComponent<Button>();
             Image img = tmp.transform.GetChild(0).GetChild(1).GetComponent<Image>();
             Text txt = tmp.transform.GetChild(1).GetComponent<Text>();
-            PARTSTYPE_Component pc = tmp.AddComponent<PARTSTYPE_Component>();
+            PARTSTYPE_component pc = tmp.AddComponent<PARTSTYPE_component>();
             pc.PARTSTYPE_cp = _type;
             pc.partsname = partsName[i] == null ? null : partsName[i];
             //변경
@@ -190,7 +190,7 @@ public class CustomizeScene : MonoBehaviour
     }
 
     //버튼 입력 시 예시 캐릭터의 스킨 변경.
-    public void ChangeSkin_button(PARTSTYPE_Component _parts)
+    public void ChangeSkin_button(PARTSTYPE_component _parts)
     {
         basechar_skin.ChangeParts(_parts.PARTSTYPE_cp, _parts.partsname);
     }
@@ -224,29 +224,28 @@ public class CustomizeScene : MonoBehaviour
     //스크롤바 조작해 변수 위치 분배.
     public void CheckPersonaScrollvar(PERSONA_component _type)
     {
-        float center = 0.5f;
-        Scrollbar tmp;
+        int center = 5;
+        Slider tmp;
         switch (_type.persona)
         {
             case PERSONA.EI:
-                tmp = EI_scroll;
+                tmp = EI_slider;
             break;
             case PERSONA.SN:
-                tmp = SN_scroll;
+                tmp = SN_slider;
                 break;
             case PERSONA.TF:
-                tmp = TF_scroll;
+                tmp = TF_slider;
                 break;
             case PERSONA.JP:
-                tmp = JP_scroll;
+                tmp = JP_slider;
                 break;
             default:
                 DebugManager.inst.Log("없는 성격 타입입니다.", LogType.Error);
                 return;
         }
-        tmp.value = Mathf.RoundToInt(tmp.value * 10) * 0.1f;
 
-        string tmp_string = null;   //0.5f는 표정변화 x.
+        string tmp_string = null;   //정확히 가운데 값은 표정변화 x.
         switch (_type.persona)  //표정 예시 보여주기.
         {
             case PERSONA.EI:
@@ -279,6 +278,7 @@ public class CustomizeScene : MonoBehaviour
 
     public void CustomColor(Scrollbar _this)
     {
+        PARTSTYPE type = _this.transform.parent.GetComponent<PARTSTYPE_component>().PARTSTYPE_cp;
         Image color_img = _this.transform.parent.GetChild(1).GetComponent<Image>();
         Image scroll_img = _this.GetComponent<Image>();
         Color c = color_img.color;
@@ -303,5 +303,49 @@ public class CustomizeScene : MonoBehaviour
         }
         color_img.color = c;
         scroll_img.color = scroll;
+
+        //미리보기 스킨 색상 변경(머리만 커스텀하므로 옷은 제외).
+        switch (type)
+        {
+            case PARTSTYPE.FRONTHAIR:
+                SkinManager.inst.character[0].baseskin.baseFronthair.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseFronthair.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.REARHAIR:
+                SkinManager.inst.character[0].baseskin.baseRearhair.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseRearhair.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.EYEBLOW:
+                SkinManager.inst.character[0].baseskin.baseEyeblow.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseEyeblow.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.EYELID:
+                SkinManager.inst.character[0].baseskin.baseEyelid.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseEyelid.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.EYEBALL:
+                SkinManager.inst.character[0].baseskin.baseEyeball.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseEyeball.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.EYEWHITE:
+                SkinManager.inst.character[0].baseskin.baseEyewhite.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseEyewhite.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.MOUTH:
+                SkinManager.inst.character[0].baseskin.baseMouth.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseMouth.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.HEAD:
+                SkinManager.inst.character[0].baseskin.baseHead.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseHead.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            case PARTSTYPE.CHEEK:
+                SkinManager.inst.character[0].baseskin.baseCheek.skincolor = c;
+                SkinManager.inst.character[0].baseskin.baseCheek.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                break;
+            default:
+                DebugManager.inst.Log("없는 스킨 타입입니다.", LogType.Error);
+                return;
+        }
     }
 }

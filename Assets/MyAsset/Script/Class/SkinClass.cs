@@ -31,7 +31,8 @@ public class SkinParts
     public string name = null;
     [SerializeField]
     bool enable = true;    //기본 옷 켜짐/꺼짐(이벤트에서 사용).
-    public Color color = new Color(255, 255, 255, 255);
+    //public Color color = new Color(255, 255, 255, 255);
+    public Color skincolor = new Color32(255, 255, 255, 255);
     public Sprite sprite = null;
 
     public void ChangeParts(SkeletonAnimation _skeleton_ani, string[] _slot, string[] _key)
@@ -59,7 +60,7 @@ public class SkinParts
             {
                 //debugM.inst.Log("파츠 변경 : [" + _slot[i] + " <- " + _key[i] + "]", LogType.Log);
                 _skeleton_ani.skeleton.SetAttachment(_slot[i], _key[i]);
-                //_skeleton_ani.skeleton.FindSlot(_slot[i]).SetColor(color);
+                _skeleton_ani.skeleton.FindSlot(_slot[i]).SetColor(skincolor);
             }
         }
         if (name != "nullskin" && name != "기본")
