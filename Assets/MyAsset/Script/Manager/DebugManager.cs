@@ -12,7 +12,7 @@ public enum LogType
     Error
 }
 
-public class DebugManager : MonoBehaviour
+public class DebugManager : SingletonPattern_IsA_Mono<DebugManager>
 {
     public GameObject debugWindow_small;
     public ScrollRect scrollview_sr;

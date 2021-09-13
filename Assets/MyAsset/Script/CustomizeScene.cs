@@ -72,7 +72,7 @@ public class CustomizeScene : MonoBehaviour
                 customPresentCategory = customPersonaCategory;
                 break;
             default:
-                GameManager.inst.debugM.Log("없는 스킨 카테고리입니다.", LogType.Error);
+                DebugManager.inst.Log("없는 스킨 카테고리입니다.", LogType.Error);
                 return;
         }
     }
@@ -86,93 +86,93 @@ public class CustomizeScene : MonoBehaviour
         switch (_type)
         {
             case PARTSTYPE.FRONTHAIR:
-                size = GameManager.inst.skinM.Fronthair_Skin.Length;
+                size = SkinManager.inst.Fronthair_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Fronthair_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Fronthair_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Fronthair_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Fronthair_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.REARHAIR:
-                size = GameManager.inst.skinM.Rearhair_Skin.Length;
+                size = SkinManager.inst.Rearhair_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Rearhair_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Rearhair_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Rearhair_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Rearhair_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEBLOW:
-                size = GameManager.inst.skinM.Eyeblow_Skin.Length;
+                size = SkinManager.inst.Eyeblow_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Eyeblow_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Eyeblow_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Eyeblow_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Eyeblow_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYELID:
-                size = GameManager.inst.skinM.Eyelid_Skin.Length;
+                size = SkinManager.inst.Eyelid_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Eyelid_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Eyelid_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Eyelid_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Eyelid_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEBALL:
-                size = GameManager.inst.skinM.Eyeball_Skin.Length;
+                size = SkinManager.inst.Eyeball_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Eyeball_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Eyeball_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Eyeball_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Eyeball_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEWHITE:
-                size = GameManager.inst.skinM.Eyewhite_Skin.Length;
+                size = SkinManager.inst.Eyewhite_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Eyewhite_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Eyewhite_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Eyewhite_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Eyewhite_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.MOUTH:
-                size = GameManager.inst.skinM.Mouth_Skin.Length;
+                size = SkinManager.inst.Mouth_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Mouth_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Mouth_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Mouth_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Mouth_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.CHEEK:
-                size = GameManager.inst.skinM.Cheek_Skin.Length;
+                size = SkinManager.inst.Cheek_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Cheek_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Cheek_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Cheek_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Cheek_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.HEAD:
-                size = GameManager.inst.skinM.Head_Skin.Length;
+                size = SkinManager.inst.Head_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = GameManager.inst.skinM.Head_Skin[i].name;
-                    partsSprite[i] = GameManager.inst.skinM.Head_Skin[i].sprite;
+                    partsName[i] = SkinManager.inst.Head_Skin[i].name;
+                    partsSprite[i] = SkinManager.inst.Head_Skin[i].sprite;
                 }
                 break;
             default:
-                GameManager.inst.debugM.Log("없는 스킨 타입입니다.", LogType.Error);
+                DebugManager.inst.Log("없는 스킨 타입입니다.", LogType.Error);
                 return;
         }
         for (int i = 0; i < size; i++)
         {
-            GameManager.inst.debugM.Log(_type.ToString() + ' ' + i + "번 슬롯 생성", LogType.Log);
+            DebugManager.inst.Log(_type.ToString() + ' ' + i + "번 슬롯 생성", LogType.Log);
             GameObject tmp = Instantiate<GameObject>(skinbuttom_pre);
             tmp.transform.SetParent(_tns.GetChild(0).GetChild(0));
             //임시 변수 선언
@@ -216,7 +216,7 @@ public class CustomizeScene : MonoBehaviour
                 presentCategory = otherCategory;
                 break;
             default:
-                GameManager.inst.debugM.Log("없는 스킨 카테고리입니다.", LogType.Error);
+                DebugManager.inst.Log("없는 스킨 카테고리입니다.", LogType.Error);
                 return;
         }
     }
@@ -241,7 +241,7 @@ public class CustomizeScene : MonoBehaviour
                 tmp = JP_scroll;
                 break;
             default:
-                GameManager.inst.debugM.Log("없는 성격 타입입니다.", LogType.Error);
+                DebugManager.inst.Log("없는 성격 타입입니다.", LogType.Error);
                 return;
         }
         tmp.value = Mathf.RoundToInt(tmp.value * 10) * 0.1f;
@@ -274,7 +274,7 @@ public class CustomizeScene : MonoBehaviour
                     tmp_string = "personality/P/success_P";
                 break;
         }
-        GameManager.inst.aniM.ChangeCharaAni(GameManager.inst.skinM.character[0].baseskin, TRACKTYPE.FACE, tmp_string, false);
+        AnimationManager.inst.ChangeCharaAni(SkinManager.inst.character[0].baseskin, TRACKTYPE.FACE, tmp_string, false);
     }
 
     public void CustomColor(Scrollbar _this)

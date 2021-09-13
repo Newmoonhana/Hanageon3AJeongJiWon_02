@@ -11,7 +11,7 @@ public enum TRACKTYPE
     MAX
 }
 
-public class AnimationManager : MonoBehaviour
+public class AnimationManager : SingletonPattern_IsA_Mono<AnimationManager>
 {
     public void ChangeCharaAni(Skin _chara, TRACKTYPE _type, string _ani, bool _isloop)
     {
@@ -20,12 +20,12 @@ public class AnimationManager : MonoBehaviour
         if (_ani != null)
         {
             _chara.skeleton_ani.AnimationState.SetAnimation((int)_type, _ani, _isloop);
-            //GameManager.inst.debugM.Log(_ani + " 애니메이션 실행", LogType.Log);
+            //DebugManager.inst.Log(_ani + " 애니메이션 실행", LogType.Log);
         }
         else
         {
             _chara.skeleton_ani.AnimationState.SetEmptyAnimation((int)_type, 0);
-            //GameManager.inst.debugM.Log(_type.ToString() + "타입 애니메이션 해제", LogType.Log);
+            //DebugManager.inst.Log(_type.ToString() + "타입 애니메이션 해제", LogType.Log);
         }
     }
 }

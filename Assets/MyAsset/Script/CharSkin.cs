@@ -11,6 +11,6 @@ public class CharSkin : MonoBehaviour
     private void Awake()
     {
         baseskin.ClearClothes();
-        GameManager.inst.aniM.ChangeCharaAni(baseskin, TRACKTYPE.BODY, "public/Idle", true);
+        AnimationManager.inst.ChangeCharaAni(baseskin, TRACKTYPE.BODY, "public/Idle", true);
     }
 }
