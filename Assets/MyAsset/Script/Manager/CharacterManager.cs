@@ -35,7 +35,7 @@ public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수
     {
         if (_persona.persona.Length != (int)(PERSONA._MAX))
         {
-            DebugManager.inst.Log("_persona의 배열 개수가 PERSONA._MAX개가 아닙니다.\n개수 : " + _persona.persona.Length, LogType.Error);
+            DebugManager.Instance.Log("_persona의 배열 개수가 PERSONA._MAX개가 아닙니다.\n개수 : " + _persona.persona.Length, LogType.Error);
             Debug.LogError("Error:_persona의 배열 개수가 PERSONA._MAX개가 아닙니다.\n개수 : " + _persona.persona.Length);
         }
         persona = _persona.persona;
@@ -44,7 +44,7 @@ public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수
     {
         if (_persona.Length != (int)(PERSONA._MAX))
         {
-            DebugManager.inst.Log("_persona의 배열 개수가 PERSONA._MAX개가 아닙니다.\n개수 : " + _persona.Length, LogType.Error);
+            DebugManager.Instance.Log("_persona의 배열 개수가 PERSONA._MAX개가 아닙니다.\n개수 : " + _persona.Length, LogType.Error);
             Debug.LogError("Error:_persona의 배열 개수가 PERSONA._MAX개가 아닙니다.\n개수 : " + _persona.Length);
         }
         persona = _persona;

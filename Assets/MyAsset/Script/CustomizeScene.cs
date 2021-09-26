@@ -72,7 +72,7 @@ public class CustomizeScene : MonoBehaviour
                 customPresentCategory = customPersonaCategory;
                 break;
             default:
-                DebugManager.inst.Log("없는 스킨 카테고리입니다.", LogType.Error);
+                DebugManager.Instance.Log("없는 스킨 카테고리입니다.", LogType.Error);
                 return;
         }
     }
@@ -86,93 +86,93 @@ public class CustomizeScene : MonoBehaviour
         switch (_type)
         {
             case PARTSTYPE.FRONTHAIR:
-                size = SkinManager.inst.Fronthair_Skin.Length;
+                size = SkinManager.Instance.Fronthair_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Fronthair_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Fronthair_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Fronthair_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Fronthair_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.REARHAIR:
-                size = SkinManager.inst.Rearhair_Skin.Length;
+                size = SkinManager.Instance.Rearhair_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Rearhair_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Rearhair_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Rearhair_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Rearhair_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEBLOW:
-                size = SkinManager.inst.Eyeblow_Skin.Length;
+                size = SkinManager.Instance.Eyeblow_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Eyeblow_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Eyeblow_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Eyeblow_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Eyeblow_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYELID:
-                size = SkinManager.inst.Eyelid_Skin.Length;
+                size = SkinManager.Instance.Eyelid_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Eyelid_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Eyelid_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Eyelid_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Eyelid_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEBALL:
-                size = SkinManager.inst.Eyeball_Skin.Length;
+                size = SkinManager.Instance.Eyeball_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Eyeball_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Eyeball_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Eyeball_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Eyeball_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEWHITE:
-                size = SkinManager.inst.Eyewhite_Skin.Length;
+                size = SkinManager.Instance.Eyewhite_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Eyewhite_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Eyewhite_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Eyewhite_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Eyewhite_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.MOUTH:
-                size = SkinManager.inst.Mouth_Skin.Length;
+                size = SkinManager.Instance.Mouth_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Mouth_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Mouth_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Mouth_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Mouth_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.CHEEK:
-                size = SkinManager.inst.Cheek_Skin.Length;
+                size = SkinManager.Instance.Cheek_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Cheek_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Cheek_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Cheek_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Cheek_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.HEAD:
-                size = SkinManager.inst.Head_Skin.Length;
+                size = SkinManager.Instance.Head_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.inst.Head_Skin[i].name;
-                    partsSprite[i] = SkinManager.inst.Head_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.Head_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.Head_Skin[i].sprite;
                 }
                 break;
             default:
-                DebugManager.inst.Log("없는 스킨 타입입니다.", LogType.Error);
+                DebugManager.Instance.Log("없는 스킨 타입입니다.", LogType.Error);
                 return;
         }
         for (int i = 0; i < size; i++)
         {
-            DebugManager.inst.Log(_type.ToString() + ' ' + i + "번 슬롯 생성", LogType.Log);
+            DebugManager.Instance.Log(_type.ToString() + ' ' + i + "번 슬롯 생성", LogType.Log);
             GameObject tmp = Instantiate<GameObject>(skinbuttom_pre);
             tmp.transform.SetParent(_tns.GetChild(0).GetChild(0));
             //임시 변수 선언
@@ -216,7 +216,7 @@ public class CustomizeScene : MonoBehaviour
                 presentCategory = otherCategory;
                 break;
             default:
-                DebugManager.inst.Log("없는 스킨 카테고리입니다.", LogType.Error);
+                DebugManager.Instance.Log("없는 스킨 카테고리입니다.", LogType.Error);
                 return;
         }
     }
@@ -241,7 +241,7 @@ public class CustomizeScene : MonoBehaviour
                 tmp = JP_slider;
                 break;
             default:
-                DebugManager.inst.Log("없는 성격 타입입니다.", LogType.Error);
+                DebugManager.Instance.Log("없는 성격 타입입니다.", LogType.Error);
                 return;
         }
 
@@ -273,7 +273,7 @@ public class CustomizeScene : MonoBehaviour
                     tmp_string = "personality/P/success_P";
                 break;
         }
-        AnimationManager.inst.ChangeCharaAni(SkinManager.inst.character[0].baseskin, TRACKTYPE.FACE, tmp_string, false);
+        AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0].baseskin, TRACKTYPE.FACE, tmp_string, false);
     }
 
     public void CustomColor(Scrollbar _this)
@@ -308,43 +308,43 @@ public class CustomizeScene : MonoBehaviour
         switch (type)
         {
             case PARTSTYPE.FRONTHAIR:
-                SkinManager.inst.character[0].baseskin.baseFronthair.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseFronthair.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseFronthair.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseFronthair.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.REARHAIR:
-                SkinManager.inst.character[0].baseskin.baseRearhair.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseRearhair.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseRearhair.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseRearhair.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.EYEBLOW:
-                SkinManager.inst.character[0].baseskin.baseEyeblow.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseEyeblow.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseEyeblow.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseEyeblow.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.EYELID:
-                SkinManager.inst.character[0].baseskin.baseEyelid.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseEyelid.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseEyelid.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseEyelid.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.EYEBALL:
-                SkinManager.inst.character[0].baseskin.baseEyeball.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseEyeball.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseEyeball.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseEyeball.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.EYEWHITE:
-                SkinManager.inst.character[0].baseskin.baseEyewhite.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseEyewhite.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseEyewhite.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseEyewhite.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.MOUTH:
-                SkinManager.inst.character[0].baseskin.baseMouth.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseMouth.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseMouth.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseMouth.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.HEAD:
-                SkinManager.inst.character[0].baseskin.baseHead.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseHead.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseHead.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseHead.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             case PARTSTYPE.CHEEK:
-                SkinManager.inst.character[0].baseskin.baseCheek.skincolor = c;
-                SkinManager.inst.character[0].baseskin.baseCheek.RefreshSkin(SkinManager.inst.character[0].baseskin.skeleton_ani);
+                SkinManager.Instance.character[0].baseskin.baseCheek.skincolor = c;
+                SkinManager.Instance.character[0].baseskin.baseCheek.RefreshSkin(SkinManager.Instance.character[0].baseskin.skeleton_ani);
                 break;
             default:
-                DebugManager.inst.Log("없는 스킨 타입입니다.", LogType.Error);
+                DebugManager.Instance.Log("없는 스킨 타입입니다.", LogType.Error);
                 return;
         }
     }

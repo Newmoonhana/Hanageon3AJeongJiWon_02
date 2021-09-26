@@ -39,7 +39,7 @@ public class SkinParts
     {
         if (_slot.Length != _key.Length)
         {
-            DebugManager.inst.Log("파츠 변경 중 변경할 슬롯과 키의 개수가 맞지 않습니다.", LogType.Error);
+            DebugManager.Instance.Log("파츠 변경 중 변경할 슬롯과 키의 개수가 맞지 않습니다.", LogType.Error);
             return;
         }
 
@@ -48,7 +48,7 @@ public class SkinParts
             //Debug.Log(i + "번째 슬롯 : " + _slot[i] + "\n파츠 : " + _key[i]);
             if (_slot[i] == null)
             {
-                DebugManager.inst.Log("슬롯 이름이 존재하지 않습니다.\n이름: " + _slot[i], LogType.Error);
+                DebugManager.Instance.Log("슬롯 이름이 존재하지 않습니다.\n이름: " + _slot[i], LogType.Error);
                 return;
             }
             if (_key[i] == null || _key[i] == "")
@@ -65,7 +65,7 @@ public class SkinParts
         }
         if (name != "nullskin" && name != "기본")
         {
-            DebugManager.inst.Log("스킨 변경 : " + name, LogType.Log);
+            DebugManager.Instance.Log("스킨 변경 : " + name, LogType.Log);
         }
     }
 }
@@ -84,7 +84,7 @@ public class Fronthair : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -114,7 +114,7 @@ public class Rearhair : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -153,7 +153,7 @@ public class Eyeblow : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -192,7 +192,7 @@ public class Eyelid : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -227,7 +227,7 @@ public class Eyeball : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -260,7 +260,7 @@ public class Eyewhite : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -291,7 +291,7 @@ public class Mouth : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -321,7 +321,7 @@ public class Cheek : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -351,7 +351,7 @@ public class Head : SkinParts
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -391,7 +391,7 @@ public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -443,7 +443,7 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -499,7 +499,7 @@ public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
     {
         if (_change == null)
         {
-            DebugManager.inst.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
             return;
         }
 
@@ -598,43 +598,43 @@ public class Skin
         switch (_type)
         {
             case PARTSTYPE.FRONTHAIR:
-                baseFronthair.ChangeSkin(skeleton_ani, SkinManager.inst.FindFronthairSkin(_clothes));
+                baseFronthair.ChangeSkin(skeleton_ani, SkinManager.Instance.FindFronthairSkin(_clothes));
                 break;
             case PARTSTYPE.REARHAIR:
-                baseRearhair.ChangeSkin(skeleton_ani, SkinManager.inst.FindRearhairSkin(_clothes));
+                baseRearhair.ChangeSkin(skeleton_ani, SkinManager.Instance.FindRearhairSkin(_clothes));
                 break;
             case PARTSTYPE.EYEBLOW:
-                baseEyeblow.ChangeSkin(skeleton_ani, SkinManager.inst.FindEyeblowSkin(_clothes));
+                baseEyeblow.ChangeSkin(skeleton_ani, SkinManager.Instance.FindEyeblowSkin(_clothes));
                 break;
             case PARTSTYPE.EYELID:
-                baseEyelid.ChangeSkin(skeleton_ani, SkinManager.inst.FindEyelidSkin(_clothes));
+                baseEyelid.ChangeSkin(skeleton_ani, SkinManager.Instance.FindEyelidSkin(_clothes));
                 break;
             case PARTSTYPE.EYEBALL:
-                baseEyeball.ChangeSkin(skeleton_ani, SkinManager.inst.FindEyeballSkin(_clothes));
+                baseEyeball.ChangeSkin(skeleton_ani, SkinManager.Instance.FindEyeballSkin(_clothes));
                 break;
             case PARTSTYPE.EYEWHITE:
-                baseEyewhite.ChangeSkin(skeleton_ani, SkinManager.inst.FindEyewhiteSkin(_clothes));
+                baseEyewhite.ChangeSkin(skeleton_ani, SkinManager.Instance.FindEyewhiteSkin(_clothes));
                 break;
             case PARTSTYPE.MOUTH:
-                baseMouth.ChangeSkin(skeleton_ani, SkinManager.inst.FindMouthSkin(_clothes));
+                baseMouth.ChangeSkin(skeleton_ani, SkinManager.Instance.FindMouthSkin(_clothes));
                 break;
             case PARTSTYPE.CHEEK:
-                baseCheek.ChangeSkin(skeleton_ani, SkinManager.inst.FindCheekSkin(_clothes));
+                baseCheek.ChangeSkin(skeleton_ani, SkinManager.Instance.FindCheekSkin(_clothes));
                 break;
             case PARTSTYPE.HEAD:
-                baseHead.ChangeSkin(skeleton_ani, SkinManager.inst.FindHeadSkin(_clothes));
+                baseHead.ChangeSkin(skeleton_ani, SkinManager.Instance.FindHeadSkin(_clothes));
                 break;
             case PARTSTYPE.OVERCOAT:
-                baseOvercoat.ChangeSkin(skeleton_ani, SkinManager.inst.FindOvercoatSkin(_clothes));
+                baseOvercoat.ChangeSkin(skeleton_ani, SkinManager.Instance.FindOvercoatSkin(_clothes));
                 break;
             case PARTSTYPE.TOP:
-                baseTop.ChangeSkin(skeleton_ani, SkinManager.inst.FindTopSkin(_clothes));
+                baseTop.ChangeSkin(skeleton_ani, SkinManager.Instance.FindTopSkin(_clothes));
                 break;
             case PARTSTYPE.BOTTOM:
-                baseBottom.ChangeSkin(skeleton_ani, SkinManager.inst.FindBottomSkin(_clothes));
+                baseBottom.ChangeSkin(skeleton_ani, SkinManager.Instance.FindBottomSkin(_clothes));
                 break;
             default:
-                DebugManager.inst.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+                DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
                 break;
         }
     }
