@@ -15,12 +15,14 @@ public enum PERSONA //성격 종류.
 [System.Serializable]
 public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수<->양수 값으로 인게임에서 성격 처리).
 {
+    float center = 0.5f;
     [SerializeField]
     float[] persona = new float[(int)(PERSONA._MAX)] { 0.5f, 0.5f, 0.5f, 0.5f };
+    
     //생성자.
     public personality()
     {
-        persona = new float[(int)(PERSONA._MAX)] { 0.5f, 0.5f, 0.5f, 0.5f };
+        persona = new float[(int)(PERSONA._MAX)] { center, center, center, center };
     }
     public personality(float[] _persona)
     {
@@ -40,6 +42,17 @@ public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수
         }
         persona = _persona.persona;
     }
+    public void substitutionP(float _EI, float _SN, float _TF, float _JP)
+    {
+        persona[0] = _EI;
+        persona[1] = _SN;
+        persona[2] = _TF;
+        persona[3] = _JP;
+    }
+    public void substitutionP(PERSONA _type, float _value)
+    {
+        persona[(int)_type] = _value;
+    }
     public void substitutionP(float[] _persona)
     {
         if (_persona.Length != (int)(PERSONA._MAX))
@@ -56,9 +69,11 @@ public class character //캐릭터 정보 클래스.
 {
     static int persona_size = 4;
 
-    string name { get; set; }
-    string nickname { get; set; }
+    public string name;
+    public string nickname;
     public personality persona;
+    public Skin skin;
+    public int unit = 0;    //아파트 호 수.
 
     //생성자.
     public character()
@@ -66,15 +81,40 @@ public class character //캐릭터 정보 클래스.
         name = "";
         nickname = "";
     }
-    public character(string _name, string _nickname, personality _persona)
+    public character(string _name, string _nickname, Skin _skin, personality _persona, int _unit)
     {
-        name = _name;
-        nickname = _nickname;
-        persona.substitutionP(_persona);
+        this.name = _name;
+        this.nickname = _nickname;
+        this.skin = _skin;
+        this.persona = _persona;
+        this.unit = _unit;
+    }
+    public character(character _chara)
+    {
+        this.name = _chara.name;
+        this.nickname = _chara.nickname;
+        this.skin = _chara.skin;
+        this.persona = _chara.persona;
+        this.unit = _chara.unit;
     }
 }
 
 public class CharacterManager : SingletonPattern_IsA_Mono<CharacterManager>
 {
     public List<character> char_lst = new List<character>();
+
+    public void Awake()
+    {
+        DontDestroyInst(this);
+    }
+
+    public character FindCharacter(int _unit)
+    {
+        foreach (var item in char_lst)
+        {
+            if (item.unit == _unit)
+                return item;
+        }
+        return null;
+    }
 }

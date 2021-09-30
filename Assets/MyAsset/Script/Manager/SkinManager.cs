@@ -25,6 +25,26 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
 
     public CharSkin []character;
 
+    public void Awake()
+    {
+        Instance.character = character;
+
+        DontDestroyInst(this);
+    }
+
+    //skeletonAni 재설정
+    public void RefreshSkeleAni(character _chara, int _index)
+    {
+        if (_chara == null)
+        {
+            return;
+        }
+        SkeletonAnimation sketmp = Instance.character[_index].charaSetting.skin.skeleton_ani;
+        Instance.character[_index].charaSetting = _chara;
+        Instance.character[_index].charaSetting.skin.skeleton_ani = sketmp;
+        Instance.character[_index].charaSetting.skin.RefreshCustom(Instance.character[_index].charaSetting.skin);
+    }
+
     //스킨 찾기 함수.
     public Fronthair FindFronthairSkin(string _parts)
     {

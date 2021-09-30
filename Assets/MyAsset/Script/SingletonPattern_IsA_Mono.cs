@@ -11,8 +11,23 @@ public class SingletonPattern_IsA_Mono<T> : MonoBehaviour where T : Component
             if (m_instance == null)
             {
                 m_instance = new GameObject(typeof(T).ToString(), typeof(T)).AddComponent<T>();
+                DontDestroyOnLoad(m_instance);
             }
             return m_instance;
+        }
+    }
+
+    public static bool DontDestroyInst(T _this)
+    {
+        if (_this == Instance)
+        {
+            DontDestroyOnLoad(Instance);
+            return true;
+        }
+        else
+        {
+            Destroy(_this); //변수 체킹 용 디버그 줄
+            return false;
         }
     }
 }

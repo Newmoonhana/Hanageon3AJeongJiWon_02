@@ -53,17 +53,17 @@ public class SkinParts
             }
             if (_key[i] == null || _key[i] == "")
             {
-                //debugM.inst.Log("파츠 변경 : [" + _slot[i] + " <- [none] ]", LogType.Log);
+                DebugManager.Instance.Log("파츠 변경 : [" + _slot[i] + " <- [none] ]", LogType.Log);
                 _skeleton_ani.skeleton.SetAttachment(_slot[i], null);
             }
             else
             {
-                //debugM.inst.Log("파츠 변경 : [" + _slot[i] + " <- " + _key[i] + "]", LogType.Log);
+                DebugManager.Instance.Log("파츠 변경 : [" + _slot[i] + " <- " + _key[i] + "]", LogType.Log);
                 _skeleton_ani.skeleton.SetAttachment(_slot[i], _key[i]);
                 _skeleton_ani.skeleton.FindSlot(_slot[i]).SetColor(skincolor);
             }
         }
-        if (name != "nullskin" && name != "기본")
+        if (name != "nullskin")
         {
             DebugManager.Instance.Log("스킨 변경 : " + name, LogType.Log);
         }
@@ -75,9 +75,9 @@ public class SkinParts
 [System.Serializable]
 public class Fronthair : SkinParts
 {
-    [SpineSlot] public string antennahairSlot;  //바보털
+    [SpineSlot] string antennahairSlot = "antennahair";  //바보털
     [SpineAttachment] public string antennahairKey;
-    [SpineSlot] public string fronthairSlot;
+    [SpineSlot] string fronthairSlot = "fronthair";
     [SpineAttachment] public string fronthairKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Fronthair _change)
@@ -107,7 +107,7 @@ public class Fronthair : SkinParts
 [System.Serializable]
 public class Rearhair : SkinParts
 {
-    [SpineSlot] public string rearhairSlot;
+    [SpineSlot] string rearhairSlot = "rearhair";
     [SpineAttachment] public string rearhairKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Rearhair _change)
@@ -144,9 +144,9 @@ public class Hat : SkinParts
 [System.Serializable]
 public class Eyeblow : SkinParts
 {
-    [SpineSlot] public string eyeblowLSlot;
+    [SpineSlot] string eyeblowLSlot = "eyeblowL";
     [SpineAttachment] public string eyeblowLKey;
-    [SpineSlot] public string eyeblowRSlot;
+    [SpineSlot] string eyeblowRSlot = "eyeblowR";
     [SpineAttachment] public string eyeblowRKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeblow _change)
@@ -179,13 +179,13 @@ public class Eyeblow : SkinParts
 [System.Serializable]
 public class Eyelid : SkinParts
 {
-    [SpineSlot] public string eyelidLUSlot;
+    [SpineSlot] string eyelidLUSlot = "eyelidLU";
     [SpineAttachment] public string eyelidLUKey;
-    [SpineSlot] public string eyelidLDSlot;
+    [SpineSlot] string eyelidLDSlot = "eyelidLD";
     [SpineAttachment] public string eyelidLDKey;
-    [SpineSlot] public string eyelidRUSlot;
+    [SpineSlot] string eyelidRUSlot = "eyelidRU";
     [SpineAttachment] public string eyelidRUKey;
-    [SpineSlot] public string eyelidRDSlot;
+    [SpineSlot] string eyelidRDSlot = "eyelidRD";
     [SpineAttachment] public string eyelidRDKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyelid _change)
@@ -218,9 +218,9 @@ public class Eyelid : SkinParts
 [System.Serializable]
 public class Eyeball : SkinParts
 {
-    [SpineSlot] public string eyeballLSlot;
+    [SpineSlot] string eyeballLSlot = "eyeballL";
     [SpineAttachment] public string eyeballLKey;
-    [SpineSlot] public string eyeballRSlot;
+    [SpineSlot] string eyeballRSlot = "eyeballR";
     [SpineAttachment] public string eyeballRKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeball _change)
@@ -251,9 +251,9 @@ public class Eyeball : SkinParts
 [System.Serializable]
 public class Eyewhite : SkinParts
 {
-    [SpineSlot] public string eyewhiteLSlot;
+    [SpineSlot] string eyewhiteLSlot = "eyewhiteL";
     [SpineAttachment] public string eyewhiteLKey;
-    [SpineSlot] public string eyewhiteRSlot;
+    [SpineSlot] string eyewhiteRSlot = "eyewhiteR";
     [SpineAttachment] public string eyewhiteRKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyewhite _change)
@@ -284,7 +284,7 @@ public class Eyewhite : SkinParts
 [System.Serializable]
 public class Mouth : SkinParts
 {
-    [SpineSlot] public string mouthSlot;
+    [SpineSlot] string mouthSlot = "mouth";
     [SpineAttachment] public string mouthKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Mouth _change)
@@ -314,7 +314,7 @@ public class Mouth : SkinParts
 [System.Serializable]
 public class Cheek : SkinParts
 {
-    [SpineSlot] public string cheekSlot;
+    [SpineSlot] string cheekSlot = "cheek";
     [SpineAttachment] public string cheekKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Cheek _change)
@@ -344,7 +344,7 @@ public class Cheek : SkinParts
 [System.Serializable]
 public class Head : SkinParts
 {
-    [SpineSlot] public string headSlot;
+    [SpineSlot] string headSlot = "head";
     [SpineAttachment] public string headKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Head _change)
@@ -375,16 +375,16 @@ public class Head : SkinParts
 public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle, low)
 {
     //코트
-    [SpineSlot] public string overcoatSlot; // 슬롯의 이름
+    [SpineSlot] string overcoatSlot = "overcoat"; // 슬롯의 이름
     [SpineAttachment] public string overcoatKey; // 어테치먼트의 이름
     //코트(왼쪽)
-    [SpineSlot] public string overcoatLSlot;
+    [SpineSlot] string overcoatLSlot = "overcoatL";
     [SpineAttachment] public string overcoatLKey;
     //코트(오른쪽)
-    [SpineSlot] public string overcoatRSlot;
+    [SpineSlot] string overcoatRSlot = "overcoatR";
     [SpineAttachment] public string overcoatRKey;
     //코트(뒤)
-    [SpineSlot] public string overcoatBSlot;
+    [SpineSlot] string overcoatBSlot = "overcoatB";
     [SpineAttachment] public string overcoatBKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Overcoat _change)
@@ -415,28 +415,28 @@ public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle
 public class Top : SkinParts  //body & B, armL & R(high, middle, low)
 {
     //상의
-    [SpineSlot] public string bodySlot; // 슬롯의 이름
+    [SpineSlot] string bodySlot = "body"; // 슬롯의 이름
     [SpineAttachment] public string bodyKey; // 어테치먼트의 이름
     //상의(뒤)
-    [SpineSlot] public string bodyBSlot;
+    [SpineSlot] string bodyBSlot = "bodyB";
     [SpineAttachment] public string bodyBKey;
     //왼팔(상)
-    [SpineSlot] public string armL_highSlot;
+    [SpineSlot] string armL_highSlot = "armL_high";
     [SpineAttachment] public string armL_highKey;
     //왼팔(중)
-    [SpineSlot] public string armL_middleSlot;
+    [SpineSlot] string armL_middleSlot = "armL_middle";
     [SpineAttachment] public string armL_middleKey;
     //왼팔(하)
-    [SpineSlot] public string armL_lowSlot;
+    [SpineSlot] string armL_lowSlot = "armL_low";
     [SpineAttachment] public string armL_lowKey;
     //오른팔(상)
-    [SpineSlot] public string armR_highSlot;
+    [SpineSlot] string armR_highSlot = "armR_high";
     [SpineAttachment] public string armR_highKey;
     //오른팔(중)
-    [SpineSlot] public string armR_middleSlot;
+    [SpineSlot] string armR_middleSlot = "armR_middle";
     [SpineAttachment] public string armR_middleKey;
     //오른팔(하)
-    [SpineSlot] public string armR_lowSlot;
+    [SpineSlot] string armR_lowSlot = "armR_low";
     [SpineAttachment] public string armR_lowKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Top _change)
@@ -474,25 +474,25 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
 public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
 {
     //상의
-    [SpineSlot] public string waistSlot; // 슬롯의 이름
+    [SpineSlot] string waistSlot = "waist"; // 슬롯의 이름
     [SpineAttachment] public string waistKey; // 어테치먼트의 이름
     //왼팔(상)
-    [SpineSlot] public string legL_highSlot;
+    [SpineSlot] string legL_highSlot = "legL_high";
     [SpineAttachment] public string legL_highKey;
     //왼팔(중)
-    [SpineSlot] public string legL_middleSlot;
+    [SpineSlot] string legL_middleSlot = "legL_middle";
     [SpineAttachment] public string legL_middleKey;
     //왼팔(하)
-    [SpineSlot] public string legL_lowSlot;
+    [SpineSlot] string legL_lowSlot = "legL_low";
     [SpineAttachment] public string legL_lowKey;
     //오른팔(상)
-    [SpineSlot] public string legR_highSlot;
+    [SpineSlot] string legR_highSlot = "legR_high";
     [SpineAttachment] public string legR_highKey;
     //오른팔(중)
-    [SpineSlot] public string legR_middleSlot;
+    [SpineSlot] string legR_middleSlot = "legR_middle";
     [SpineAttachment] public string legR_middleKey;
     //오른팔(하)
-    [SpineSlot] public string legR_lowSlot;
+    [SpineSlot] string legR_lowSlot = "legR_low";
     [SpineAttachment] public string legR_lowKey;
 
     public void ChangeSkin(SkeletonAnimation _skeleton_ani, Bottom _change)

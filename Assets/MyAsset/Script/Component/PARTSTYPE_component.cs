@@ -6,7 +6,7 @@ using UnityEngine;
 public class PARTSTYPE_component : MonoBehaviour
 {
     public PARTSTYPE PARTSTYPE_cp;
-    [SpineAttachment] public string partsname;
+    public string partsname;
 
     public PARTSTYPE_component()
     {

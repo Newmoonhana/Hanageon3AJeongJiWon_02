@@ -13,6 +13,11 @@ public enum TRACKTYPE
 
 public class AnimationManager : SingletonPattern_IsA_Mono<AnimationManager>
 {
+    public void Awake()
+    {
+        DontDestroyInst(this);
+    }
+
     public void ChangeCharaAni(Skin _chara, TRACKTYPE _type, string _ani, bool _isloop)
     {
         _chara.skeleton_ani.AnimationState.ClearTrack((int)_type);
