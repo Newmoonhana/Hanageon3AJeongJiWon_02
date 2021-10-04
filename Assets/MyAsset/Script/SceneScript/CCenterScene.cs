@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CCenterScene : MonoBehaviour
 {
+    public void Start()
+    {
+        UIManager.Instance.SetActiveOKbutton(false);
+        UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
+    }
+
     public void InputBackButton()   //뒤로 가기.
     {
         GameManager.Instance.LoadScene("MainScene");

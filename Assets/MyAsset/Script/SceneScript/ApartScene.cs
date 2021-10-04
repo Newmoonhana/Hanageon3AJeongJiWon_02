@@ -23,6 +23,9 @@ public class ApartScene : MonoBehaviour
 
     private void Start()
     {
+        UIManager.Instance.SetActiveOKbutton(false);
+        UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
+
         int size = apart_content.transform.childCount;
         floor_lst = new List<GameObject>();
         unitButton_lst = new List<Button>();
@@ -64,6 +67,7 @@ public class ApartScene : MonoBehaviour
         ApartManager.Instance.thisUnit = tmp.unit;
 
         state = STATE.UNITCANVAS;
+        UIManager.Instance.SetActiveOKbutton<byte>(true, delegate { InputInButton(); });
     }
 
     public void InputInButton()
@@ -86,6 +90,7 @@ public class ApartScene : MonoBehaviour
             case STATE.UNITCANVAS:
                 ApartManager.Instance.thisUnit = -1;
                 unitstate_obj.SetActive(false);
+                UIManager.Instance.SetActiveOKbutton(false);
                 state = STATE.NONE;
                 break;
         }

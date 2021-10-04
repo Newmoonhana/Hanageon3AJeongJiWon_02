@@ -14,12 +14,22 @@ public enum LogType
 
 public class DebugManager : SingletonPattern_IsA_Mono<DebugManager>
 {
-    public GameObject debugWindow_small;
-    public ScrollRect scrollview_sr;
-    public Scrollbar scrollY_sb;
-    public Text logtext_txt;
+    GameObject debugWindow_small;
+    ScrollRect scrollview_sr;
+    Scrollbar scrollY_sb;
+    Text logtext_txt;
 
-    public void Start()
+    private void Awake()
+    {
+        debugWindow_small = transform.GetChild(0).GetChild(0).gameObject;
+        scrollview_sr = debugWindow_small.GetComponent<ScrollRect>();
+        scrollY_sb = debugWindow_small.transform.GetChild(1).GetComponent<Scrollbar>();
+        logtext_txt = debugWindow_small.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+
+        DontDestroyInst(this);
+    }
+
+    private void Start()
     {
         Log("DebugManager is enable", LogType.None);
         //for (int i = 0; i < 20; i++)

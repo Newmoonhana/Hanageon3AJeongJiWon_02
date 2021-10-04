@@ -14,6 +14,8 @@ public class RoomScene : MonoBehaviour
 
     private void Start()
     {
+        UIManager.Instance.SetActiveOKbutton(false);
+        UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
         SkinManager.Instance.RefreshSkeleAni(CharacterManager.Instance.FindCharacter(ApartManager.Instance.thisUnit), 0);
     }
 

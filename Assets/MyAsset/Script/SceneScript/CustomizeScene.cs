@@ -41,8 +41,11 @@ public class CustomizeScene : MonoBehaviour
     public Text name_txt;
     public Text nickname_txt;
 
-    private void Awake()
+    private void Start()
     {
+        UIManager.Instance.SetActiveOKbutton(false);
+        UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
+
         basechar = SkinManager.Instance.character[0].charaSetting;
         basechar.persona = new personality();
         customPresentCategory = customHeadCategory;

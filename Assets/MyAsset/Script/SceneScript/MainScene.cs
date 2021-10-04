@@ -18,6 +18,12 @@ public class MainScene : MonoBehaviour
     public Image zoomImage_img;
     string scenename = null;
 
+    private void Start()
+    {
+        UIManager.Instance.SetActiveOKbutton(false);
+        UIManager.Instance.SetActiveBackbutton(false);
+    }
+
     public void InputZoomButton(MAINSCENE_component _type)
     {
         if (state != STATE.NONE)
@@ -27,6 +33,8 @@ public class MainScene : MonoBehaviour
         zoomButton_obj.SetActive(false);
         zoomImage_img.sprite = _type.zoom_spr;
         in_obj.SetActive(true);
+        UIManager.Instance.SetActiveOKbutton<byte>(true, delegate { InputInButton(); });
+        UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
         scenename = _type.scene_name;
         state = STATE.ZOOM;
     }
@@ -38,6 +46,7 @@ public class MainScene : MonoBehaviour
             return;
         }
 
+        UIManager.Instance.IsntActiveAllUI();
         GameManager.Instance.LoadScene(scenename);
     }
 
@@ -45,6 +54,7 @@ public class MainScene : MonoBehaviour
     {
         zoomButton_obj.SetActive(true);
         in_obj.SetActive(false);
+        UIManager.Instance.IsntActiveAllUI();
 
         scenename = null;
         state = STATE.NONE;
