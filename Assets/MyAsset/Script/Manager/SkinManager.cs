@@ -28,12 +28,12 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
     [ContextMenu("SaveXML")]
     void SaveXML()
     {
-        PlayerInfoManager.Instance.WriteSkinInfo();
+        PlayerInfoXML.WriteSkinInfo();
     }
     [ContextMenu("LoadXML")]
     void LoadXML()
     {
-        PlayerInfoManager.Instance.ReadSkinInfo();
+        PlayerInfoXML.ReadSkinInfo();
     }
 
     public void Awake()
@@ -50,10 +50,8 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         {
             return;
         }
-        SkeletonAnimation sketmp = Instance.character[_index].charaSetting.skin.skeleton_ani;
         Instance.character[_index].charaSetting = _chara;
-        Instance.character[_index].charaSetting.skin.skeleton_ani = sketmp;
-        Instance.character[_index].charaSetting.skin.RefreshCustom(Instance.character[_index].charaSetting.skin);
+        Instance.character[_index].charaSetting.skin.RefreshCustom(Instance.character[_index].charaSetting.skin, Instance.character[_index].skeleton);
     }
 
     public Fronthair FindFronthairSkin(string _parts)

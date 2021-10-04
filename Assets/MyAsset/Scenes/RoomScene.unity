@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98b0b241b33eee4c988eb0b030828ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeleton: {fileID: 382056585}
   charaSetting:
     name: 
     nickname: 
@@ -666,7 +667,6 @@ MonoBehaviour:
       - 0.5
       - 0.5
     skin:
-      skeleton_ani: {fileID: 382056585}
       baseSkinName: default
       baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
       baseFronthair:
@@ -2077,6 +2077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98b0b241b33eee4c988eb0b030828ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeleton: {fileID: 1601851124}
   charaSetting:
     name: 
     nickname: 
@@ -2087,7 +2088,6 @@ MonoBehaviour:
       - 0.5
       - 0.5
     skin:
-      skeleton_ani: {fileID: 1601851124}
       baseSkinName: default
       baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
       baseFronthair:

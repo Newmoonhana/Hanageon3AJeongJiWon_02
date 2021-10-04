@@ -5,11 +5,11 @@ using Spine.Unity;
 
 public class CharSkin : MonoBehaviour
 {
+    public SkeletonAnimation skeleton;
     public character charaSetting;
 
     private void Awake()
     {
-        charaSetting.skin.ClearClothes();
-        AnimationManager.Instance.ChangeCharaAni(charaSetting.skin, TRACKTYPE.BODY, "public/Idle", true);
+        //AnimationManager.Instance.ChangeCharaAni(this, TRACKTYPE.BODY, "public/Idle", true);
     }
 }

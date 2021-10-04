@@ -18,18 +18,18 @@ public class AnimationManager : SingletonPattern_IsA_Mono<AnimationManager>
         DontDestroyInst(this);
     }
 
-    public void ChangeCharaAni(Skin _chara, TRACKTYPE _type, string _ani, bool _isloop)
+    public void ChangeCharaAni(CharSkin _chara, TRACKTYPE _type, string _ani, bool _isloop)
     {
-        _chara.skeleton_ani.AnimationState.ClearTrack((int)_type);
-        _chara.RefreshCustom(_chara);
+        _chara.skeleton.AnimationState.ClearTrack((int)_type);
+        _chara.charaSetting.skin.RefreshCustom(_chara.charaSetting.skin, _chara.skeleton);
         if (_ani != null)
         {
-            _chara.skeleton_ani.AnimationState.SetAnimation((int)_type, _ani, _isloop);
+            _chara.skeleton.AnimationState.SetAnimation((int)_type, _ani, _isloop);
             DebugManager.Instance.Log(_ani + " 애니메이션 실행", LogType.Log);
         }
         else
         {
-            _chara.skeleton_ani.AnimationState.SetEmptyAnimation((int)_type, 0);
+            _chara.skeleton.AnimationState.SetEmptyAnimation((int)_type, 0);
             DebugManager.Instance.Log(_type.ToString() + "타입 애니메이션 해제", LogType.Log);
         }
     }

@@ -4,13 +4,21 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public class PlayerInfoManager : SingletonPattern_IsA_Mono<PlayerInfoManager>
+public class PlayerInfoXML
 {
+    static string skinInfo = "SkinInfo", skinInfo_add = "./Assets/Resources/XML/SkinInfo.xml";
+    static string characterInfo = "CharacterInfo", characterInfo_add = "./Assets/Resources/XML/CharacterInfo.xml";
 
-
-
-    //SkinInfo.xml 불러오기.
-    Color ReadColorHex(string str)  //Hex로 저장된 색상 값 되찾기.
+    //색 변형
+    public static string ColorToHexString(Color color)
+    {
+        string r = ((int)(color.r * 255)).ToString("X2");
+        string g = ((int)(color.g * 255)).ToString("X2");
+        string b = ((int)(color.b * 255)).ToString("X2");
+        string a = ((int)(color.a * 255)).ToString("X2");
+        return string.Format("{0}{1}{2}{3}", r, g, b, a);
+    }
+    public static Color HexStringToColor(string str)  //Hex로 저장된 색상 값 되찾기.
     {
         str = str.ToLowerInvariant();
         if (str.Length == 8)
@@ -33,16 +41,83 @@ public class PlayerInfoManager : SingletonPattern_IsA_Mono<PlayerInfoManager>
         }
         return Color.red;
     }
-    void ReadDefalutParts(SkinParts _skin, XmlNode innode)
+
+    //CharacterInfo.xml 저장.
+    public static void ReadCharacterInfo()
+    {
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/" + characterInfo);
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(textAsset.text);
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
+        CharacterManager.Instance.char_lst.Clear();
+        CharacterManager.Instance.char_lst = new List<character>();
+        foreach (XmlNode node in nodes)
+        {
+            foreach (XmlNode innode in node.ChildNodes)
+            {
+                character tmp = new character(innode.SelectSingleNode("Name").InnerText,
+                    innode.SelectSingleNode("Nickname").InnerText,
+                    innode.SelectSingleNode("Skin").InnerText,
+                    innode.SelectSingleNode("Persona").InnerText,
+                    innode.SelectSingleNode("Unit").InnerText);
+                CharacterManager.Instance.AddCharacter(tmp);
+            }
+        }
+
+        Debug.Log(characterInfo_add + " 불러오기 성공");
+    }
+    public static void WriteCharacterInfo()
+    {
+        XmlDocument Document = new XmlDocument();
+        // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
+        Document.AppendChild(Document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
+
+        // 루트 노드 생성
+        XmlNode root = Document.CreateNode(XmlNodeType.Element, characterInfo, string.Empty);
+        Document.AppendChild(root);
+
+        // 자식 노드 생성
+        XmlNode character = Document.CreateNode(XmlNodeType.Element, "Character", string.Empty);
+        root.AppendChild(character);
+        for (int i = 0; i < CharacterManager.Instance.char_lst.Count; i++)
+        {
+            string _name = CharacterManager.Instance.char_lst[i].name.Replace(" ", "_");
+            XmlNode chara = Document.CreateNode(XmlNodeType.Element, _name, string.Empty);
+            character.AppendChild(chara);
+            //키 값 저장
+            XmlElement name = Document.CreateElement("Name");
+            name.InnerText = CharacterManager.Instance.char_lst[i].name;
+            chara.AppendChild(name);
+            XmlElement nickname = Document.CreateElement("Nickname");
+            nickname.InnerText = CharacterManager.Instance.char_lst[i].nickname;
+            chara.AppendChild(nickname);
+            XmlElement persona = Document.CreateElement("Persona");
+            persona.InnerText = CharacterManager.Instance.char_lst[i].persona.ToString();
+            chara.AppendChild(persona);
+            XmlElement skin = Document.CreateElement("Skin");
+            skin.InnerText = CharacterManager.Instance.char_lst[i].skin.ToString();
+            chara.AppendChild(skin);
+            XmlElement unit = Document.CreateElement("Unit");
+            unit.InnerText = CharacterManager.Instance.char_lst[i].unit.ToString();
+            chara.AppendChild(unit);
+        }
+
+        Document.Save(characterInfo_add);
+        Debug.Log(characterInfo_add + " 저장 완료");
+    }
+
+    //SkinInfo.xml 불러오기.
+    static void ReadDefalutParts(SkinParts _skin, XmlNode innode)
     {
         _skin.name = innode.SelectSingleNode("Name").InnerText;
-        _skin.skincolor = ReadColorHex(innode.SelectSingleNode("Color").InnerText);
+        _skin.skincolor = HexStringToColor(innode.SelectSingleNode("Color").InnerText);
         if (innode.SelectSingleNode("Sprite").InnerText != "")
             _skin.sprite = Resources.Load<Sprite>("Icon/CharSpine_Icon/" + innode.SelectSingleNode("Sprite").InnerText);
     }
-    public void ReadSkinInfo()
+    static public void ReadSkinInfo()
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("XML/SkinInfo");
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/" + skinInfo);
         Debug.Log("xml: " + textAsset);
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(textAsset.text);
@@ -251,10 +326,10 @@ public class PlayerInfoManager : SingletonPattern_IsA_Mono<PlayerInfoManager>
             }
         }
 
-        Debug.Log("SkinInfo.xml 불러오기 성공");
+        Debug.Log(skinInfo_add + " 불러오기 성공");
     }
     //SkinInfo.xml 저장.
-    void WriteDefalutParts(int i, SkinParts[] _lst, XmlDocument _doc, XmlNode _node)
+    static void WriteDefalutParts(int i, SkinParts[] _lst, XmlDocument _doc, XmlNode _node)
     {
         //이름
         XmlElement name = _doc.CreateElement("Name");
@@ -263,12 +338,7 @@ public class PlayerInfoManager : SingletonPattern_IsA_Mono<PlayerInfoManager>
 
         //색(Hex string으로 저장)
         XmlElement color = _doc.CreateElement("Color");
-        string r = ((int)(_lst[i].skincolor.r * 255)).ToString("X2");
-        string g = ((int)(_lst[i].skincolor.g * 255)).ToString("X2");
-        string b = ((int)(_lst[i].skincolor.b * 255)).ToString("X2");
-        string a = ((int)(_lst[i].skincolor.a * 255)).ToString("X2");
-        string result = string.Format("{0}{1}{2}{3}", r, g, b, a);
-        color.InnerText = result;
+        color.InnerText = ColorToHexString(_lst[i].skincolor);
         _node.AppendChild(color);
 
         //스프라이트
@@ -279,14 +349,14 @@ public class PlayerInfoManager : SingletonPattern_IsA_Mono<PlayerInfoManager>
             sprite.InnerText = "";
         _node.AppendChild(sprite);
     }
-    public void WriteSkinInfo()
+    public static void WriteSkinInfo()
     {
         XmlDocument Document = new XmlDocument();
         // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
         Document.AppendChild(Document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
 
         // 루트 노드 생성
-        XmlNode root = Document.CreateNode(XmlNodeType.Element, "SkinInfo", string.Empty);
+        XmlNode root = Document.CreateNode(XmlNodeType.Element, skinInfo, string.Empty);
         Document.AppendChild(root);
 
         // 자식 노드 생성(앞머리)
@@ -527,7 +597,7 @@ public class PlayerInfoManager : SingletonPattern_IsA_Mono<PlayerInfoManager>
             bottom_tmp.AppendChild(legR_lowKey);
         }
 
-        Document.Save("./Assets/Resources/XML/SkinInfo.xml");
-        Debug.Log("SkinInfo.xml 저장 완료");
+        Document.Save(skinInfo_add);
+        Debug.Log(skinInfo_add + " 저장 완료");
     }
 }

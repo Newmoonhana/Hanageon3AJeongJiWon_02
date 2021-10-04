@@ -32,6 +32,27 @@ public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수
     {
         substitutionP(_persona.persona);
     }
+    public override string ToString()
+    {
+        string tmp = "";
+        for (int i = 0; i < (int)PERSONA._MAX; i++)
+        {
+            tmp += persona[i].ToString();
+            if (i != (int)PERSONA._MAX)
+                tmp += "/";
+        }
+            
+        return tmp;
+    }
+    public void StringToPersona(string _persona)
+    {
+        string[] persona_tmp = _persona.Split('/');
+        for (int i = 0; i < (int)PERSONA._MAX; i++)
+        {
+            persona[i] = float.Parse(persona_tmp[i]);
+        }
+    }
+
     //계산 - 대입.
     public void substitutionP(personality _persona)
     {
@@ -71,8 +92,8 @@ public class character //캐릭터 정보 클래스.
 
     public string name;
     public string nickname;
-    public personality persona;
-    public Skin skin;
+    public personality persona = new personality();
+    public Skin skin = new Skin();
     public int unit = 0;    //아파트 호 수.
 
     //생성자.
@@ -89,6 +110,14 @@ public class character //캐릭터 정보 클래스.
         this.persona = _persona;
         this.unit = _unit;
     }
+    public character(string _name, string _nickname, string _skin, string _persona, string _unit)
+    {
+        this.name = _name;
+        this.nickname = _nickname;
+        this.skin.StringToSkin(_skin);
+        this.persona.StringToPersona(_persona);
+        this.unit = int.Parse(_unit);
+    }
     public character(character _chara)
     {
         this.name = _chara.name;
@@ -103,9 +132,29 @@ public class CharacterManager : SingletonPattern_IsA_Mono<CharacterManager>
 {
     public List<character> char_lst = new List<character>();
 
+    [ContextMenu("SaveXML")]
+    public void SaveXML()
+    {
+        PlayerInfoXML.WriteCharacterInfo();
+    }
+    [ContextMenu("LoadXML")]
+    void LoadXML()
+    {
+        PlayerInfoXML.ReadCharacterInfo();
+    }
+
     public void Awake()
     {
-        DontDestroyInst(this);
+        if (DontDestroyInst(this))
+        {
+            LoadXML();
+        }
+    }
+
+    public void AddCharacter(character _chara)
+    {
+        Instance.char_lst.Add(_chara);
+        ApartManager.Instance.EditUnitSetting(_chara.unit, _chara.name);
     }
 
     public character FindCharacter(int _unit)

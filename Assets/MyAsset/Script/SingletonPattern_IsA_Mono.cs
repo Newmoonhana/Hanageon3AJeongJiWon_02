@@ -19,15 +19,12 @@ public class SingletonPattern_IsA_Mono<T> : MonoBehaviour where T : Component
 
     public static bool DontDestroyInst(T _this)
     {
-        if (_this == Instance)
+        if (_this.gameObject == Instance.gameObject)
         {
             DontDestroyOnLoad(Instance);
             return true;
         }
-        else
-        {
-            Destroy(_this); //변수 체킹 용 디버그 줄
-            return false;
-        }
+        Destroy(_this.gameObject); //변수 체킹 용 디버그 줄
+        return false;
     }
 }

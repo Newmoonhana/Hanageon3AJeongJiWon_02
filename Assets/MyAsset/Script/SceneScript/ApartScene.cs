@@ -62,7 +62,7 @@ public class ApartScene : MonoBehaviour
         }
         else
         {
-            unit_txt.text = string.Format("{0:###}동 {1}", _type.unit, tmp.chara_name);
+            unit_txt.text = string.Format("{0:###}동\n{1}", _type.unit, tmp.chara_name);
         }
         ApartManager.Instance.thisUnit = tmp.unit;
 

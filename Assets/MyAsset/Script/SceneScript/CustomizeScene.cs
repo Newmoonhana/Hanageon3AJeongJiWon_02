@@ -61,7 +61,7 @@ public class CustomizeScene : MonoBehaviour
         RefreshSkinList(cheeklst_tns, PARTSTYPE.CHEEK);
         RefreshSkinList(headlst_tns, PARTSTYPE.HEAD);
 
-        basechar.skin.DefaultCustom();
+        basechar.skin.DefaultCustom(SkinManager.Instance.character[0].skeleton);
     }
 
     public void InputBackButton()
@@ -82,7 +82,8 @@ public class CustomizeScene : MonoBehaviour
         }
         basechar.unit = _unit;
         ApartManager.Instance.EditUnitSetting(basechar.unit, basechar.name);
-        CharacterManager.Instance.char_lst.Add(new character(basechar));
+        CharacterManager.Instance.AddCharacter(basechar);
+        CharacterManager.Instance.SaveXML();
         GameManager.Instance.LoadScene("MainScene");
     }
 
@@ -227,7 +228,7 @@ public class CustomizeScene : MonoBehaviour
     //버튼 입력 시 예시 캐릭터의 스킨 변경.
     public void ChangeSkin_button(PARTSTYPE_component _parts)
     {
-        basechar.skin.ChangeParts(_parts.PARTSTYPE_cp, _parts.partsname);
+        basechar.skin.ChangeParts(_parts.PARTSTYPE_cp, _parts.partsname, SkinManager.Instance.character[0].skeleton);
     }
 
     //버튼 입력 시 스킨 카테고리 리스트 UI 변경.
@@ -309,7 +310,7 @@ public class CustomizeScene : MonoBehaviour
                     tmp_string = "personality/P/success_P";
                 break;
         }
-        AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0].charaSetting.skin, TRACKTYPE.FACE, tmp_string, false);
+        AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0], TRACKTYPE.FACE, tmp_string, false);
     }
 
     public void CustomColor(Scrollbar _this)
@@ -345,39 +346,39 @@ public class CustomizeScene : MonoBehaviour
         {
             case PARTSTYPE.FRONTHAIR:
                 SkinManager.Instance.character[0].charaSetting.skin.baseFronthair.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseFronthair.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseFronthair.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.REARHAIR:
                 SkinManager.Instance.character[0].charaSetting.skin.baseRearhair.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseRearhair.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseRearhair.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.EYEBLOW:
                 SkinManager.Instance.character[0].charaSetting.skin.baseEyeblow.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseEyeblow.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseEyeblow.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.EYELID:
                 SkinManager.Instance.character[0].charaSetting.skin.baseEyelid.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseEyelid.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseEyelid.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.EYEBALL:
                 SkinManager.Instance.character[0].charaSetting.skin.baseEyeball.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseEyeball.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseEyeball.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.EYEWHITE:
                 SkinManager.Instance.character[0].charaSetting.skin.baseEyewhite.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseEyewhite.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseEyewhite.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.MOUTH:
                 SkinManager.Instance.character[0].charaSetting.skin.baseMouth.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseMouth.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseMouth.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.HEAD:
                 SkinManager.Instance.character[0].charaSetting.skin.baseHead.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseHead.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseHead.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             case PARTSTYPE.CHEEK:
                 SkinManager.Instance.character[0].charaSetting.skin.baseCheek.skincolor = c;
-                SkinManager.Instance.character[0].charaSetting.skin.baseCheek.RefreshSkin(SkinManager.Instance.character[0].charaSetting.skin.skeleton_ani);
+                SkinManager.Instance.character[0].charaSetting.skin.baseCheek.RefreshSkin(SkinManager.Instance.character[0].skeleton);
                 break;
             default:
                 DebugManager.Instance.Log("없는 스킨 타입입니다.", LogType.Error);
