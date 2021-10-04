@@ -25,6 +25,17 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
 
     public CharSkin []character;
 
+    [ContextMenu("SaveXML")]
+    void SaveXML()
+    {
+        PlayerInfoManager.Instance.WriteSkinInfo();
+    }
+    [ContextMenu("LoadXML")]
+    void LoadXML()
+    {
+        PlayerInfoManager.Instance.ReadSkinInfo();
+    }
+
     public void Awake()
     {
         Instance.character = character;
@@ -45,7 +56,6 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         Instance.character[_index].charaSetting.skin.RefreshCustom(Instance.character[_index].charaSetting.skin);
     }
 
-    //스킨 찾기 함수.
     public Fronthair FindFronthairSkin(string _parts)
     {
         for (int i = 0; i < Fronthair_Skin.Length; i++)
