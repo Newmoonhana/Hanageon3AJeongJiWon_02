@@ -65,6 +65,16 @@ public class ApartScene : MonoBehaviour
             unit_txt.text = string.Format("{0:###}동\n{1}", _type.unit, tmp.chara_name);
         }
         ApartManager.Instance.thisUnit = tmp.unit;
+        if (CharacterManager.Instance.FindCharacter(tmp.unit) != null)
+        {
+            SkinManager.Instance.character[0].gameObject.SetActive(true);
+            SkinManager.Instance.character[0].charaSetting.skin = CharacterManager.Instance.FindCharacter(tmp.unit).skin;
+            SkinManager.Instance.character[0].charaSetting.skin.OnlyHead(SkinManager.Instance.character[0].charaSetting.skin, SkinManager.Instance.character[0].skeleton);
+        }
+        else
+        {
+            SkinManager.Instance.character[0].gameObject.SetActive(false);
+        }
 
         state = STATE.UNITCANVAS;
         UIManager.Instance.SetActiveOKbutton<byte>(true, delegate { InputInButton(); });

@@ -61,7 +61,7 @@ public class CustomizeScene : MonoBehaviour
         RefreshSkinList(cheeklst_tns, PARTSTYPE.CHEEK);
         RefreshSkinList(headlst_tns, PARTSTYPE.HEAD);
 
-        basechar.skin.DefaultCustom(SkinManager.Instance.character[0].skeleton);
+        basechar.skin.DefaultCustom(SkinManager.Instance.character[0].skeleton, true);  //주민 생성 기준.
     }
 
     public void InputBackButton()
@@ -228,7 +228,7 @@ public class CustomizeScene : MonoBehaviour
     //버튼 입력 시 예시 캐릭터의 스킨 변경.
     public void ChangeSkin_button(PARTSTYPE_component _parts)
     {
-        basechar.skin.ChangeParts(_parts.PARTSTYPE_cp, _parts.partsname, SkinManager.Instance.character[0].skeleton);
+        basechar.skin.ChangeParts(_parts.PARTSTYPE_cp, _parts.partsname, SkinManager.Instance.character[0].skeleton, true);
     }
 
     //버튼 입력 시 스킨 카테고리 리스트 UI 변경.

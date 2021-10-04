@@ -4,16 +4,9 @@
     <모먼트_메이얼>
       <Name>모먼트 메이얼</Name>
       <Nickname>모먼트</Nickname>
-      <Persona>4/4/7/4/</Persona>
+      <Persona>3/7/2/7/</Persona>
       <Skin>Fronthair:헤어01:FFFFFFFF/Rearhair:기본:FFFFFFFF/Eyeblow:기본:FFFFFFFF/Eyelid:nullskin:FFFFFFFF/Eyeball:기본:FFFFFFFF/Eyewhite:nullskin:FFFFFFFF/Mouth:기본:FFFFFFFF/Cheek:기본:FFFFFFFF/Head:기본:FFFFFFFF/Overcoat:nullskin:FFFFFFFF/Top:기본:FFFFFFFF/Bottom:nullskin:FFFFFFFF</Skin>
       <Unit>101</Unit>
     </모먼트_메이얼>
-    <모데스트_메이얼>
-      <Name>모데스트 메이얼</Name>
-      <Nickname>모데스트</Nickname>
-      <Persona>9/1/9/1/</Persona>
-      <Skin>Fronthair:헤어01:FFFFFFFF/Rearhair:기본:FFFFFFFF/Eyeblow:눈썹 02:FFFFFFFF/Eyelid:눈꺼풀 00:FFFFFFFF/Eyeball:기본:FFFFFFFF/Eyewhite:nullskin:FFFFFFFF/Mouth:기본:FFFFFFFF/Cheek:기본:FFFFFFFF/Head:기본:FFFFFFFF/Overcoat:nullskin:FFFFFFFF/Top:기본:FFFFFFFF/Bottom:nullskin:FFFFFFFF</Skin>
-      <Unit>102</Unit>
-    </모데스트_메이얼>
   </Character>
 </CharacterInfo>

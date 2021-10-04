@@ -38,6 +38,10 @@ public class DebugManager : SingletonPattern_IsA_Mono<DebugManager>
 
     public void Log(String _log, LogType _type)
     {
+        if (!Application.isPlaying)
+        {
+            return;
+        }
         switch (_type)
         {
             case LogType.None:    logtext_txt.text += "<color=#ffffff>>>";  break;

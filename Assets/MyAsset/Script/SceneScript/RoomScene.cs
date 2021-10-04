@@ -17,6 +17,7 @@ public class RoomScene : MonoBehaviour
         UIManager.Instance.SetActiveOKbutton(false);
         UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
         SkinManager.Instance.RefreshSkeleAni(CharacterManager.Instance.FindCharacter(ApartManager.Instance.thisUnit), 0);
+        Debug.Log(SkinManager.Instance.character[0].charaSetting.skin.baseTop.name);
         SkinManager.Instance.character[0].charaSetting.skin.RefreshCustom(SkinManager.Instance.character[0].charaSetting.skin, SkinManager.Instance.character[0].skeleton);
     }
 

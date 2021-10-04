@@ -59,9 +59,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Fronthair_Skin.Length; i++)
         {
             if (Fronthair_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Fronthair_Skin[i];
-            }
+                return new Fronthair(Fronthair_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -71,9 +69,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Rearhair_Skin.Length; i++)
         {
             if (Rearhair_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Rearhair_Skin[i];
-            }
+                return new Rearhair(Rearhair_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -83,9 +79,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Eyeblow_Skin.Length; i++)
         {
             if (Eyeblow_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Eyeblow_Skin[i];
-            }
+                return new Eyeblow(Eyeblow_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -95,9 +89,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Eyelid_Skin.Length; i++)
         {
             if (Eyelid_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Eyelid_Skin[i];
-            }
+                return new Eyelid(Eyelid_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -107,9 +99,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Eyeball_Skin.Length; i++)
         {
             if (Eyeball_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Eyeball_Skin[i];
-            }
+                return new Eyeball(Eyeball_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -119,9 +109,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Eyewhite_Skin.Length; i++)
         {
             if (Eyewhite_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Eyewhite_Skin[i];
-            }
+                return new Eyewhite(Eyewhite_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -131,9 +119,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i <Mouth_Skin.Length; i++)
         {
             if (Mouth_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Mouth_Skin[i];
-            }
+                return new Mouth(Mouth_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -144,7 +130,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         {
             if (Cheek_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
             {
-                return Cheek_Skin[i];
+                return new Cheek(Cheek_Skin[i]);
             }
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
@@ -155,9 +141,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Head_Skin.Length; i++)
         {
             if (Head_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Head_Skin[i];
-            }
+                return new Head(Head_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -167,9 +151,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Overcoat_Skin.Length; i++)
         {
             if (Overcoat_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Overcoat_Skin[i];
-            }
+                return new Overcoat(Overcoat_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
@@ -179,21 +161,17 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         for (int i = 0; i < Top_Skin.Length; i++)
         {
             if (Top_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Top_Skin[i];
-            }
+                return new Top(Top_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Bottom FindBottomSkin(string _parts)
     {
-        for (int i = 0; i < Top_Skin.Length; i++)
+        for (int i = 0; i < Bottom_Skin.Length; i++)
         {
             if (Bottom_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-            {
-                return Bottom_Skin[i];
-            }
+                return new Bottom(Bottom_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;

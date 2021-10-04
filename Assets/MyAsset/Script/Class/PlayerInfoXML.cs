@@ -20,26 +20,30 @@ public class PlayerInfoXML
     }
     public static Color HexStringToColor(string str)  //Hex로 저장된 색상 값 되찾기.
     {
-        str = str.ToLowerInvariant();
-        if (str.Length == 8)
+        if (str != null)
         {
-            char[] arr = str.ToCharArray();
-            char[] color_arr = new char[8];
-            for (int i = 0; i < 8; i++)
+            str = str.ToLowerInvariant();
+            if (str.Length == 8)
             {
-                if (arr[i] >= '0' && arr[i] <= '9')
-                    color_arr[i] = (char)(arr[i] - '0');
-                else if (arr[i] >= 'a' && arr[i] <= 'f')
-                    color_arr[i] = (char)(10 + arr[i] - 'a');
-                else color_arr[i] = (char)0;
+                char[] arr = str.ToCharArray();
+                char[] color_arr = new char[8];
+                for (int i = 0; i < 8; i++)
+                {
+                    if (arr[i] >= '0' && arr[i] <= '9')
+                        color_arr[i] = (char)(arr[i] - '0');
+                    else if (arr[i] >= 'a' && arr[i] <= 'f')
+                        color_arr[i] = (char)(10 + arr[i] - 'a');
+                    else color_arr[i] = (char)0;
+                }
+                float red = (color_arr[0] * 16 + color_arr[1]) / 255.0f;
+                float green = (color_arr[2] * 16 + color_arr[3]) / 255.0f;
+                float blue = (color_arr[4] * 16 + color_arr[5]) / 255.0f;
+                float alpha = (color_arr[6] * 16 + color_arr[7]) / 255.0f;
+                return new Color(red, green, blue, alpha);
             }
-            float red = (color_arr[0] * 16 + color_arr[1]) / 255.0f;
-            float green = (color_arr[2] * 16 + color_arr[3]) / 255.0f;
-            float blue = (color_arr[4] * 16 + color_arr[5]) / 255.0f;
-            float alpha = (color_arr[6] * 16 + color_arr[7]) / 255.0f;
-            return new Color(red, green, blue, alpha);
         }
-        return Color.red;
+        
+        return Color.white;
     }
 
     //CharacterInfo.xml 저장.

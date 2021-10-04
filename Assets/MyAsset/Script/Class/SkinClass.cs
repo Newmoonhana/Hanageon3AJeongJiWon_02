@@ -80,7 +80,17 @@ public class Fronthair : SkinParts
     [SpineSlot] string fronthairSlot = "fronthair";
     [SpineAttachment] public string fronthairKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Fronthair _change)
+    public Fronthair() { }
+    public Fronthair(Fronthair _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.antennahairKey = _new.antennahairKey;
+        this.fronthairKey = _new.fronthairKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Fronthair _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -88,8 +98,11 @@ public class Fronthair : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         antennahairKey = _change.antennahairKey;
         fronthairKey = _change.fronthairKey;
@@ -100,7 +113,14 @@ public class Fronthair : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindFronthairSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Fronthair tmp = new Fronthair();
+        tmp.antennahairKey = null;
+        tmp.fronthairKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 //뒷머리.
@@ -110,7 +130,16 @@ public class Rearhair : SkinParts
     [SpineSlot] string rearhairSlot = "rearhair";
     [SpineAttachment] public string rearhairKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Rearhair _change)
+    public Rearhair() { }
+    public Rearhair(Rearhair _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.rearhairKey = _new.rearhairKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Rearhair _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -118,8 +147,11 @@ public class Rearhair : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         rearhairKey = _change.rearhairKey;
 
@@ -129,7 +161,13 @@ public class Rearhair : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindRearhairSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Rearhair tmp = new Rearhair();
+        tmp.rearhairKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -149,7 +187,17 @@ public class Eyeblow : SkinParts
     [SpineSlot] string eyeblowRSlot = "eyeblowR";
     [SpineAttachment] public string eyeblowRKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeblow _change)
+    public Eyeblow() { }
+    public Eyeblow(Eyeblow _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.eyeblowLKey = _new.eyeblowLKey;
+        this.eyeblowRKey = _new.eyeblowRKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeblow _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -157,8 +205,11 @@ public class Eyeblow : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         eyeblowLKey = _change.eyeblowLKey;
         eyeblowRKey = _change.eyeblowRKey;
@@ -171,7 +222,14 @@ public class Eyeblow : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindEyeblowSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Eyeblow tmp = new Eyeblow();
+        tmp.eyeblowLKey = null;
+        tmp.eyeblowRKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -188,7 +246,19 @@ public class Eyelid : SkinParts
     [SpineSlot] string eyelidRDSlot = "eyelidRD";
     [SpineAttachment] public string eyelidRDKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyelid _change)
+    public Eyelid() { }
+    public Eyelid(Eyelid _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.eyelidLUKey = _new.eyelidLUKey;
+        this.eyelidLDKey = _new.eyelidLDKey;
+        this.eyelidRUKey = _new.eyelidRUKey;
+        this.eyelidRDKey = _new.eyelidRDKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyelid _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -196,8 +266,11 @@ public class Eyelid : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         eyelidLUKey = _change.eyelidLUKey;
         eyelidLDKey = _change.eyelidLDKey;
@@ -210,7 +283,16 @@ public class Eyelid : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindEyelidSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Eyelid tmp = new Eyelid();
+        tmp.eyelidLUKey = null;
+        tmp.eyelidLDKey = null;
+        tmp.eyelidRUKey = null;
+        tmp.eyelidRDKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -223,7 +305,17 @@ public class Eyeball : SkinParts
     [SpineSlot] string eyeballRSlot = "eyeballR";
     [SpineAttachment] public string eyeballRKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeball _change)
+    public Eyeball() { }
+    public Eyeball(Eyeball _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.eyeballLKey = _new.eyeballLKey;
+        this.eyeballRKey = _new.eyeballRKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyeball _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -231,8 +323,11 @@ public class Eyeball : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         eyeballLKey = _change.eyeballLKey;
         eyeballRKey = _change.eyeballRKey;
@@ -243,7 +338,14 @@ public class Eyeball : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindEyeballSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Eyeball tmp = new Eyeball();
+        tmp.eyeballLKey = null;
+        tmp.eyeballRKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -256,7 +358,17 @@ public class Eyewhite : SkinParts
     [SpineSlot] string eyewhiteRSlot = "eyewhiteR";
     [SpineAttachment] public string eyewhiteRKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyewhite _change)
+    public Eyewhite() { }
+    public Eyewhite(Eyewhite _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.eyewhiteLKey = _new.eyewhiteLKey;
+        this.eyewhiteRKey = _new.eyewhiteRKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Eyewhite _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -264,8 +376,11 @@ public class Eyewhite : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         eyewhiteLKey = _change.eyewhiteLKey;
         eyewhiteRKey = _change.eyewhiteRKey;
@@ -276,7 +391,14 @@ public class Eyewhite : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindEyewhiteSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Eyewhite tmp = new Eyewhite();
+        tmp.eyewhiteLKey = null;
+        tmp.eyewhiteRKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -287,7 +409,16 @@ public class Mouth : SkinParts
     [SpineSlot] string mouthSlot = "mouth";
     [SpineAttachment] public string mouthKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Mouth _change)
+    public Mouth() { }
+    public Mouth(Mouth _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.mouthKey = _new.mouthKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Mouth _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -295,8 +426,11 @@ public class Mouth : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         mouthKey = _change.mouthKey;
 
@@ -306,7 +440,13 @@ public class Mouth : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindMouthSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Mouth tmp = new Mouth();
+        tmp.mouthKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -317,7 +457,16 @@ public class Cheek : SkinParts
     [SpineSlot] string cheekSlot = "cheek";
     [SpineAttachment] public string cheekKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Cheek _change)
+    public Cheek() { }
+    public Cheek(Cheek _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.cheekKey = _new.cheekKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Cheek _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -325,8 +474,11 @@ public class Cheek : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         cheekKey = _change.cheekKey;
 
@@ -336,7 +488,13 @@ public class Cheek : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindCheekSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Cheek tmp = new Cheek();
+        tmp.cheekKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 //**************두상-기타**************//
@@ -347,7 +505,16 @@ public class Head : SkinParts
     [SpineSlot] string headSlot = "head";
     [SpineAttachment] public string headKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Head _change)
+    public Head() { }
+    public Head(Head _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.headKey = _new.headKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Head _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -355,8 +522,11 @@ public class Head : SkinParts
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         headKey = _change.headKey;
 
@@ -366,7 +536,13 @@ public class Head : SkinParts
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindHeadSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Head tmp = new Head();
+        tmp.headKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 //**************상체**************//
@@ -387,7 +563,19 @@ public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle
     [SpineSlot] string overcoatBSlot = "overcoatB";
     [SpineAttachment] public string overcoatBKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Overcoat _change)
+    public Overcoat() { }
+    public Overcoat(Overcoat _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.overcoatKey = _new.overcoatKey;
+        this.overcoatBKey = _new.overcoatBKey;
+        this.overcoatLKey = _new.overcoatLKey;
+        this.overcoatRKey = _new.overcoatRKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Overcoat _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -395,8 +583,11 @@ public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         overcoatKey = _change.overcoatKey; overcoatLKey = _change.overcoatLKey; overcoatRKey = _change.overcoatRKey; overcoatBKey = _change.overcoatBKey;
 
@@ -406,7 +597,16 @@ public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindOvercoatSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Overcoat tmp = new Overcoat();
+        tmp.overcoatKey = null;
+        tmp.overcoatLKey = null;
+        tmp.overcoatRKey = null;
+        tmp.overcoatBKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -439,7 +639,23 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
     [SpineSlot] string armR_lowSlot = "armR_low";
     [SpineAttachment] public string armR_lowKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Top _change)
+    public Top() { }
+    public Top(Top _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.bodyKey = _new.bodyKey;
+        this.bodyBKey = _new.bodyBKey;
+        this.armL_highKey = _new.armL_highKey;
+        this.armL_middleKey = _new.armL_middleKey;
+        this.armL_lowKey = _new.armL_lowKey;
+        this.armR_highKey = _new.armR_highKey;
+        this.armR_middleKey = _new.armR_middleKey;
+        this.armR_lowKey = _new.armR_lowKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Top _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -447,8 +663,11 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         bodyKey = _change.bodyKey; bodyBKey = _change.bodyBKey;
         armL_highKey = _change.armL_highKey; armL_middleKey = _change.armL_middleKey; armL_lowKey = _change.armL_lowKey;
@@ -464,7 +683,20 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindTopSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Top tmp = new Top();
+        tmp.bodyKey = null;
+        tmp.bodyBKey = null;
+        tmp.armL_highKey = null;
+        tmp.armL_middleKey = null;
+        tmp.armL_lowKey = null;
+        tmp.armR_highKey = null;
+        tmp.armR_middleKey = null;
+        tmp.armR_lowKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -495,7 +727,22 @@ public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
     [SpineSlot] string legR_lowSlot = "legR_low";
     [SpineAttachment] public string legR_lowKey;
 
-    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Bottom _change)
+    public Bottom() { }
+    public Bottom(Bottom _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.waistKey = _new.waistKey;
+        this.legL_highKey = _new.legL_highKey;
+        this.legL_middleKey = _new.legL_middleKey;
+        this.legL_lowKey = _new.legL_lowKey;
+        this.legR_highKey = _new.legR_highKey;
+        this.legR_middleKey = _new.legR_middleKey;
+        this.legR_lowKey = _new.legR_lowKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Bottom _change, bool _ischange)
     {
         if (_change == null)
         {
@@ -503,8 +750,11 @@ public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
             return;
         }
 
-        base.name = _change.name;
-        base.sprite = _change.sprite;
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
 
         waistKey = _change.waistKey;
         legL_highKey = _change.legL_highKey; legL_middleKey = _change.legL_middleKey; legL_lowKey = _change.legL_lowKey;
@@ -520,7 +770,19 @@ public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
     }
     public void RefreshSkin(SkeletonAnimation _skeleton_ani)
     {
-        ChangeSkin(_skeleton_ani, this);
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindBottomSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Bottom tmp = new Bottom();
+        tmp.waistKey = null;
+        tmp.legL_highKey = null;
+        tmp.legL_middleKey = null;
+        tmp.legL_lowKey = null;
+        tmp.legR_highKey = null;
+        tmp.legR_middleKey = null;
+        tmp.legR_lowKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
     }
 }
 
@@ -546,18 +808,18 @@ public class Skin
 
     public override string ToString()
     {
-        return "Fronthair:" + baseFronthair.name + ":" + PlayerInfoXML.ColorToHexString(baseFronthair.skincolor) + "/" +
-                "Rearhair:" + baseRearhair.name + ":" + PlayerInfoXML.ColorToHexString(baseRearhair.skincolor) + "/" +
-                "Eyeblow:" + baseEyeblow.name + ":" + PlayerInfoXML.ColorToHexString(baseEyeblow.skincolor) + "/" +
-                "Eyelid:" + baseEyelid.name + ":" + PlayerInfoXML.ColorToHexString(baseEyelid.skincolor) + "/" +
-                "Eyeball:" + baseEyeball.name + ":" + PlayerInfoXML.ColorToHexString(baseEyeball.skincolor) + "/" +
-                "Eyewhite:" + baseEyewhite.name + ":" + PlayerInfoXML.ColorToHexString(baseEyewhite.skincolor) + "/" +
-                "Mouth:" + baseMouth.name + ":" + PlayerInfoXML.ColorToHexString(baseMouth.skincolor) + "/" +
-                "Cheek:" + baseCheek.name + ":" + PlayerInfoXML.ColorToHexString(baseCheek.skincolor) + "/" +
-                "Head:" + baseHead.name + ":" + PlayerInfoXML.ColorToHexString(baseHead.skincolor) + "/" +
-                "Overcoat:" + baseOvercoat.name + ":" + PlayerInfoXML.ColorToHexString(baseOvercoat.skincolor) + "/" +
-                "Top:" + baseTop.name + ":" + PlayerInfoXML.ColorToHexString(baseTop.skincolor) + "/" +
-                "Bottom:" + baseBottom.name + ":" + PlayerInfoXML.ColorToHexString(baseBottom.skincolor);
+        return "Fronthair:" + (baseFronthair.name == null ? "*" : baseFronthair.name) + ":" + PlayerInfoXML.ColorToHexString(baseFronthair.skincolor) + "/" +
+                "Rearhair:" + (baseRearhair.name == null ? "*" : baseRearhair.name) + ":" + PlayerInfoXML.ColorToHexString(baseRearhair.skincolor) + "/" +
+                "Eyeblow:" + (baseEyeblow.name == null ? "*" : baseEyeblow.name) + ":" + PlayerInfoXML.ColorToHexString(baseEyeblow.skincolor) + "/" +
+                "Eyelid:" + (baseEyelid.name == null ? "*" : baseEyelid.name) + ":" + PlayerInfoXML.ColorToHexString(baseEyelid.skincolor) + "/" +
+                "Eyeball:" + (baseEyeball.name == null ? "*" : baseEyeball.name) + ":" + PlayerInfoXML.ColorToHexString(baseEyeball.skincolor) + "/" +
+                "Eyewhite:" + (baseEyewhite.name == null ? "*" : baseEyewhite.name) + ":" + PlayerInfoXML.ColorToHexString(baseEyewhite.skincolor) + "/" +
+                "Mouth:" + (baseMouth.name == null ? "*" : baseMouth.name) + ":" + PlayerInfoXML.ColorToHexString(baseMouth.skincolor) + "/" +
+                "Cheek:" + (baseCheek.name == null ? "*" : baseCheek.name) + ":" + PlayerInfoXML.ColorToHexString(baseCheek.skincolor) + "/" +
+                "Head:" + (baseHead.name == null ? "*" : baseHead.name) + ":" + PlayerInfoXML.ColorToHexString(baseHead.skincolor) + "/" +
+                "Overcoat:" + (baseOvercoat.name == null ? "*" : baseOvercoat.name) + ":" + PlayerInfoXML.ColorToHexString(baseOvercoat.skincolor) + "/" +
+                "Top:" + (baseTop.name == null ? "*" : baseTop.name) + ":" + PlayerInfoXML.ColorToHexString(baseTop.skincolor) + "/" +
+                "Bottom:" + (baseBottom.name == null ? "*" : baseBottom.name) + ":" + PlayerInfoXML.ColorToHexString(baseBottom.skincolor);
     }
     public void StringToSkin(string _skin)
     {
@@ -568,51 +830,51 @@ public class Skin
             switch (part_tmp[0])
             {
                 case "Fronthair":
-                    baseFronthair = SkinManager.Instance.FindFronthairSkin(part_tmp[1]);
+                    baseFronthair = SkinManager.Instance.FindFronthairSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseFronthair.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Rearhair":
-                    baseRearhair = SkinManager.Instance.FindRearhairSkin(part_tmp[1]);
+                    baseRearhair = SkinManager.Instance.FindRearhairSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseRearhair.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Eyeblow":
-                    baseEyeblow = SkinManager.Instance.FindEyeblowSkin(part_tmp[1]);
+                    baseEyeblow = SkinManager.Instance.FindEyeblowSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseEyeblow.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Eyelid":
-                    baseEyelid = SkinManager.Instance.FindEyelidSkin(part_tmp[1]);
+                    baseEyelid = SkinManager.Instance.FindEyelidSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseEyelid.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Eyeball":
-                    baseEyeball = SkinManager.Instance.FindEyeballSkin(part_tmp[1]);
+                    baseEyeball = SkinManager.Instance.FindEyeballSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseEyeball.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Eyewhite":
-                    baseEyewhite = SkinManager.Instance.FindEyewhiteSkin(part_tmp[1]);
+                    baseEyewhite = SkinManager.Instance.FindEyewhiteSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseEyewhite.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Mouth":
-                    baseMouth = SkinManager.Instance.FindMouthSkin(part_tmp[1]);
+                    baseMouth = SkinManager.Instance.FindMouthSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseMouth.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Cheek":
-                    baseCheek = SkinManager.Instance.FindCheekSkin(part_tmp[1]);
+                    baseCheek = SkinManager.Instance.FindCheekSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseCheek.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Head":
-                    baseHead = SkinManager.Instance.FindHeadSkin(part_tmp[1]);
+                    baseHead = SkinManager.Instance.FindHeadSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseHead.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Overcoat":
-                    baseOvercoat = SkinManager.Instance.FindOvercoatSkin(part_tmp[1]);
+                    baseOvercoat = SkinManager.Instance.FindOvercoatSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseOvercoat.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Top":
-                    baseTop = SkinManager.Instance.FindTopSkin(part_tmp[1]);
+                    baseTop = SkinManager.Instance.FindTopSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseTop.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
                 case "Bottom":
-                    baseBottom = SkinManager.Instance.FindBottomSkin(part_tmp[1]);
+                    baseBottom = SkinManager.Instance.FindBottomSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
                     baseBottom.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
                     break;
             }
@@ -621,34 +883,34 @@ public class Skin
 
     public void ClearClothes(SkeletonAnimation _skeleton)
     {
-        ChangeParts(PARTSTYPE.FRONTHAIR, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.REARHAIR, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.EYEBLOW, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.EYELID, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.EYEBALL, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.EYEWHITE, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.MOUTH, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.CHEEK, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.HEAD, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.OVERCOAT, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.TOP, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.BOTTOM, "nullskin", _skeleton);
+        ChangeParts(PARTSTYPE.FRONTHAIR, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.REARHAIR, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.EYEBLOW, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.EYELID, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.EYEBALL, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.EYEWHITE, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.MOUTH, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.CHEEK, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.HEAD, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.OVERCOAT, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.TOP, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.BOTTOM, "nullskin", _skeleton, false);
     }
 
-    public void DefaultCustom(SkeletonAnimation _skeleton)
+    public void DefaultCustom(SkeletonAnimation _skeleton, bool _ischange)
     {
-        ChangeParts(PARTSTYPE.FRONTHAIR, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.REARHAIR, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.EYEBLOW, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.EYELID, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.EYEBALL, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.EYEWHITE, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.MOUTH, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.CHEEK, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.HEAD, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.OVERCOAT, "nullskin", _skeleton);
-        ChangeParts(PARTSTYPE.TOP, "기본", _skeleton);
-        ChangeParts(PARTSTYPE.BOTTOM, "nullskin", _skeleton);
+        ChangeParts(PARTSTYPE.FRONTHAIR, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.REARHAIR, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.EYEBLOW, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.EYELID, "nullskin", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.EYEBALL, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.EYEWHITE, "nullskin", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.MOUTH, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.CHEEK, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.HEAD, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.OVERCOAT, "nullskin", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.TOP, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.BOTTOM, "nullskin", _skeleton, _ischange);
     }
 
     public void RefreshCustom(Skin _skin, SkeletonAnimation _skeleton)
@@ -667,45 +929,62 @@ public class Skin
         _skin.baseBottom.RefreshSkin(_skeleton);
     }
 
-    public void ChangeParts(PARTSTYPE _type, string _clothes, SkeletonAnimation _skeleton) //옷 변경.
+    public void OnlyHead(Skin _skin, SkeletonAnimation _skeleton)
+    {
+        _skin.baseFronthair.RefreshSkin(_skeleton);
+        _skin.baseRearhair.RefreshSkin(_skeleton);
+        _skin.baseEyeblow.RefreshSkin(_skeleton);
+        _skin.baseEyelid.RefreshSkin(_skeleton);
+        _skin.baseEyeball.RefreshSkin(_skeleton);
+        _skin.baseEyewhite.RefreshSkin(_skeleton);
+        _skin.baseMouth.RefreshSkin(_skeleton);
+        _skin.baseCheek.RefreshSkin(_skeleton);
+        _skin.baseHead.RefreshSkin(_skeleton);
+
+        _skin.baseOvercoat.NullSkin(_skeleton);
+        _skin.baseTop.NullSkin(_skeleton);
+        _skin.baseBottom.NullSkin(_skeleton);
+    }
+
+    public void ChangeParts(PARTSTYPE _type, string _clothes, SkeletonAnimation _skeleton, bool _ischange) //옷 변경.
     {
         switch (_type)
         {
             case PARTSTYPE.FRONTHAIR:
-                baseFronthair.ChangeSkin(_skeleton, SkinManager.Instance.FindFronthairSkin(_clothes));
+                baseFronthair.ChangeSkin(_skeleton, SkinManager.Instance.FindFronthairSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.REARHAIR:
-                baseRearhair.ChangeSkin(_skeleton, SkinManager.Instance.FindRearhairSkin(_clothes));
+                baseRearhair.ChangeSkin(_skeleton, SkinManager.Instance.FindRearhairSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.EYEBLOW:
-                baseEyeblow.ChangeSkin(_skeleton, SkinManager.Instance.FindEyeblowSkin(_clothes));
+                baseEyeblow.ChangeSkin(_skeleton, SkinManager.Instance.FindEyeblowSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.EYELID:
-                baseEyelid.ChangeSkin(_skeleton, SkinManager.Instance.FindEyelidSkin(_clothes));
+                baseEyelid.ChangeSkin(_skeleton, SkinManager.Instance.FindEyelidSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.EYEBALL:
-                baseEyeball.ChangeSkin(_skeleton, SkinManager.Instance.FindEyeballSkin(_clothes));
+                baseEyeball.ChangeSkin(_skeleton, SkinManager.Instance.FindEyeballSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.EYEWHITE:
-                baseEyewhite.ChangeSkin(_skeleton, SkinManager.Instance.FindEyewhiteSkin(_clothes));
+                baseEyewhite.ChangeSkin(_skeleton, SkinManager.Instance.FindEyewhiteSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.MOUTH:
-                baseMouth.ChangeSkin(_skeleton, SkinManager.Instance.FindMouthSkin(_clothes));
+                baseMouth.ChangeSkin(_skeleton, SkinManager.Instance.FindMouthSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.CHEEK:
-                baseCheek.ChangeSkin(_skeleton, SkinManager.Instance.FindCheekSkin(_clothes));
+                baseCheek.ChangeSkin(_skeleton, SkinManager.Instance.FindCheekSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.HEAD:
-                baseHead.ChangeSkin(_skeleton, SkinManager.Instance.FindHeadSkin(_clothes));
+                baseHead.ChangeSkin(_skeleton, SkinManager.Instance.FindHeadSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.OVERCOAT:
-                baseOvercoat.ChangeSkin(_skeleton, SkinManager.Instance.FindOvercoatSkin(_clothes));
+                baseOvercoat.ChangeSkin(_skeleton, SkinManager.Instance.FindOvercoatSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.TOP:
-                baseTop.ChangeSkin(_skeleton, SkinManager.Instance.FindTopSkin(_clothes));
+                baseTop.ChangeSkin(_skeleton, SkinManager.Instance.FindTopSkin(_clothes), _ischange);
                 break;
             case PARTSTYPE.BOTTOM:
-                baseBottom.ChangeSkin(_skeleton, SkinManager.Instance.FindBottomSkin(_clothes));
+                baseBottom.ChangeSkin(_skeleton, SkinManager.Instance.FindBottomSkin(_clothes), _ischange);
                 break;
             default:
                 DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
