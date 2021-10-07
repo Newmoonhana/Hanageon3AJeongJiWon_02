@@ -13,13 +13,18 @@ public enum TRACKTYPE
 
 public class AnimationManager : SingletonPattern_IsA_Mono<AnimationManager>
 {
+    float min_aniSpeed = 0.1f;
+
     public void Awake()
     {
         DontDestroyInst(this);
     }
 
-    public void ChangeCharaAni(CharSkin _chara, TRACKTYPE _type, string _ani, bool _isloop)
+    public void ChangeCharaAni(CharSkin _chara, TRACKTYPE _type, string _ani, bool _isloop, float _speed)
     {
+        if (_speed == 0)
+            _speed = min_aniSpeed;
+        _chara.skeleton.timeScale = _speed / Time.timeScale;
         _chara.skeleton.AnimationState.ClearTrack((int)_type);
         _chara.charaSetting.skin.RefreshCustom(_chara.charaSetting.skin, _chara.skeleton);
         if (_ani != null)

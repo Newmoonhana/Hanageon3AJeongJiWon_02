@@ -7,9 +7,21 @@ public class GameManager : SingletonPattern_IsA_Mono<GameManager>
 {
     public string beforeScene = ""; //이전 씬 이름
 
+    [ContextMenu("SaveXML_LevelXML")]
+    void SaveXML_LevelXML()
+    {
+        PlayerInfoXML.WriteLevelInfo();
+    }
+    [ContextMenu("LoadXML_LevelXML")]
+    void LoadXML_LevelXML()
+    {
+        PlayerInfoXML.ReadLevelInfo();
+    }
+
     public void Awake()
     {
-        DontDestroyInst(this);
+        if (DontDestroyInst(this))
+            LoadXML_LevelXML();
     }
 
     public void LoadScene(string _scene)

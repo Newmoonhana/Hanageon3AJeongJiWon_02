@@ -53,41 +53,38 @@ public class ApartScene : MonoBehaviour
         {
             return;
         }
+        state = STATE.UNITCANVAS;
         unitstate_obj.SetActive(true);
         room_img.sprite = _type.room_spr;
         UnitSetting tmp = ApartManager.Instance.FindUnitSetting(_type.unit);
-        if (tmp == null)
+        if (tmp != null)
         {
-            unit_txt.text = string.Format("{0:###}동", _type.unit);
+            if (CharacterManager.Instance.FindCharacter(tmp.unit) != null)
+            {
+                unit_txt.text = string.Format("{0:###}동\n{1}", _type.unit, tmp.chara_name);
+                ApartManager.Instance.thisUnit = tmp.unit;
+                SkinManager.Instance.character[0].gameObject.SetActive(true);
+                SkinManager.Instance.character[0].charaSetting.skin = CharacterManager.Instance.FindCharacter(tmp.unit).skin;
+                SkinManager.Instance.character[0].charaSetting.skin.OnlyHead(SkinManager.Instance.character[0].charaSetting.skin, SkinManager.Instance.character[0].skeleton);
+                UIManager.Instance.SetActiveOKbutton<byte>(true, delegate { InputInButton(tmp); });
+                return;
+            }
         }
-        else
-        {
-            unit_txt.text = string.Format("{0:###}동\n{1}", _type.unit, tmp.chara_name);
-        }
-        ApartManager.Instance.thisUnit = tmp.unit;
-        if (CharacterManager.Instance.FindCharacter(tmp.unit) != null)
-        {
-            SkinManager.Instance.character[0].gameObject.SetActive(true);
-            SkinManager.Instance.character[0].charaSetting.skin = CharacterManager.Instance.FindCharacter(tmp.unit).skin;
-            SkinManager.Instance.character[0].charaSetting.skin.OnlyHead(SkinManager.Instance.character[0].charaSetting.skin, SkinManager.Instance.character[0].skeleton);
-        }
-        else
-        {
-            SkinManager.Instance.character[0].gameObject.SetActive(false);
-        }
-
-        state = STATE.UNITCANVAS;
-        UIManager.Instance.SetActiveOKbutton<byte>(true, delegate { InputInButton(); });
+        unit_txt.text = string.Format("{0:###}동", _type.unit);
+        SkinManager.Instance.character[0].gameObject.SetActive(false);
+        UIManager.Instance.SetActiveOKbutton<byte>(true, delegate { InputInButton(null); });
     }
 
-    public void InputInButton()
+    public void InputInButton(UnitSetting _unit)
     {
         if (state != STATE.UNITCANVAS)
         {
             DebugManager.Instance.Log("state가 UNITCANVAS가 아닙니다.\nstate = " + state.ToString(), LogType.Warning);
             return;
         }
-        GameManager.Instance.LoadScene("RoomScene");
+
+        if (_unit != null)
+            GameManager.Instance.LoadScene("RoomScene");
     }
 
     public void InputBackButton()

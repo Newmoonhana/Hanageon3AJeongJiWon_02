@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomScene : MonoBehaviour
 {
@@ -12,13 +13,19 @@ public class RoomScene : MonoBehaviour
     }
     STATE state;
 
+    public Slider levelbar;
+    public Text levelbar_txt;
+    character roomchara;
+
     private void Start()
     {
+        roomchara = CharacterManager.Instance.FindCharacter(ApartManager.Instance.thisUnit);
         UIManager.Instance.SetActiveOKbutton(false);
         UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
-        SkinManager.Instance.RefreshSkeleAni(CharacterManager.Instance.FindCharacter(ApartManager.Instance.thisUnit), 0);
-        Debug.Log(SkinManager.Instance.character[0].charaSetting.skin.baseTop.name);
+        SkinManager.Instance.RefreshSkeleAni(roomchara, 0);
         SkinManager.Instance.character[0].charaSetting.skin.RefreshCustom(SkinManager.Instance.character[0].charaSetting.skin, SkinManager.Instance.character[0].skeleton);
+        AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0], TRACKTYPE.BODY, "public/Idle", true, roomchara.persona.GetEIToAniSpeed());
+        RefreshLevelVar();
     }
 
     public void InputBackButton()
@@ -28,5 +35,15 @@ public class RoomScene : MonoBehaviour
             return;
         }
         GameManager.Instance.LoadScene("ApartScene");
+    }
+
+    void RefreshLevelVar()
+    {
+        int lv = roomchara.exp.GetLevel();
+        float exp = roomchara.exp.GetEXP();
+        float exp_MAX = Experience_Setting.GetExpMAX(lv);
+        levelbar.maxValue = exp_MAX;
+        levelbar.value = exp;
+        levelbar_txt.text = "Lv " + lv + " [ " + exp + " / " + exp_MAX + " ]";
     }
 }

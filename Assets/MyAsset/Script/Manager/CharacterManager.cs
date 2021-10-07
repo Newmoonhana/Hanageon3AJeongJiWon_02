@@ -15,9 +15,10 @@ public enum PERSONA //성격 종류.
 [System.Serializable]
 public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수<->양수 값으로 인게임에서 성격 처리).
 {
-    float center = 0.5f;
+    float center = 5f;
     [SerializeField]
-    float[] persona = new float[(int)(PERSONA._MAX)] { 0.5f, 0.5f, 0.5f, 0.5f };
+    float[] persona = new float[(int)(PERSONA._MAX)] { 5f, 5f, 5f, 5f };
+    
     
     //생성자.
     public personality()
@@ -44,13 +45,21 @@ public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수
             
         return tmp;
     }
-    public void StringToPersona(string _persona)
+    public personality StringToPersona(string _persona)
     {
+        personality tmp = new personality();
         string[] persona_tmp = _persona.Split('/');
         for (int i = 0; i < (int)PERSONA._MAX; i++)
         {
-            persona[i] = float.Parse(persona_tmp[i]);
+            tmp.persona[i] = float.Parse(persona_tmp[i]);
         }
+        return tmp;
+    }
+
+    //get
+    public float GetEIToAniSpeed()
+    {
+        return 1f + (persona[0] - center) * 0.1f;
     }
 
     //계산 - 대입.
@@ -95,6 +104,7 @@ public class character //캐릭터 정보 클래스.
     public personality persona = new personality();
     public Skin skin = new Skin();
     public int unit = 0;    //아파트 호 수.
+    public Experience exp = new Experience();
 
     //생성자.
     public character()
@@ -102,21 +112,23 @@ public class character //캐릭터 정보 클래스.
         name = "";
         nickname = "";
     }
-    public character(string _name, string _nickname, Skin _skin, personality _persona, int _unit)
+    public character(string _name, string _nickname, Skin _skin, personality _persona, int _unit, Experience _exp)
     {
         this.name = _name;
         this.nickname = _nickname;
         this.skin = _skin;
         this.persona = _persona;
         this.unit = _unit;
+        this.exp = _exp;
     }
-    public character(string _name, string _nickname, string _skin, string _persona, string _unit)
+    public character(string _name, string _nickname, string _skin, string _persona, string _unit, string _exp)
     {
         this.name = _name;
         this.nickname = _nickname;
-        this.skin.StringToSkin(_skin);
-        this.persona.StringToPersona(_persona);
+        this.skin.SetStringToSkin(_skin);
+        this.persona = this.persona.StringToPersona(_persona);
         this.unit = int.Parse(_unit);
+        this.exp = this.exp.StringToEXP(_exp);
     }
     public character(character _chara)
     {
@@ -125,6 +137,7 @@ public class character //캐릭터 정보 클래스.
         this.skin = _chara.skin;
         this.persona = _chara.persona;
         this.unit = _chara.unit;
+        this.exp = _chara.exp;
     }
 }
 

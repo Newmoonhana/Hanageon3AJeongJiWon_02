@@ -882,12 +882,7 @@ MonoBehaviour:
     legR_highKey: legR_high
     legR_middleKey: legR_middle
     legR_lowKey: legR_low
-  character:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  character: []
 --- !u!114 &382056583
 MonoBehaviour:
   m_ObjectHideFlags: 0

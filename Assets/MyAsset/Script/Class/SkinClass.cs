@@ -5,6 +5,8 @@ using UnityEngine;
 
 public enum PARTSTYPE //부위 별 분류.
 {
+    NULL,
+
     EYEBLOW,  //눈썹
     FRONTHAIR,  //앞머리
     MOUTH,  //입
@@ -29,11 +31,14 @@ public enum PARTSTYPE //부위 별 분류.
 public class SkinParts
 {
     public string name = null;
-    [SerializeField]
-    bool enable = true;    //기본 옷 켜짐/꺼짐(이벤트에서 사용).
-    //public Color color = new Color(255, 255, 255, 255);
+    bool isPut = true;    //현재 옷 nullskin 여부(true:옷 입음 false:nullskin/이벤트에서 사용/이벤트 상 name이 nullskin이 아니어도 nullskin인 상태일 수 있어서 사용).
     public Color skincolor = new Color32(255, 255, 255, 255);
     public Sprite sprite = null;
+
+    public bool IsPut()  //스킨 파츠가 nullskin인지 체크
+    {
+        return isPut;
+    }
 
     public void ChangeParts(SkeletonAnimation _skeleton, string[] _slot, string[] _key)
     {
@@ -43,6 +48,7 @@ public class SkinParts
             return;
         }
 
+        isPut = false;
         for (int i = 0; i < _slot.Length; i++)
         {
             //Debug.Log(i + "번째 슬롯 : " + _slot[i] + "\n파츠 : " + _key[i]);
@@ -61,6 +67,7 @@ public class SkinParts
                 DebugManager.Instance.Log("파츠 변경 : [" + _slot[i] + " <- " + _key[i] + "]", LogType.Log);
                 _skeleton.skeleton.SetAttachment(_slot[i], _key[i]);
                 _skeleton.skeleton.FindSlot(_slot[i]).SetColor(skincolor);
+                isPut = true;
             }
         }
         if (name != "nullskin")
@@ -611,7 +618,7 @@ public class Overcoat : SkinParts  //overcoat & L & R & B, armL & R(high, middle
 }
 
 [System.Serializable]
-//상의
+//상의(몸 상단)
 public class Top : SkinParts  //body & B, armL & R(high, middle, low)
 {
     //상의
@@ -701,11 +708,80 @@ public class Top : SkinParts  //body & B, armL & R(high, middle, low)
 }
 
 [System.Serializable]
+//장갑(손)
+public class Hand : SkinParts  //handL & R (high, middle, low)
+{
+    //왼손(상)
+    [SpineSlot] string handL_highSlot = "handL_high";
+    [SpineAttachment] public string handL_highKey;
+    //왼손(중)
+    [SpineSlot] string handL_middleSlot = "handL_middle";
+    [SpineAttachment] public string handL_middleKey;
+    //왼손(하)
+    [SpineSlot] string handL_lowSlot = "handL_low";
+    [SpineAttachment] public string handL_lowKey;
+    //오른손(상)
+    [SpineSlot] string handR_highSlot = "handR_high";
+    [SpineAttachment] public string handR_highKey;
+    //오른손(중)
+    [SpineSlot] string handR_middleSlot = "handR_middle";
+    [SpineAttachment] public string handR_middleKey;
+    //오른손(하)
+    [SpineSlot] string handR_lowSlot = "handR_low";
+    [SpineAttachment] public string handR_lowKey;
+
+    public Hand() { }
+    public Hand(Hand _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.handL_highKey = _new.handL_highKey; this.handL_middleKey = _new.handL_middleKey; this.handL_lowKey = _new.handL_lowKey;
+        this.handR_highKey = _new.handR_highKey; this.handR_middleKey = _new.handR_middleKey; this.handR_lowKey = _new.handR_lowKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Hand _change, bool _ischange)
+    {
+        if (_change == null)
+        {
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
+
+        handL_highKey = _change.handL_highKey; handL_middleKey = _change.handL_middleKey; handL_lowKey = _change.handL_lowKey;
+        handR_highKey = _change.handR_highKey; handR_middleKey = _change.handR_middleKey; handR_lowKey = _change.handR_lowKey;
+
+        string[] slots = { handL_highSlot, handL_middleSlot, handL_lowSlot,
+                           handR_highSlot, handR_middleSlot, handR_lowSlot };
+        string[] keys = { handL_highKey, handL_middleKey, handL_lowKey,
+                          handR_highKey, handR_middleKey, handR_lowKey  };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindHandSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Hand tmp = new Hand();
+        tmp.handL_highKey = null; tmp.handL_middleKey = null; tmp.handL_lowKey = null;
+        tmp.handR_highKey = null; tmp.handR_middleKey = null; tmp.handR_lowKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
+    }
+}
+
 //**************하체**************//
-//하의
+[System.Serializable]
+//하의(몸 하단)
 public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
 {
-    //상의
+    //삼각 영역
     [SpineSlot] string waistSlot = "waist"; // 슬롯의 이름
     [SpineAttachment] public string waistKey; // 어테치먼트의 이름
     //왼팔(상)
@@ -787,6 +863,132 @@ public class Bottom : SkinParts  //waist, legL & R(high, middle, low)
 }
 
 [System.Serializable]
+//바지
+public class Pants : SkinParts  //waist, pantsL & R
+{
+    //삼각 영역(Bottom waist 오버라이드)
+    [SpineSlot] string waistSlot = "waist"; // 슬롯의 이름
+    [SpineAttachment] public string waistKey; // 어테치먼트의 이름
+    //바지(왼)
+    [SpineSlot] string pantsLSlot = "pantsL";
+    [SpineAttachment] public string pantsLKey;
+    //바지(오)
+    [SpineSlot] string pantsRSlot = "pantsR";
+    [SpineAttachment] public string pantsRKey;
+
+    public Pants() { }
+    public Pants(Pants _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.waistKey = _new.waistKey;
+        this.pantsLKey = _new.pantsLKey;
+        this.pantsRKey = _new.pantsRKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Pants _change, bool _ischange)
+    {
+        if (_change == null)
+        {
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
+
+        waistKey = _change.waistKey;
+        pantsLKey = _change.pantsLKey; pantsRKey = _change.pantsRKey;
+
+        string[] slots = new string[]{ waistSlot,
+                      pantsLSlot, pantsRSlot };
+        string[] keys = new string[]{ waistKey,
+                     pantsLKey, pantsRKey };
+
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindPantsSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Pants tmp = new Pants();
+        tmp.waistKey = null;
+        tmp.pantsLKey = null;
+        tmp.pantsRKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
+    }
+}
+
+[System.Serializable]
+//신발(발)
+public class Foot : SkinParts  //footL & R
+{
+    //발(왼)
+    [SpineSlot] string footLSlot = "footL";
+    [SpineAttachment] public string footLKey;
+    //발(오)
+    [SpineSlot] string footRSlot = "footR";
+    [SpineAttachment] public string footRKey;
+    //발목(왼)
+    [SpineSlot] string footL_middleSlot = "footL_middle";
+    [SpineAttachment] public string footL_middleKey;
+    //발목(오)
+    [SpineSlot] string footR_middleSlot = "footR_middle";
+    [SpineAttachment] public string footR_middleKey;
+
+    public Foot() { }
+    public Foot(Foot _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+        this.footLKey = _new.footLKey; this.footL_middleKey = _new.footL_middleKey;
+        this.footRKey = _new.footRKey; this.footR_middleKey = _new.footR_middleKey;
+    }
+
+    public void ChangeSkin(SkeletonAnimation _skeleton_ani, Foot _change, bool _ischange)
+    {
+        if (_change == null)
+        {
+            DebugManager.Instance.Log("해당 스킨은 존재하지 않습니다.", LogType.Warning);
+            return;
+        }
+
+        if (_ischange)
+        {
+            base.name = _change.name;
+            base.sprite = _change.sprite;
+        }
+
+        footLKey = _change.footLKey; footL_middleKey = _change.footL_middleKey;
+        footRKey = _change.footRKey; footR_middleKey = _change.footR_middleKey;
+
+        string[] slots = { footLSlot, footL_middleSlot,
+            footRSlot, footR_middleSlot };
+        string[] keys = { footLKey, footL_middleKey,
+            footRKey, footR_middleKey };
+        base.ChangeParts(_skeleton_ani, slots, keys);
+    }
+    public void RefreshSkin(SkeletonAnimation _skeleton_ani)
+    {
+        ChangeSkin(_skeleton_ani, SkinManager.Instance.FindFootSkin(base.name), false);
+    }
+    public void NullSkin(SkeletonAnimation _skeleton_ani)
+    {
+        Foot tmp = new Foot();
+        tmp.footLKey = null; tmp.footL_middleKey = null;
+        tmp.footRKey = null; tmp.footR_middleKey = null;
+        ChangeSkin(_skeleton_ani, tmp, false);
+    }
+}
+
+[System.Serializable]
 public class Skin
 {
     [SpineSkin] public string baseSkinName; // 복사 할 스킨의 이름
@@ -804,7 +1006,10 @@ public class Skin
     public Head baseHead = new Head();
     public Overcoat baseOvercoat = new Overcoat();
     public Top baseTop = new Top();
+    public Hand baseHand = new Hand();
     public Bottom baseBottom = new Bottom();
+    public Pants basePants = new Pants();
+    public Foot baseFoot = new Foot();
 
     public override string ToString()
     {
@@ -819,63 +1024,80 @@ public class Skin
                 "Head:" + (baseHead.name == null ? "*" : baseHead.name) + ":" + PlayerInfoXML.ColorToHexString(baseHead.skincolor) + "/" +
                 "Overcoat:" + (baseOvercoat.name == null ? "*" : baseOvercoat.name) + ":" + PlayerInfoXML.ColorToHexString(baseOvercoat.skincolor) + "/" +
                 "Top:" + (baseTop.name == null ? "*" : baseTop.name) + ":" + PlayerInfoXML.ColorToHexString(baseTop.skincolor) + "/" +
-                "Bottom:" + (baseBottom.name == null ? "*" : baseBottom.name) + ":" + PlayerInfoXML.ColorToHexString(baseBottom.skincolor);
+                "Hand:" + (baseHand.name == null ? "*" : baseHand.name) + ":" + PlayerInfoXML.ColorToHexString(baseHand.skincolor) + "/" +
+                "Bottom:" + (baseBottom.name == null ? "*" : baseBottom.name) + ":" + PlayerInfoXML.ColorToHexString(baseBottom.skincolor) + "/" +
+                "Pants:" + (basePants.name == null ? "*" : basePants.name) + ":" + PlayerInfoXML.ColorToHexString(basePants.skincolor) + "/" +
+                "Foot:" + (baseFoot.name == null ? "*" : baseFoot.name) + ":" + PlayerInfoXML.ColorToHexString(baseFoot.skincolor);
     }
-    public void StringToSkin(string _skin)
+    public void SetStringToSkin(string _skin)
     {
         string[] skin_tmp = _skin.Split('/');
         foreach (var item in skin_tmp)
         {
             string[] part_tmp = item.Split(':');
+            string name = part_tmp[1] == "*" ? null : part_tmp[1];
+            Color color = PlayerInfoXML.HexStringToColor(part_tmp[2]);
             switch (part_tmp[0])
             {
                 case "Fronthair":
-                    baseFronthair = SkinManager.Instance.FindFronthairSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseFronthair.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseFronthair = SkinManager.Instance.FindFronthairSkin(name);
+                    baseFronthair.skincolor = color;
                     break;
                 case "Rearhair":
-                    baseRearhair = SkinManager.Instance.FindRearhairSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseRearhair.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseRearhair = SkinManager.Instance.FindRearhairSkin(name);
+                    baseRearhair.skincolor = color;
                     break;
                 case "Eyeblow":
-                    baseEyeblow = SkinManager.Instance.FindEyeblowSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseEyeblow.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseEyeblow = SkinManager.Instance.FindEyeblowSkin(name);
+                    baseEyeblow.skincolor = color;
                     break;
                 case "Eyelid":
-                    baseEyelid = SkinManager.Instance.FindEyelidSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseEyelid.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseEyelid = SkinManager.Instance.FindEyelidSkin(name);
+                    baseEyelid.skincolor = color;
                     break;
                 case "Eyeball":
-                    baseEyeball = SkinManager.Instance.FindEyeballSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseEyeball.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseEyeball = SkinManager.Instance.FindEyeballSkin(name);
+                    baseEyeball.skincolor = color;
                     break;
                 case "Eyewhite":
-                    baseEyewhite = SkinManager.Instance.FindEyewhiteSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseEyewhite.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseEyewhite = SkinManager.Instance.FindEyewhiteSkin(name);
+                    baseEyewhite.skincolor = color;
                     break;
                 case "Mouth":
-                    baseMouth = SkinManager.Instance.FindMouthSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseMouth.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseMouth = SkinManager.Instance.FindMouthSkin(name);
+                    baseMouth.skincolor = color;
                     break;
                 case "Cheek":
-                    baseCheek = SkinManager.Instance.FindCheekSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseCheek.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseCheek = SkinManager.Instance.FindCheekSkin(name);
+                    baseCheek.skincolor = color;
                     break;
                 case "Head":
-                    baseHead = SkinManager.Instance.FindHeadSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseHead.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseHead = SkinManager.Instance.FindHeadSkin(name);
+                    baseHead.skincolor = color;
                     break;
                 case "Overcoat":
-                    baseOvercoat = SkinManager.Instance.FindOvercoatSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseOvercoat.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseOvercoat = SkinManager.Instance.FindOvercoatSkin(name);
+                    baseOvercoat.skincolor = color;
                     break;
                 case "Top":
-                    baseTop = SkinManager.Instance.FindTopSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseTop.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseTop = SkinManager.Instance.FindTopSkin(name);
+                    baseTop.skincolor = color;
+                    break;
+                case "Hand":
+                    baseHand = SkinManager.Instance.FindHandSkin(name);
+                    baseHand.skincolor = color;
                     break;
                 case "Bottom":
-                    baseBottom = SkinManager.Instance.FindBottomSkin(part_tmp[1] == "*" ? null : part_tmp[1]);
-                    baseBottom.skincolor = PlayerInfoXML.HexStringToColor(part_tmp[2]);
+                    baseBottom = SkinManager.Instance.FindBottomSkin(name);
+                    baseBottom.skincolor = color;
+                    break;
+                case "Pants":
+                    basePants = SkinManager.Instance.FindPantsSkin(name);
+                    basePants.skincolor = color;
+                    break;
+                case "Foot":
+                    baseFoot = SkinManager.Instance.FindFootSkin(name);
+                    baseFoot.skincolor = color;
                     break;
             }
         }
@@ -894,7 +1116,10 @@ public class Skin
         ChangeParts(PARTSTYPE.HEAD, "nullskin", _skeleton, false);
         ChangeParts(PARTSTYPE.OVERCOAT, "nullskin", _skeleton, false);
         ChangeParts(PARTSTYPE.TOP, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.HAND, "nullskin", _skeleton, false);
         ChangeParts(PARTSTYPE.BOTTOM, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.PANTS, "nullskin", _skeleton, false);
+        ChangeParts(PARTSTYPE.SHOES, "nullskin", _skeleton, false);
     }
 
     public void DefaultCustom(SkeletonAnimation _skeleton, bool _ischange)
@@ -910,7 +1135,10 @@ public class Skin
         ChangeParts(PARTSTYPE.HEAD, "기본", _skeleton, _ischange);
         ChangeParts(PARTSTYPE.OVERCOAT, "nullskin", _skeleton, _ischange);
         ChangeParts(PARTSTYPE.TOP, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.HAND, "nullskin", _skeleton, _ischange);
         ChangeParts(PARTSTYPE.BOTTOM, "nullskin", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.PANTS, "기본", _skeleton, _ischange);
+        ChangeParts(PARTSTYPE.SHOES, "기본", _skeleton, _ischange);
     }
 
     public void RefreshCustom(Skin _skin, SkeletonAnimation _skeleton)
@@ -926,7 +1154,10 @@ public class Skin
         _skin.baseHead.RefreshSkin(_skeleton);
         _skin.baseOvercoat.RefreshSkin(_skeleton);
         _skin.baseTop.RefreshSkin(_skeleton);
+        _skin.baseHand.RefreshSkin(_skeleton);
         _skin.baseBottom.RefreshSkin(_skeleton);
+        _skin.basePants.RefreshSkin(_skeleton);
+        _skin.baseFoot.RefreshSkin(_skeleton);
     }
 
     public void OnlyHead(Skin _skin, SkeletonAnimation _skeleton)
@@ -943,7 +1174,10 @@ public class Skin
 
         _skin.baseOvercoat.NullSkin(_skeleton);
         _skin.baseTop.NullSkin(_skeleton);
+        _skin.baseHand.NullSkin(_skeleton);
         _skin.baseBottom.NullSkin(_skeleton);
+        _skin.basePants.NullSkin(_skeleton);
+        _skin.baseFoot.NullSkin(_skeleton);
     }
 
     public void ChangeParts(PARTSTYPE _type, string _clothes, SkeletonAnimation _skeleton, bool _ischange) //옷 변경.
@@ -983,8 +1217,17 @@ public class Skin
             case PARTSTYPE.TOP:
                 baseTop.ChangeSkin(_skeleton, SkinManager.Instance.FindTopSkin(_clothes), _ischange);
                 break;
+            case PARTSTYPE.HAND:
+                baseHand.ChangeSkin(_skeleton, SkinManager.Instance.FindHandSkin(_clothes), _ischange);
+                break;
             case PARTSTYPE.BOTTOM:
                 baseBottom.ChangeSkin(_skeleton, SkinManager.Instance.FindBottomSkin(_clothes), _ischange);
+                break;
+            case PARTSTYPE.PANTS:
+                basePants.ChangeSkin(_skeleton, SkinManager.Instance.FindPantsSkin(_clothes), _ischange);
+                break;
+            case PARTSTYPE.SHOES:
+                baseFoot.ChangeSkin(_skeleton, SkinManager.Instance.FindFootSkin(_clothes), _ischange);
                 break;
             default:
                 DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);

@@ -2907,10 +2907,6 @@ MonoBehaviour:
     legR_lowKey: legR_low
   character:
   - {fileID: 519183780}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &382056583
 MonoBehaviour:
   m_ObjectHideFlags: 0

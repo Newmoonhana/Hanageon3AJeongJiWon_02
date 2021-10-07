@@ -7,9 +7,4 @@ public class CharSkin : MonoBehaviour
 {
     public SkeletonAnimation skeleton;
     public character charaSetting;
-
-    private void Awake()
-    {
-        //AnimationManager.Instance.ChangeCharaAni(this, TRACKTYPE.BODY, "public/Idle", true);
-    }
 }

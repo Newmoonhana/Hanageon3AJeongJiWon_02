@@ -261,6 +261,20 @@
       <ArmR_lowKey>armR_low</ArmR_lowKey>
     </기본>
   </Top>
+  <Hand>
+    <nullskin>
+      <Name>nullskin</Name>
+      <Color>FFFFFFFF</Color>
+      <Sprite>
+      </Sprite>
+      <HandL_highKey>handL_high00</HandL_highKey>
+      <HandL_middleKey>handL_middle</HandL_middleKey>
+      <HandL_lowKey>handL_low00</HandL_lowKey>
+      <HandR_highKey>handR_high00</HandR_highKey>
+      <HandR_middleKey>handR_middle</HandR_middleKey>
+      <HandR_lowKey>handR_low00</HandR_lowKey>
+    </nullskin>
+  </Hand>
   <Bottom>
     <nullskin>
       <Name>nullskin</Name>
@@ -276,4 +290,48 @@
       <LegR_lowKey>legR_low</LegR_lowKey>
     </nullskin>
   </Bottom>
+  <Pants>
+    <nullskin>
+      <Name>nullskin</Name>
+      <Color>FFFFFFFF</Color>
+      <Sprite>
+      </Sprite>
+      <WaistKey>waist</WaistKey>
+      <PantsLKey>
+      </PantsLKey>
+      <PantsRKey>
+      </PantsRKey>
+    </nullskin>
+    <기본>
+      <Name>기본</Name>
+      <Color>FFFFFFFF</Color>
+      <Sprite>
+      </Sprite>
+      <WaistKey>waist00</WaistKey>
+      <PantsLKey>pantsL00</PantsLKey>
+      <PantsRKey>pantsR00</PantsRKey>
+    </기본>
+  </Pants>
+  <Foot>
+    <nullskin>
+      <Name>nullskin</Name>
+      <Color>FFFFFFFF</Color>
+      <Sprite>
+      </Sprite>
+      <FootLKey>footL</FootLKey>
+      <FootL_middleKey>footL_middle</FootL_middleKey>
+      <FootRKey>footR</FootRKey>
+      <FootR_middleKey>footR_middle</FootR_middleKey>
+    </nullskin>
+    <기본>
+      <Name>기본</Name>
+      <Color>FFFFFFFF</Color>
+      <Sprite>
+      </Sprite>
+      <FootLKey>footL00</FootLKey>
+      <FootL_middleKey>footL_middle</FootL_middleKey>
+      <FootRKey>footR00</FootRKey>
+      <FootR_middleKey>footR_middle</FootR_middleKey>
+    </기본>
+  </Foot>
 </SkinInfo>

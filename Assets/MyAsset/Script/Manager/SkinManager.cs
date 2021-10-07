@@ -20,7 +20,10 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
     [Header("옷 커스텀 파츠 목록")]
     public Overcoat[] Overcoat_Skin;  //코트 스킨 목록.
     public Top[] Top_Skin;  //상의 스킨 목록.
+    public Hand[] Hand_Skin;  //손 스킨 목록.
     public Bottom[] Bottom_Skin;  //하의 스킨 목록.
+    public Pants[] Pants_Skin;  //바지 스킨 목록.
+    public Foot[] Foot_Skin;  //신발 스킨 목록.
     [Space(50)]
 
     public CharSkin []character;
@@ -40,10 +43,15 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
     {
         Instance.character = character;
 
-        DontDestroyInst(this);
+        if(DontDestroyInst(this))
+            LoadXML();
     }
 
-    //skeletonAni 재설정
+    /// <summary>
+    /// 씬 변경 후 skeletonAni 재설정
+    /// </summary>
+    /// <param name="_chara">_chara 값으로 SkinManager.character[_index].charaSetting 값을 변경</param>
+    /// <param name="_index">SkinManager.character의 인덱스</param>
     public void RefreshSkeleAni(character _chara, int _index)
     {
         if (_chara == null)
@@ -166,12 +174,42 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
+    public Hand FindHandSkin(string _parts)
+    {
+        for (int i = 0; i < Hand_Skin.Length; i++)
+        {
+            if (Hand_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Hand(Hand_Skin[i]);
+        }
+        DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
     public Bottom FindBottomSkin(string _parts)
     {
         for (int i = 0; i < Bottom_Skin.Length; i++)
         {
             if (Bottom_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
                 return new Bottom(Bottom_Skin[i]);
+        }
+        DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Pants FindPantsSkin(string _parts)
+    {
+        for (int i = 0; i < Pants_Skin.Length; i++)
+        {
+            if (Pants_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Pants(Pants_Skin[i]);
+        }
+        DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
+        return null;
+    }
+    public Foot FindFootSkin(string _parts)
+    {
+        for (int i = 0; i < Foot_Skin.Length; i++)
+        {
+            if (Foot_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Foot(Foot_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;

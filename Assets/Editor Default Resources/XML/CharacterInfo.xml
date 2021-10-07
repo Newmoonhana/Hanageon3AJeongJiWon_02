@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CharacterInfo>
+  <Character>
+    <MOment>
+      <Name>MOment</Name>
+      <Nickname>모먼트</Nickname>
+      <Persona>2/9/1/8/</Persona>
+      <Skin>Fronthair:헤어01:FFFFFFFF/Rearhair:기본:FFFFFFFF/Eyeblow:기본:FFFFFFFF/Eyelid:nullskin:FFFFFFFF/Eyeball:기본:FFFFFFFF/Eyewhite:nullskin:FFFFFFFF/Mouth:기본:FFFFFFFF/Cheek:기본:FFFFFFFF/Head:기본:FFFFFFFF/Overcoat:nullskin:FFFFFFFF/Top:기본:FFFFFFFF/Hand:nullskin:FFFFFFFF/Bottom:nullskin:FFFFFFFF/Pants:기본:FFFFFFFF/Foot:기본:FFFFFFFF</Skin>
+      <Unit>101</Unit>
+      <EXP>1/50</EXP>
+    </MOment>
+  </Character>
+</CharacterInfo>

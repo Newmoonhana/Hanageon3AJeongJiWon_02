@@ -594,62 +594,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fronthair_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     antennahairKey: 
     fronthairKey: 
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 7b81f6c2718b63844b1e580f4c87b873, type: 3}
     antennahairKey: 
     fronthairKey: fronthair00
   - name: "\uD5E4\uC5B401"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 7b81f6c2718b63844b1e580f4c87b873, type: 3}
     antennahairKey: antennahair00
     fronthairKey: fronthair00
   Rearhair_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     rearhairKey: 
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 49996df2a4880d844b7e6a04b7b5b854, type: 3}
     rearhairKey: rearhair00
   Eyeblow_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     eyeblowLKey: 
     eyeblowRKey: 
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 4069ef8047aa3b94fa488d9d2e6df760, type: 3}
     eyeblowLKey: eyeblowL00
     eyeblowRKey: eyeblowR00
   - name: "\uB208\uC379 01"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 90f307d2cdf64c6428b6ac0be3d5a03b, type: 3}
     eyeblowLKey: eyeblowL01
     eyeblowRKey: eyeblowR01
   - name: "\uB208\uC379 02"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 3e5d64265d54d08419347640f1b7ed67, type: 3}
     eyeblowLKey: eyeblowL02
     eyeblowRKey: eyeblowR02
   Eyelid_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     eyelidLUKey: 
@@ -657,7 +647,6 @@ MonoBehaviour:
     eyelidRUKey: 
     eyelidRDKey: 
   - name: "\uB208\uAEBC\uD480 00"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: ffb55ed810aa4774dab094fd8d6f04f8, type: 3}
     eyelidLUKey: eyelidLU_MOdest00
@@ -665,7 +654,6 @@ MonoBehaviour:
     eyelidRUKey: eyelidRU_MOdest00
     eyelidRDKey: 
   - name: "\uB208\uAEBC\uD480 01"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 7a266d6a1d6914543b924c758156f4db, type: 3}
     eyelidLUKey: eyelidLU_MOdest00
@@ -674,72 +662,60 @@ MonoBehaviour:
     eyelidRDKey: eyelidRD00
   Eyeball_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     eyeballLKey: 
     eyeballRKey: 
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 32c9865a17210ea4e9699783dad349d9, type: 3}
     eyeballLKey: eyeballL00
     eyeballRKey: eyeballR00
   - name: "\uB208\uB3D9\uC790 01"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 32c9865a17210ea4e9699783dad349d9, type: 3}
     eyeballLKey: eyeballL01
     eyeballRKey: eyeballR01
   Eyewhite_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     eyewhiteLKey: 
     eyewhiteRKey: 
   - name: "\uD770\uC790 00"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 3c8eeeefba170b04cb3f76979d8c1055, type: 3}
     eyewhiteLKey: eyewhiteL00
     eyewhiteRKey: eyewhiteR00
   Mouth_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     mouthKey: 
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 4fe25b5e60784cb449f46aadbd6cc597, type: 3}
     mouthKey: mouth01
   Cheek_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     cheekKey: 
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     cheekKey: blow00
   Head_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     headKey: 
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 667fe37be0201ff45ab6c6e37f96af06, type: 3}
     headKey: head
   Overcoat_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     overcoatKey: 
@@ -747,7 +723,6 @@ MonoBehaviour:
     overcoatRKey: 
     overcoatBKey: 
   - name: "\uCF54\uD2B800"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: f5a1a72c501c2944f8d2c8025573a161, type: 3}
     overcoatKey: overcoat00
@@ -756,7 +731,6 @@ MonoBehaviour:
     overcoatBKey: overcoatB00
   Top_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: d8d9610c02ac57946aeea4f7f9404697, type: 3}
     bodyKey: body
@@ -768,7 +742,6 @@ MonoBehaviour:
     armR_middleKey: armR_middle
     armR_lowKey: armR_low
   - name: "\uAE30\uBCF8"
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 0859f1c20fcdf004d8474a5cd47d05af, type: 3}
     bodyKey: body00
@@ -779,9 +752,18 @@ MonoBehaviour:
     armR_highKey: armR_high00
     armR_middleKey: armR_middle
     armR_lowKey: armR_low
+  Hand_Skin:
+  - name: nullskin
+    skincolor: {r: 1, g: 1, b: 1, a: 1}
+    sprite: {fileID: 0}
+    handL_highKey: handL_high00
+    handL_middleKey: handL_middle
+    handL_lowKey: handL_low00
+    handR_highKey: handR_high00
+    handR_middleKey: handR_middle
+    handR_lowKey: handR_low00
   Bottom_Skin:
   - name: nullskin
-    enable: 1
     skincolor: {r: 1, g: 1, b: 1, a: 1}
     sprite: {fileID: 0}
     waistKey: waist
@@ -791,12 +773,35 @@ MonoBehaviour:
     legR_highKey: legR_high
     legR_middleKey: legR_middle
     legR_lowKey: legR_low
-  character:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Pants_Skin:
+  - name: nullskin
+    skincolor: {r: 1, g: 1, b: 1, a: 1}
+    sprite: {fileID: 0}
+    waistKey: waist
+    pantsLKey: 
+    pantsRKey: 
+  - name: "\uAE30\uBCF8"
+    skincolor: {r: 1, g: 1, b: 1, a: 1}
+    sprite: {fileID: 0}
+    waistKey: waist00
+    pantsLKey: pantsL00
+    pantsRKey: pantsR00
+  Foot_Skin:
+  - name: nullskin
+    skincolor: {r: 1, g: 1, b: 1, a: 1}
+    sprite: {fileID: 0}
+    footLKey: footL
+    footRKey: footR
+    footL_middleKey: footL_middle
+    footR_middleKey: footR_middle
+  - name: "\uAE30\uBCF8"
+    skincolor: {r: 1, g: 1, b: 1, a: 1}
+    sprite: {fileID: 0}
+    footLKey: footL00
+    footRKey: footR00
+    footL_middleKey: footL_middle
+    footR_middleKey: footR_middle
+  character: []
 --- !u!114 &382056583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,27 +829,23 @@ MonoBehaviour:
       baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
       baseFronthair:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         antennahairKey: 
         fronthairKey: 
       baseRearhair:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         rearhairKey: 
       baseEyeblow:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         eyeblowLKey: 
         eyeblowRKey: 
       baseEyelid:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         eyelidLUKey: 
@@ -853,39 +854,33 @@ MonoBehaviour:
         eyelidRDKey: 
       baseEyeball:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         eyeballLKey: 
         eyeballRKey: 
       baseEyewhite:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         eyewhiteLKey: 
         eyewhiteRKey: 
       baseMouth:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         mouthKey: 
       baseCheek:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         cheekKey: 
       baseHead:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         headKey: 
       baseOvercoat:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         overcoatKey: 
@@ -894,7 +889,6 @@ MonoBehaviour:
         overcoatBKey: 
       baseTop:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         bodyKey: 
@@ -905,9 +899,18 @@ MonoBehaviour:
         armR_highKey: 
         armR_middleKey: 
         armR_lowKey: 
+      baseHand:
+        name: 
+        skincolor: {r: 1, g: 1, b: 1, a: 1}
+        sprite: {fileID: 0}
+        handL_highKey: 
+        handL_middleKey: 
+        handL_lowKey: 
+        handR_highKey: 
+        handR_middleKey: 
+        handR_lowKey: 
       baseBottom:
         name: 
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         waistKey: 
@@ -917,7 +920,25 @@ MonoBehaviour:
         legR_highKey: 
         legR_middleKey: 
         legR_lowKey: 
+      basePants:
+        name: 
+        skincolor: {r: 1, g: 1, b: 1, a: 1}
+        sprite: {fileID: 0}
+        waistKey: 
+        pantsLKey: 
+        pantsRKey: 
+      baseFoot:
+        name: 
+        skincolor: {r: 1, g: 1, b: 1, a: 1}
+        sprite: {fileID: 0}
+        footLKey: 
+        footRKey: 
+        footL_middleKey: 
+        footR_middleKey: 
     unit: 0
+    exp:
+      level: 1
+      exp: 0
 --- !u!33 &382056584
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2043,40 +2064,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   char_lst:
-  - name: "\uBAA8\uBA3C\uD2B8 \uBA54\uC774\uC5BC"
+  - name: MOment
     nickname: "\uBAA8\uBA3C\uD2B8"
     persona:
       persona:
-      - 3
-      - 7
       - 2
-      - 7
+      - 9
+      - 1
+      - 8
     skin:
       baseSkinName: 
       baseMaterial: {fileID: 0}
       baseFronthair:
         name: "\uD5E4\uC5B401"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 21300000, guid: 7b81f6c2718b63844b1e580f4c87b873, type: 3}
         antennahairKey: antennahair00
         fronthairKey: fronthair00
       baseRearhair:
         name: "\uAE30\uBCF8"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 21300000, guid: 49996df2a4880d844b7e6a04b7b5b854, type: 3}
         rearhairKey: rearhair00
       baseEyeblow:
         name: "\uAE30\uBCF8"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 21300000, guid: 4069ef8047aa3b94fa488d9d2e6df760, type: 3}
         eyeblowLKey: eyeblowL00
         eyeblowRKey: eyeblowR00
       baseEyelid:
         name: nullskin
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         eyelidLUKey: 
@@ -2085,39 +2102,33 @@ MonoBehaviour:
         eyelidRDKey: 
       baseEyeball:
         name: "\uAE30\uBCF8"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 21300000, guid: 32c9865a17210ea4e9699783dad349d9, type: 3}
         eyeballLKey: eyeballL00
         eyeballRKey: eyeballR00
       baseEyewhite:
         name: nullskin
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         eyewhiteLKey: 
         eyewhiteRKey: 
       baseMouth:
         name: "\uAE30\uBCF8"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 21300000, guid: 4fe25b5e60784cb449f46aadbd6cc597, type: 3}
         mouthKey: mouth01
       baseCheek:
         name: "\uAE30\uBCF8"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         cheekKey: blow00
       baseHead:
         name: "\uAE30\uBCF8"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 21300000, guid: 667fe37be0201ff45ab6c6e37f96af06, type: 3}
         headKey: head
       baseOvercoat:
         name: nullskin
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         overcoatKey: 
@@ -2126,7 +2137,6 @@ MonoBehaviour:
         overcoatBKey: 
       baseTop:
         name: "\uAE30\uBCF8"
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 21300000, guid: 0859f1c20fcdf004d8474a5cd47d05af, type: 3}
         bodyKey: body00
@@ -2137,9 +2147,18 @@ MonoBehaviour:
         armR_highKey: armR_high00
         armR_middleKey: armR_middle
         armR_lowKey: armR_low
+      baseHand:
+        name: nullskin
+        skincolor: {r: 1, g: 1, b: 1, a: 1}
+        sprite: {fileID: 0}
+        handL_highKey: handL_high00
+        handL_middleKey: handL_middle
+        handL_lowKey: handL_low00
+        handR_highKey: handR_high00
+        handR_middleKey: handR_middle
+        handR_lowKey: handR_low00
       baseBottom:
         name: nullskin
-        enable: 1
         skincolor: {r: 1, g: 1, b: 1, a: 1}
         sprite: {fileID: 0}
         waistKey: waist
@@ -2149,7 +2168,25 @@ MonoBehaviour:
         legR_highKey: legR_high
         legR_middleKey: legR_middle
         legR_lowKey: legR_low
+      basePants:
+        name: "\uAE30\uBCF8"
+        skincolor: {r: 1, g: 1, b: 1, a: 1}
+        sprite: {fileID: 0}
+        waistKey: waist00
+        pantsLKey: pantsL00
+        pantsRKey: pantsR00
+      baseFoot:
+        name: "\uAE30\uBCF8"
+        skincolor: {r: 1, g: 1, b: 1, a: 1}
+        sprite: {fileID: 0}
+        footLKey: footL00
+        footRKey: footR00
+        footL_middleKey: footL_middle
+        footR_middleKey: footR_middle
     unit: 101
+    exp:
+      level: 1
+      exp: 50
 --- !u!1 &1535191922
 GameObject:
   m_ObjectHideFlags: 0

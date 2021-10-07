@@ -2,12 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerInfoXML
 {
     static string skinInfo = "SkinInfo", skinInfo_add = "./Assets/Resources/XML/SkinInfo.xml";
-    static string characterInfo = "CharacterInfo", characterInfo_add = "./Assets/Resources/XML/CharacterInfo.xml";
+    static string characterInfo = "CharacterInfo";
+    static string levelInfo = "LevelInfo", levelInfo_add = "./Assets/Resources/XML/LevelInfo.xml";
+#if UNITY_EDITOR
+    static string characterInfo_add = "./Assets/Editor Default Resources/XML/CharacterInfo.xml";
+#else
+    static string characterInfo_add = "./Assets/Resources/XML/CharacterInfo.xml";
+#endif
 
     //색 변형
     public static string ColorToHexString(Color color)
@@ -46,10 +53,16 @@ public class PlayerInfoXML
         return Color.white;
     }
 
-    //CharacterInfo.xml 저장.
+    //CharacterInfo.xml 불러오기.
     public static void ReadCharacterInfo()
     {
+#if UNITY_EDITOR
+        TextAsset textAsset = (TextAsset)EditorGUIUtility.Load("XML/" + characterInfo + ".xml");
+#else
         TextAsset textAsset = (TextAsset)Resources.Load("XML/" + characterInfo);
+#endif
+        if (textAsset == null)
+            return;
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(textAsset.text);
 
@@ -64,13 +77,15 @@ public class PlayerInfoXML
                     innode.SelectSingleNode("Nickname").InnerText,
                     innode.SelectSingleNode("Skin").InnerText,
                     innode.SelectSingleNode("Persona").InnerText,
-                    innode.SelectSingleNode("Unit").InnerText);
+                    innode.SelectSingleNode("Unit").InnerText,
+                    innode.SelectSingleNode("EXP").InnerText);
                 CharacterManager.Instance.AddCharacter(tmp);
             }
         }
 
         Debug.Log(characterInfo_add + " 불러오기 성공");
     }
+    //CharacterInfo.xml 저장.
     public static void WriteCharacterInfo()
     {
         XmlDocument Document = new XmlDocument();
@@ -105,6 +120,9 @@ public class PlayerInfoXML
             XmlElement unit = Document.CreateElement("Unit");
             unit.InnerText = CharacterManager.Instance.char_lst[i].unit.ToString();
             chara.AppendChild(unit);
+            XmlElement exp = Document.CreateElement("EXP");
+            exp.InnerText = CharacterManager.Instance.char_lst[i].exp.ToString();
+            chara.AppendChild(exp);
         }
 
         Document.Save(characterInfo_add);
@@ -122,7 +140,8 @@ public class PlayerInfoXML
     static public void ReadSkinInfo()
     {
         TextAsset textAsset = (TextAsset)Resources.Load("XML/" + skinInfo);
-        Debug.Log("xml: " + textAsset);
+        if (textAsset == null)
+            return;
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(textAsset.text);
 
@@ -308,6 +327,26 @@ public class PlayerInfoXML
                 i++;
             }
         }
+        //손
+        nodes = xmlDoc.SelectNodes("SkinInfo/Hand");
+        foreach (XmlNode node in nodes) //하나만 있어서 초기화를 안에 넣어도됨
+        {
+            Array.Clear(SkinManager.Instance.Hand_Skin, 0, SkinManager.Instance.Hand_Skin.Length);
+            SkinManager.Instance.Hand_Skin = new Hand[node.ChildNodes.Count];
+            int i = 0;
+            foreach (XmlNode innode in node.ChildNodes)
+            {
+                SkinManager.Instance.Hand_Skin[i] = new Hand();
+                ReadDefalutParts(SkinManager.Instance.Hand_Skin[i], innode);
+                SkinManager.Instance.Hand_Skin[i].handL_highKey = innode.SelectSingleNode("HandL_highKey").InnerText;
+                SkinManager.Instance.Hand_Skin[i].handL_middleKey = innode.SelectSingleNode("HandL_middleKey").InnerText;
+                SkinManager.Instance.Hand_Skin[i].handL_lowKey = innode.SelectSingleNode("HandL_lowKey").InnerText;
+                SkinManager.Instance.Hand_Skin[i].handR_highKey = innode.SelectSingleNode("HandR_highKey").InnerText;
+                SkinManager.Instance.Hand_Skin[i].handR_middleKey = innode.SelectSingleNode("HandR_middleKey").InnerText;
+                SkinManager.Instance.Hand_Skin[i].handR_lowKey = innode.SelectSingleNode("HandR_lowKey").InnerText;
+                i++;
+            }
+        }
         //하의
         nodes = xmlDoc.SelectNodes("SkinInfo/Bottom");
         foreach (XmlNode node in nodes) //하나만 있어서 초기화를 안에 넣어도됨
@@ -326,6 +365,41 @@ public class PlayerInfoXML
                 SkinManager.Instance.Bottom_Skin[i].legR_highKey = innode.SelectSingleNode("LegR_highKey").InnerText;
                 SkinManager.Instance.Bottom_Skin[i].legR_middleKey = innode.SelectSingleNode("LegR_middleKey").InnerText;
                 SkinManager.Instance.Bottom_Skin[i].legR_lowKey = innode.SelectSingleNode("LegR_lowKey").InnerText;
+                i++;
+            }
+        }
+        //바지
+        nodes = xmlDoc.SelectNodes("SkinInfo/Pants");
+        foreach (XmlNode node in nodes) //하나만 있어서 초기화를 안에 넣어도됨
+        {
+            Array.Clear(SkinManager.Instance.Pants_Skin, 0, SkinManager.Instance.Pants_Skin.Length);
+            SkinManager.Instance.Pants_Skin = new Pants[node.ChildNodes.Count];
+            int i = 0;
+            foreach (XmlNode innode in node.ChildNodes)
+            {
+                SkinManager.Instance.Pants_Skin[i] = new Pants();
+                ReadDefalutParts(SkinManager.Instance.Pants_Skin[i], innode);
+                SkinManager.Instance.Pants_Skin[i].waistKey = innode.SelectSingleNode("WaistKey").InnerText;
+                SkinManager.Instance.Pants_Skin[i].pantsLKey = innode.SelectSingleNode("PantsLKey").InnerText;
+                SkinManager.Instance.Pants_Skin[i].pantsRKey = innode.SelectSingleNode("PantsRKey").InnerText;
+                i++;
+            }
+        }
+        //신발
+        nodes = xmlDoc.SelectNodes("SkinInfo/Foot");
+        foreach (XmlNode node in nodes) //하나만 있어서 초기화를 안에 넣어도됨
+        {
+            Array.Clear(SkinManager.Instance.Foot_Skin, 0, SkinManager.Instance.Foot_Skin.Length);
+            SkinManager.Instance.Foot_Skin = new Foot[node.ChildNodes.Count];
+            int i = 0;
+            foreach (XmlNode innode in node.ChildNodes)
+            {
+                SkinManager.Instance.Foot_Skin[i] = new Foot();
+                ReadDefalutParts(SkinManager.Instance.Foot_Skin[i], innode);
+                SkinManager.Instance.Foot_Skin[i].footLKey = innode.SelectSingleNode("FootLKey").InnerText;
+                SkinManager.Instance.Foot_Skin[i].footL_middleKey = innode.SelectSingleNode("FootL_middleKey").InnerText;
+                SkinManager.Instance.Foot_Skin[i].footRKey = innode.SelectSingleNode("FootRKey").InnerText;
+                SkinManager.Instance.Foot_Skin[i].footR_middleKey = innode.SelectSingleNode("FootR_middleKey").InnerText;
                 i++;
             }
         }
@@ -568,6 +642,35 @@ public class PlayerInfoXML
             armR_lowKey.InnerText = SkinManager.Instance.Top_Skin[i].armR_lowKey;
             top_tmp.AppendChild(armR_lowKey);
         }
+        // 자식 노드 생성(손)
+        XmlNode hand = Document.CreateNode(XmlNodeType.Element, "Hand", string.Empty);
+        root.AppendChild(hand);
+        for (int i = 0; i < SkinManager.Instance.Hand_Skin.Length; i++)
+        {
+            string _name = SkinManager.Instance.Hand_Skin[i].name.Replace(" ", "_");
+            XmlNode hand_tmp = Document.CreateNode(XmlNodeType.Element, _name, string.Empty);
+            hand.AppendChild(hand_tmp);
+            WriteDefalutParts(i, SkinManager.Instance.Hand_Skin, Document, hand_tmp);
+            //키 값 저장
+            XmlElement handL_highKey = Document.CreateElement("HandL_highKey");
+            handL_highKey.InnerText = SkinManager.Instance.Hand_Skin[i].handL_highKey;
+            hand_tmp.AppendChild(handL_highKey);
+            XmlElement handL_middleKey = Document.CreateElement("HandL_middleKey");
+            handL_middleKey.InnerText = SkinManager.Instance.Hand_Skin[i].handL_middleKey;
+            hand_tmp.AppendChild(handL_middleKey);
+            XmlElement handL_lowKey = Document.CreateElement("HandL_lowKey");
+            handL_lowKey.InnerText = SkinManager.Instance.Hand_Skin[i].handL_lowKey;
+            hand_tmp.AppendChild(handL_lowKey);
+            XmlElement handR_highKey = Document.CreateElement("HandR_highKey");
+            handR_highKey.InnerText = SkinManager.Instance.Hand_Skin[i].handR_highKey;
+            hand_tmp.AppendChild(handR_highKey);
+            XmlElement handR_middleKey = Document.CreateElement("HandR_middleKey");
+            handR_middleKey.InnerText = SkinManager.Instance.Hand_Skin[i].handR_middleKey;
+            hand_tmp.AppendChild(handR_middleKey);
+            XmlElement handR_lowKey = Document.CreateElement("HandR_lowKey");
+            handR_lowKey.InnerText = SkinManager.Instance.Hand_Skin[i].handR_lowKey;
+            hand_tmp.AppendChild(handR_lowKey);
+        }
         // 자식 노드 생성(하의)
         XmlNode bottom = Document.CreateNode(XmlNodeType.Element, "Bottom", string.Empty);
         root.AppendChild(bottom);
@@ -600,8 +703,106 @@ public class PlayerInfoXML
             legR_lowKey.InnerText = SkinManager.Instance.Bottom_Skin[i].legR_lowKey;
             bottom_tmp.AppendChild(legR_lowKey);
         }
+        // 자식 노드 생성(바지)
+        XmlNode pants = Document.CreateNode(XmlNodeType.Element, "Pants", string.Empty);
+        root.AppendChild(pants);
+        for (int i = 0; i < SkinManager.Instance.Pants_Skin.Length; i++)
+        {
+            string _name = SkinManager.Instance.Pants_Skin[i].name.Replace(" ", "_");
+            XmlNode pants_tmp = Document.CreateNode(XmlNodeType.Element, _name, string.Empty);
+            pants.AppendChild(pants_tmp);
+            WriteDefalutParts(i, SkinManager.Instance.Pants_Skin, Document, pants_tmp);
+            //키 값 저장
+            XmlElement waistKey = Document.CreateElement("WaistKey");
+            waistKey.InnerText = SkinManager.Instance.Pants_Skin[i].waistKey;
+            pants_tmp.AppendChild(waistKey);
+            XmlElement pantsLKey = Document.CreateElement("PantsLKey");
+            pantsLKey.InnerText = SkinManager.Instance.Pants_Skin[i].pantsLKey;
+            pants_tmp.AppendChild(pantsLKey);
+            XmlElement pantsRKey = Document.CreateElement("PantsRKey");
+            pantsRKey.InnerText = SkinManager.Instance.Pants_Skin[i].pantsRKey;
+            pants_tmp.AppendChild(pantsRKey);
+        }
+        // 자식 노드 생성(신발)
+        XmlNode foot = Document.CreateNode(XmlNodeType.Element, "Foot", string.Empty);
+        root.AppendChild(foot);
+        for (int i = 0; i < SkinManager.Instance.Foot_Skin.Length; i++)
+        {
+            string _name = SkinManager.Instance.Foot_Skin[i].name.Replace(" ", "_");
+            XmlNode foot_tmp = Document.CreateNode(XmlNodeType.Element, _name, string.Empty);
+            foot.AppendChild(foot_tmp);
+            WriteDefalutParts(i, SkinManager.Instance.Foot_Skin, Document, foot_tmp);
+            //키 값 저장
+            XmlElement footLKey = Document.CreateElement("FootLKey");
+            footLKey.InnerText = SkinManager.Instance.Foot_Skin[i].footLKey;
+            foot_tmp.AppendChild(footLKey);
+            XmlElement footL_middleKey = Document.CreateElement("FootL_middleKey");
+            footL_middleKey.InnerText = SkinManager.Instance.Foot_Skin[i].footL_middleKey;
+            foot_tmp.AppendChild(footL_middleKey);
+            XmlElement footRKey = Document.CreateElement("FootRKey");
+            footRKey.InnerText = SkinManager.Instance.Foot_Skin[i].footRKey;
+            foot_tmp.AppendChild(footRKey);
+            XmlElement footR_middleKey = Document.CreateElement("FootR_middleKey");
+            footR_middleKey.InnerText = SkinManager.Instance.Foot_Skin[i].footR_middleKey;
+            foot_tmp.AppendChild(footR_middleKey);
+        }
 
         Document.Save(skinInfo_add);
         Debug.Log(skinInfo_add + " 저장 완료");
+    }
+
+    //ExpSetting.sml 불러오기.
+    public static void ReadLevelInfo()
+    {
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/" + levelInfo);
+        if (textAsset == null)
+            return;
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(textAsset.text);
+        Experience_Setting.ClearExpMax();   //기존 경험치 MAX 값 초기화
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("LevelInfo/EXPInfo/Info");
+        int lv_max = 0;
+        foreach (XmlNode node in nodes)
+        {
+            int lv = int.Parse(node.SelectSingleNode("Level").InnerText);
+            Experience_Setting.AddExpMax(lv, float.Parse(node.SelectSingleNode("exp_MAX").InnerText));
+            //Debug.Log("lv == " + lv + " / exp_MAX = " + node.SelectSingleNode("exp_MAX").InnerText);
+            lv_max = lv;
+        }
+        Experience_Setting.SetLevelMax(lv_max);
+
+        Debug.Log(levelInfo_add + " 불러오기 성공");
+    }
+    //ExpSetting.sml 저장.
+    public static void WriteLevelInfo()
+    {
+        XmlDocument Document = new XmlDocument();
+        // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
+        Document.AppendChild(Document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
+
+        // 루트 노드 생성
+        XmlNode root = Document.CreateNode(XmlNodeType.Element, levelInfo, string.Empty);
+        Document.AppendChild(root);
+
+        // 자식 노드 생성
+        XmlNode exp = Document.CreateNode(XmlNodeType.Element, "EXPInfo", string.Empty);
+        root.AppendChild(exp);
+        
+        for (int i = 1; i <= Experience_Setting.GetLevelMAX(); i++)
+        {
+            XmlElement info = Document.CreateElement("Info");
+            exp.AppendChild(info);
+            //키 값 저장
+            XmlElement lv = Document.CreateElement("Level");
+            lv.InnerText = i.ToString();
+            info.AppendChild(lv);
+            XmlElement exp_MAX = Document.CreateElement("exp_MAX");
+            exp_MAX.InnerText = (1000 + (i - 1) * 100).ToString();
+            info.AppendChild(exp_MAX);
+        }
+
+        Document.Save(levelInfo_add);
+        Debug.Log(levelInfo_add + " 저장 완료");
     }
 }

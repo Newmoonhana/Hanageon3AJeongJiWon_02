@@ -70,9 +70,10 @@ public class ApartManager : SingletonPattern_IsA_Mono<ApartManager>
         foreach (var item in Instance.room_chara)
         {
             if (item.unit == _unit)
-            {
-                return item;
-            }
+                if (item.chara_name != null)
+                {
+                    return item;
+                }
         }
 
         return null;
