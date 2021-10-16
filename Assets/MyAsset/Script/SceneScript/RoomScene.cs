@@ -19,6 +19,7 @@ public class RoomScene : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.Setting_Frame(false);
         roomchara = CharacterManager.Instance.FindCharacter(ApartManager.Instance.thisUnit);
         UIManager.Instance.SetActiveOKbutton(false);
         UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });

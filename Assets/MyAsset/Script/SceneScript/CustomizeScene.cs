@@ -43,6 +43,7 @@ public class CustomizeScene : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.Setting_Frame(false);
         UIManager.Instance.SetActiveOKbutton(false);
         UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
 

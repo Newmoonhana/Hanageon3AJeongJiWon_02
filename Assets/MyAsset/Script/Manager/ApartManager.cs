@@ -29,8 +29,13 @@ public class ApartManager : SingletonPattern_IsA_Mono<ApartManager>
         for (int i = 1; i <= floor_max; i++)
             for (int j = 1; j <= unit_max; j++)
             {
+                string name;
+                if (CharacterManager.Instance.FindCharacter(i * 100 + j) != null)
+                    name = CharacterManager.Instance.FindCharacter(i * 100 + j).name;
+                else
+                    name = null;
                 if (isInst)
-                    Instance.room_chara.Add(new UnitSetting(i * 100 + j, null));
+                    Instance.room_chara.Add(new UnitSetting(i * 100 + j, name));
             }
     }
 

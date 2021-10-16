@@ -97,8 +97,6 @@ public class personality   //캐릭터 성격 클래스(mbti 기반으로 음수
 [System.Serializable]
 public class character //캐릭터 정보 클래스.
 {
-    static int persona_size = 4;
-
     public string name;
     public string nickname;
     public personality persona = new personality();

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ItemInfo>
+  <FoodInfo>
+    <Info>
+      <Name>치킨</Name>
+      <Sprite>
+      </Sprite>
+      <Price>0</Price>
+      <Exp>1000</Exp>
+      <Tag>닭 요리/단 맛/짠 맛</Tag>
+      <Count>0</Count>
+    </Info>
+    <Info>
+      <Name>피자</Name>
+      <Sprite>
+      </Sprite>
+      <Price>0</Price>
+      <Exp>500</Exp>
+      <Tag>짠 맛</Tag>
+      <Count>0</Count>
+    </Info>
+  </FoodInfo>
+</ItemInfo>

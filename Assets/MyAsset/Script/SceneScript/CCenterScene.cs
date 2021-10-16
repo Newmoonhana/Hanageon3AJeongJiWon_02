@@ -6,6 +6,7 @@ public class CCenterScene : MonoBehaviour
 {
     public void Start()
     {
+        GameManager.Instance.Setting_Frame(true);
         UIManager.Instance.SetActiveOKbutton(false);
         UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
     }

@@ -23,6 +23,7 @@ public class ApartScene : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.Setting_Frame(true);
         UIManager.Instance.SetActiveOKbutton(false);
         UIManager.Instance.SetActiveBackbutton<byte>(true, delegate { InputBackButton(); });
 
@@ -54,6 +55,7 @@ public class ApartScene : MonoBehaviour
             return;
         }
         state = STATE.UNITCANVAS;
+        GameManager.Instance.Setting_Frame(false);
         unitstate_obj.SetActive(true);
         room_img.sprite = _type.room_spr;
         UnitSetting tmp = ApartManager.Instance.FindUnitSetting(_type.unit);
@@ -98,6 +100,7 @@ public class ApartScene : MonoBehaviour
                 ApartManager.Instance.thisUnit = -1;
                 unitstate_obj.SetActive(false);
                 UIManager.Instance.SetActiveOKbutton(false);
+                GameManager.Instance.Setting_Frame(true);
                 state = STATE.NONE;
                 break;
         }

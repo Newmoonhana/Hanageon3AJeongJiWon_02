@@ -20,6 +20,7 @@ public class MainScene : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.Setting_Frame(true);
         UIManager.Instance.SetActiveOKbutton(false);
         UIManager.Instance.SetActiveBackbutton(false);
     }

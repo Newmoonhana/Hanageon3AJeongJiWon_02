@@ -10,10 +10,13 @@ public class PlayerInfoXML
     static string skinInfo = "SkinInfo", skinInfo_add = "./Assets/Resources/XML/SkinInfo.xml";
     static string characterInfo = "CharacterInfo";
     static string levelInfo = "LevelInfo", levelInfo_add = "./Assets/Resources/XML/LevelInfo.xml";
+    static string itemInfo = "ItemInfo";
 #if UNITY_EDITOR
     static string characterInfo_add = "./Assets/Editor Default Resources/XML/CharacterInfo.xml";
+    static string itemInfo_add = "./Assets/Editor Default Resources/XML/ItemInfo.xml";
 #else
     static string characterInfo_add = "./Assets/Resources/XML/CharacterInfo.xml";
+    static string itemInfo_add = "./Assets/Resources/XML/ItemInfo.xml";
 #endif
 
     //색 변형
@@ -751,7 +754,7 @@ public class PlayerInfoXML
         Debug.Log(skinInfo_add + " 저장 완료");
     }
 
-    //ExpSetting.sml 불러오기.
+    //ExpSetting.xml 불러오기.
     public static void ReadLevelInfo()
     {
         TextAsset textAsset = (TextAsset)Resources.Load("XML/" + levelInfo);
@@ -774,7 +777,7 @@ public class PlayerInfoXML
 
         Debug.Log(levelInfo_add + " 불러오기 성공");
     }
-    //ExpSetting.sml 저장.
+    //ExpSetting.xml 저장.
     public static void WriteLevelInfo()
     {
         XmlDocument Document = new XmlDocument();
@@ -804,5 +807,91 @@ public class PlayerInfoXML
 
         Document.Save(levelInfo_add);
         Debug.Log(levelInfo_add + " 저장 완료");
+    }
+
+    //ItemSetting.xml 불러오기.
+    public static void ReadItemInfo()
+    {
+#if UNITY_EDITOR
+        TextAsset textAsset = (TextAsset)EditorGUIUtility.Load("XML/" + itemInfo + ".xml");
+#else
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/" + itemInfo);
+#endif
+        if (textAsset == null)
+            return;
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(textAsset.text);
+        Experience_Setting.ClearExpMax();   //기존 경험치 MAX 값 초기화
+
+        //음식
+        ItemManager.Instance.food_lst.Clear();
+        XmlNodeList nodes = xmlDoc.SelectNodes("ItemInfo/FoodInfo");
+        foreach (XmlNode node in nodes)
+        {
+            foreach (XmlNode info in node.ChildNodes)
+            {
+                string name = info.SelectSingleNode("Name").InnerText;
+                Sprite sprite = null;
+                if (info.SelectSingleNode("Sprite").InnerText != "")
+                    sprite = Resources.Load<Sprite>("Icon/Food_Icon/" + info.SelectSingleNode("Sprite").InnerText);
+                int price = int.Parse(info.SelectSingleNode("Price").InnerText);
+                float exp = float.Parse(info.SelectSingleNode("Exp").InnerText);
+                string tag = info.SelectSingleNode("Tag").InnerText;
+                int count = int.Parse(info.SelectSingleNode("Count").InnerText);
+                ItemManager.Instance.food_lst.Add(new Item(name, sprite, price, exp, tag, count));
+            }
+        }
+
+        Debug.Log(itemInfo_add + " 불러오기 성공");
+    }
+    //ItemSetting.xml 저장.
+    public static void WriteItemInfo()
+    {
+        XmlDocument Document = new XmlDocument();
+        // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
+        Document.AppendChild(Document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
+
+        // 루트 노드 생성
+        XmlNode root = Document.CreateNode(XmlNodeType.Element, itemInfo, string.Empty);
+        Document.AppendChild(root);
+
+        // 자식 노드 생성(음식 아이템)
+        XmlNode food = Document.CreateNode(XmlNodeType.Element, "FoodInfo", string.Empty);
+        root.AppendChild(food);
+        int size = ItemManager.Instance.food_lst.Count;
+        if (size != 0)
+            for (int i = 0; i < size; i++)
+            {
+                XmlElement info = Document.CreateElement("Info");
+                food.AppendChild(info);
+                //키 값 저장
+                Item tmp = ItemManager.Instance.GetItem(ITEMTYPE.FOOD, i);
+                XmlElement name = Document.CreateElement("Name");
+                name.InnerText = tmp.GetName();
+                info.AppendChild(name);
+                //스프라이트
+                XmlElement sprite = Document.CreateElement("Sprite");
+                Sprite tmp_spr = ItemManager.Instance.food_lst[i].GetSprite();
+                if (tmp_spr != null)
+                    sprite.InnerText = tmp_spr.name;
+                else
+                    sprite.InnerText = "";
+                info.AppendChild(sprite);
+                XmlElement price = Document.CreateElement("Price");
+                price.InnerText = tmp.GetPrice().ToString();
+                info.AppendChild(price);
+                XmlElement exp = Document.CreateElement("Exp");
+                exp.InnerText = tmp.GetExp().ToString();
+                info.AppendChild(exp);
+                XmlElement tag = Document.CreateElement("Tag");
+                tag.InnerText = tmp.GetTag();
+                info.AppendChild(tag);
+                XmlElement count = Document.CreateElement("Count");
+                count.InnerText = tmp.count.ToString();
+                info.AppendChild(count);
+            }
+
+        Document.Save(itemInfo_add);
+        Debug.Log(itemInfo_add + " 저장 완료");
     }
 }
