@@ -1,4 +1,5 @@
-﻿using Spine.Unity;
+﻿#if UNITY_EDITOR
+using Spine.Unity;
 using UnityEditor;
 using UnityEngine;
 
@@ -42,3 +43,4 @@ public class CustomEdit : EditorWindow
         EditorGUILayout.LabelField("************");
     }
 }
+#endif

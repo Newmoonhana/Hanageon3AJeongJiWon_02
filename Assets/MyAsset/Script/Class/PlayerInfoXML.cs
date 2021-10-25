@@ -1,23 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Xml;
+using System.Xml.Serialization;
 using UnityEditor;
 using UnityEngine;
 
 public class PlayerInfoXML
 {
     static string skinInfo = "SkinInfo", skinInfo_add = "./Assets/Resources/XML/SkinInfo.xml";
-    static string characterInfo = "CharacterInfo";
+    static string characterInfo = "CharacterInfo", characterInfo_add;
     static string levelInfo = "LevelInfo", levelInfo_add = "./Assets/Resources/XML/LevelInfo.xml";
-    static string itemInfo = "ItemInfo";
+    static string itemInfo = "ItemInfo", itemInfo_add;
+    static string languageInfo = "LanguageInfo", languageInfo_add = "./Assets/Resources/XML/LanguageInfo.xml";
+
+    public static void Instance()
+    {
 #if UNITY_EDITOR
-    static string characterInfo_add = "./Assets/Editor Default Resources/XML/CharacterInfo.xml";
-    static string itemInfo_add = "./Assets/Editor Default Resources/XML/ItemInfo.xml";
+        characterInfo_add = "./Assets/Editor Default Resources/XML/CharacterInfo.xml";
+        itemInfo_add = "./Assets/Editor Default Resources/XML/ItemInfo.xml";
 #else
-    static string characterInfo_add = "./Assets/Resources/XML/CharacterInfo.xml";
-    static string itemInfo_add = "./Assets/Resources/XML/ItemInfo.xml";
+        characterInfo_add = "./Assets/Resources/XML/CharacterInfo.xml";
+        itemInfo_add = "./Assets/Resources/XML/ItemInfo.xml";
 #endif
+    }
 
     //색 변형
     public static string ColorToHexString(Color color)
@@ -754,7 +762,7 @@ public class PlayerInfoXML
         Debug.Log(skinInfo_add + " 저장 완료");
     }
 
-    //ExpSetting.xml 불러오기.
+    //LevelInfo.xml 불러오기.
     public static void ReadLevelInfo()
     {
         TextAsset textAsset = (TextAsset)Resources.Load("XML/" + levelInfo);
@@ -777,7 +785,7 @@ public class PlayerInfoXML
 
         Debug.Log(levelInfo_add + " 불러오기 성공");
     }
-    //ExpSetting.xml 저장.
+    //LevelInfo.xml 저장.
     public static void WriteLevelInfo()
     {
         XmlDocument Document = new XmlDocument();
@@ -809,7 +817,7 @@ public class PlayerInfoXML
         Debug.Log(levelInfo_add + " 저장 완료");
     }
 
-    //ItemSetting.xml 불러오기.
+    //ItemInfo.xml 불러오기.
     public static void ReadItemInfo()
     {
 #if UNITY_EDITOR
@@ -844,7 +852,7 @@ public class PlayerInfoXML
 
         Debug.Log(itemInfo_add + " 불러오기 성공");
     }
-    //ItemSetting.xml 저장.
+    //ItemInfo.xml 저장.
     public static void WriteItemInfo()
     {
         XmlDocument Document = new XmlDocument();
@@ -893,5 +901,27 @@ public class PlayerInfoXML
 
         Document.Save(itemInfo_add);
         Debug.Log(itemInfo_add + " 저장 완료");
+    }
+
+    //LanguageInfo.xml 불러오기.
+    public static LanguageManager.Language ReadLanguageInfo()
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(LanguageManager.Language));
+        TextAsset textAsset = (TextAsset)EditorGUIUtility.Load("XML/" + languageInfo + ".xml");
+        using (var stream = new StringReader(textAsset.text))
+        {
+            return serializer.Deserialize(stream) as LanguageManager.Language;
+        }
+        Debug.Log(languageInfo_add + " 불러오기 성공");
+    }
+    //LanguageInfo.xml 저장.
+    public static void WriteLanguageInfo()
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(LanguageManager.Language));
+        using (FileStream stream = new FileStream(languageInfo_add, FileMode.Create))
+        {
+            serializer.Serialize(stream, LanguageManager.Instance);
+        }
+        Debug.Log(languageInfo_add + " 저장 완료");
     }
 }
