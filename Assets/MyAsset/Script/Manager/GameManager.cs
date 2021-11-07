@@ -23,7 +23,6 @@ public class GameManager : SingletonPattern_IsA_Mono<GameManager>
     {
         if (DontDestroyInst(this))
         {
-            PlayerInfoXML.Instance();
             LoadXML_LevelXML();
         }
     }

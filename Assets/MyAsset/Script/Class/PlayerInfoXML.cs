@@ -10,22 +10,11 @@ using UnityEngine;
 
 public class PlayerInfoXML
 {
-    static string skinInfo = "SkinInfo", skinInfo_add = "./Assets/Resources/XML/SkinInfo.xml";
-    static string characterInfo = "CharacterInfo", characterInfo_add;
+    static string skinInfo = "SkinInfo.xml";
+    static string characterInfo = "CharacterInfo.xml";
     static string levelInfo = "LevelInfo", levelInfo_add = "./Assets/Resources/XML/LevelInfo.xml";
-    static string itemInfo = "ItemInfo", itemInfo_add;
+    static string itemInfo = "ItemInfo.xml";
     static string languageInfo = "LanguageInfo.xml";
-
-    public static void Instance()
-    {
-#if UNITY_EDITOR
-        characterInfo_add = "./Assets/Editor Default Resources/XML/CharacterInfo.xml";
-        itemInfo_add = "./Assets/Editor Default Resources/XML/ItemInfo.xml";
-#else
-        characterInfo_add = "./Assets/Resources/XML/CharacterInfo.xml";
-        itemInfo_add = "./Assets/Resources/XML/ItemInfo.xml";
-#endif
-    }
 
     //색 변형
     public static string ColorToHexString(Color color)
@@ -99,15 +88,11 @@ public class PlayerInfoXML
     //CharacterInfo.xml 불러오기.
     public static void ReadCharacterInfo()
     {
-#if UNITY_EDITOR
-        TextAsset textAsset = (TextAsset)EditorGUIUtility.Load("XML/" + characterInfo + ".xml");
-#else
-        TextAsset textAsset = (TextAsset)Resources.Load("XML/" + characterInfo);
-#endif
-        if (textAsset == null)
-            return;
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, characterInfo);
+        if (!System.IO.File.Exists(path_str))
+            WriteCharacterInfo();
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textAsset.text);
+        xmlDoc.Load(path_str);
 
         XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
         CharacterManager.Instance.char_lst.Clear();
@@ -126,17 +111,18 @@ public class PlayerInfoXML
             }
         }
 
-        Debug.Log(characterInfo_add + " 불러오기 성공");
+        Debug.Log(path_str + " 불러오기 성공");
     }
     //CharacterInfo.xml 저장.
     public static void WriteCharacterInfo()
     {
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, characterInfo);
         XmlDocument Document = new XmlDocument();
         // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
         Document.AppendChild(Document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
 
         // 루트 노드 생성
-        XmlNode root = Document.CreateNode(XmlNodeType.Element, characterInfo, string.Empty);
+        XmlNode root = Document.CreateNode(XmlNodeType.Element, "CharacterInfo", string.Empty);
         Document.AppendChild(root);
 
         // 자식 노드 생성
@@ -168,8 +154,8 @@ public class PlayerInfoXML
             chara.AppendChild(exp);
         }
 
-        Document.Save(characterInfo_add);
-        Debug.Log(characterInfo_add + " 저장 완료");
+        Document.Save(path_str);
+        Debug.Log(path_str + " 저장 완료");
     }
 
     //SkinInfo.xml 불러오기.
@@ -182,11 +168,11 @@ public class PlayerInfoXML
     }
     static public void ReadSkinInfo()
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("XML/" + skinInfo);
-        if (textAsset == null)
-            return;
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, skinInfo);
+        if (!System.IO.File.Exists(path_str))
+            WriteSkinInfo();
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textAsset.text);
+        xmlDoc.Load(path_str);
 
         //앞머리
         XmlNodeList nodes = xmlDoc.SelectNodes("SkinInfo/Fronthair");
@@ -447,7 +433,7 @@ public class PlayerInfoXML
             }
         }
 
-        Debug.Log(skinInfo_add + " 불러오기 성공");
+        Debug.Log(path_str + " 불러오기 성공");
     }
     //SkinInfo.xml 저장.
     static void WriteDefalutParts(int i, SkinParts[] _lst, XmlDocument _doc, XmlNode _node)
@@ -472,12 +458,13 @@ public class PlayerInfoXML
     }
     public static void WriteSkinInfo()
     {
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, skinInfo);
         XmlDocument Document = new XmlDocument();
         // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
         Document.AppendChild(Document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
 
         // 루트 노드 생성
-        XmlNode root = Document.CreateNode(XmlNodeType.Element, skinInfo, string.Empty);
+        XmlNode root = Document.CreateNode(XmlNodeType.Element, "SkinInfo", string.Empty);
         Document.AppendChild(root);
 
         // 자식 노드 생성(앞머리)
@@ -790,10 +777,11 @@ public class PlayerInfoXML
             foot_tmp.AppendChild(footR_middleKey);
         }
 
-        Document.Save(skinInfo_add);
-        Debug.Log(skinInfo_add + " 저장 완료");
+        Document.Save(path_str);
+        Debug.Log(path_str + " 저장 완료");
     }
 
+    //LevelInfo는 에디터 상에서의 편집 기능은 있지만 빌드 후 편집 기능은 없으니 Resource 유지
     //LevelInfo.xml 불러오기.
     public static void ReadLevelInfo()
     {
@@ -852,15 +840,11 @@ public class PlayerInfoXML
     //ItemInfo.xml 불러오기.
     public static void ReadItemInfo()
     {
-#if UNITY_EDITOR
-        TextAsset textAsset = (TextAsset)EditorGUIUtility.Load("XML/" + itemInfo + ".xml");
-#else
-        TextAsset textAsset = (TextAsset)Resources.Load("XML/" + itemInfo);
-#endif
-        if (textAsset == null)
-            return;
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, itemInfo);
+        if (!System.IO.File.Exists(path_str))
+            WriteItemInfo();
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textAsset.text);
+        xmlDoc.Load(path_str);
         Experience_Setting.ClearExpMax();   //기존 경험치 MAX 값 초기화
 
         //음식
@@ -882,17 +866,18 @@ public class PlayerInfoXML
             }
         }
 
-        Debug.Log(itemInfo_add + " 불러오기 성공");
+        Debug.Log(path_str + " 불러오기 성공");
     }
     //ItemInfo.xml 저장.
     public static void WriteItemInfo()
     {
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, itemInfo);
         XmlDocument Document = new XmlDocument();
         // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
         Document.AppendChild(Document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
 
         // 루트 노드 생성
-        XmlNode root = Document.CreateNode(XmlNodeType.Element, itemInfo, string.Empty);
+        XmlNode root = Document.CreateNode(XmlNodeType.Element, "ItemInfo", string.Empty);
         Document.AppendChild(root);
 
         // 자식 노드 생성(음식 아이템)
@@ -931,8 +916,8 @@ public class PlayerInfoXML
                 info.AppendChild(count);
             }
 
-        Document.Save(itemInfo_add);
-        Debug.Log(itemInfo_add + " 저장 완료");
+        Document.Save(path_str);
+        Debug.Log(path_str + " 저장 완료");
     }
 
     //LanguageInfo.xml 불러오기.
