@@ -10,24 +10,25 @@ public enum LANGUAGE
     _MAX
 }
 
+[System.Serializable]
+public class XMLLanguageData
+{
+    public LANGUAGE language = LANGUAGE.KOREAN;
+    public string tmp = "기타 어쩌구 저쩌구";
+}
+
 public class LanguageManager : SingletonPattern_IsA_Mono<LanguageManager>
 {
-    [SerializeField]
-    public class Language
-    {
-        public LANGUAGE language = LANGUAGE.KOREAN;
-        public string tmp = "기타 어쩌구 저쩌구";
-    }
-
+    public XMLLanguageData xml = null;
     [ContextMenu("SaveXML")]
     public void SaveXML()
     {
-        PlayerInfoXML.WriteLanguageInfo();
+        PlayerInfoXML.WriteLanguageInfo(xml);
     }
     [ContextMenu("LoadXML")]
     void LoadXML()
     {
-        PlayerInfoXML.ReadLanguageInfo();
+        xml = PlayerInfoXML.ReadLanguageInfo();
     }
 
     public void Awake()

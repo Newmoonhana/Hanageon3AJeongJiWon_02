@@ -14,7 +14,7 @@ public class PlayerInfoXML
     static string characterInfo = "CharacterInfo", characterInfo_add;
     static string levelInfo = "LevelInfo", levelInfo_add = "./Assets/Resources/XML/LevelInfo.xml";
     static string itemInfo = "ItemInfo", itemInfo_add;
-    static string languageInfo = "LanguageInfo", languageInfo_add = "./Assets/Resources/XML/LanguageInfo.xml";
+    static string languageInfo = "LanguageInfo.xml";
 
     public static void Instance()
     {
@@ -62,6 +62,38 @@ public class PlayerInfoXML
         }
         
         return Color.white;
+    }
+    /// <summary>
+    /// xml 불러오기.
+    /// </summary>
+    /// <typeparam name="T">.xml 파일 클래스</typeparam>
+    /// <param name="path">파일 이름</param>
+    /// <returns></returns>
+    public static T DeserializeXML<T>(string path) where T : class
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(T));
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, path);
+        Stream stream = new FileStream(path_str, FileMode.Open);
+        T data = (T)serializer.Deserialize(stream);
+        stream.Close();
+
+        Debug.Log(path_str + " 불러오기 성공");
+        return data;
+    }
+    /// <summary>
+    /// xml 저장.
+    /// </summary>
+    /// <typeparam name="T">.xml 파일 클래스</typeparam>
+    /// <param name="path">파일 이름</param>
+    /// <returns></returns>
+    public static void SerializeXML<T>(T data, string path) where T : class
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(T));
+        string path_str = String.Format("{0}/{1}", Application.persistentDataPath, path);
+        TextWriter writer = new StreamWriter(path_str);
+        serializer.Serialize(writer, data);
+        writer.Close();
+        Debug.Log(path_str + " 저장 완료");
     }
 
     //CharacterInfo.xml 불러오기.
@@ -904,24 +936,13 @@ public class PlayerInfoXML
     }
 
     //LanguageInfo.xml 불러오기.
-    public static LanguageManager.Language ReadLanguageInfo()
+    public static XMLLanguageData ReadLanguageInfo()
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(LanguageManager.Language));
-        TextAsset textAsset = (TextAsset)EditorGUIUtility.Load("XML/" + languageInfo + ".xml");
-        using (var stream = new StringReader(textAsset.text))
-        {
-            return serializer.Deserialize(stream) as LanguageManager.Language;
-        }
-        Debug.Log(languageInfo_add + " 불러오기 성공");
+        return DeserializeXML<XMLLanguageData>(languageInfo);
     }
     //LanguageInfo.xml 저장.
-    public static void WriteLanguageInfo()
+    public static void WriteLanguageInfo(XMLLanguageData xml)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(LanguageManager.Language));
-        using (FileStream stream = new FileStream(languageInfo_add, FileMode.Create))
-        {
-            serializer.Serialize(stream, LanguageManager.Instance);
-        }
-        Debug.Log(languageInfo_add + " 저장 완료");
+        SerializeXML<XMLLanguageData>(xml, languageInfo);
     }
 }

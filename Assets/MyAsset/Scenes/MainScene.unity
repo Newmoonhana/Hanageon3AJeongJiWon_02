@@ -1985,7 +1985,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c80e8a2fd0d7849a677eb518086366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  language: 0
+  xml:
+    language: 0
+    tmp: "\uAE30\uD0C0 \uC5B4\uCA4C\uAD6C \uC800\uCA4C\uAD6C"
 --- !u!4 &1066357191
 Transform:
   m_ObjectHideFlags: 0
