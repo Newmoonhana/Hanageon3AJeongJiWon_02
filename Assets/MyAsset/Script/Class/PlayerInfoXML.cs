@@ -857,7 +857,7 @@ public class PlayerInfoXML
                 string name = info.SelectSingleNode("Name").InnerText;
                 Sprite sprite = null;
                 if (info.SelectSingleNode("Sprite").InnerText != "")
-                    sprite = Resources.Load<Sprite>("Icon/Food_Icon/" + info.SelectSingleNode("Sprite").InnerText);
+                    sprite = Resources.Load<Sprite>("Sprite/Food_Sprite/" + info.SelectSingleNode("Sprite").InnerText);
                 int price = int.Parse(info.SelectSingleNode("Price").InnerText);
                 float exp = float.Parse(info.SelectSingleNode("Exp").InnerText);
                 string tag = info.SelectSingleNode("Tag").InnerText;

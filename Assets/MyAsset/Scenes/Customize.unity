@@ -2705,6 +2705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   food_lst:
   - name: "\uCE58\uD0A8"
+    sprite: {fileID: 0}
     price: 0
     exp: 1000
     tag:
@@ -2713,6 +2714,7 @@ MonoBehaviour:
     - "\uC9E0 \uB9DB"
     count: 0
   - name: "\uD53C\uC790"
+    sprite: {fileID: 0}
     price: 0
     exp: 500
     tag:
