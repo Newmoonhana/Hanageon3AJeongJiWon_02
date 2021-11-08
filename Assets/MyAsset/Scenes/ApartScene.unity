@@ -2866,7 +2866,16 @@ MonoBehaviour:
     armR_highKey: armR_high00
     armR_middleKey: armR_middle
     armR_lowKey: armR_low
-  Hand_Skin: []
+  Hand_Skin:
+  - name: nullskin
+    skincolor: {r: 1, g: 1, b: 1, a: 0}
+    sprite: {fileID: 0}
+    handL_highKey: 
+    handL_middleKey: 
+    handL_lowKey: 
+    handR_highKey: 
+    handR_middleKey: 
+    handR_lowKey: 
   Bottom_Skin:
   - name: nullskin
     skincolor: {r: 1, g: 1, b: 1, a: 1}
@@ -2880,6 +2889,22 @@ MonoBehaviour:
     legR_lowKey: legR_low
   Pants_Skin: []
   Foot_Skin: []
+  xml:
+    Fronthair_Skin: []
+    Rearhair_Skin: []
+    Eyeblow_Skin: []
+    Eyelid_Skin: []
+    Eyeball_Skin: []
+    Eyewhite_Skin: []
+    Mouth_Skin: []
+    Cheek_Skin: []
+    Head_Skin: []
+    Overcoat_Skin: []
+    Top_Skin: []
+    Hand_Skin: []
+    Bottom_Skin: []
+    Pants_Skin: []
+    Foot_Skin: []
   character:
   - {fileID: 519183780}
 --- !u!114 &382056583
@@ -4429,7 +4454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 0}
+  skeletonDataAsset: {fileID: 11400000, guid: 8004d7930d13d114b9d186a513d0f9df, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
@@ -4474,7 +4499,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

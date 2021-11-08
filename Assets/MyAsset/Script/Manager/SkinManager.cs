@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과 옷 둘다 담당할 예정이지만 일단 옷 코드만.
+[System.Serializable]
+public class XMLSkinData
 {
     [Header("머리 커스텀 파츠 목록")]
     public Fronthair[] Fronthair_Skin;  //앞머리 스킨 목록.
@@ -24,19 +25,23 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
     public Bottom[] Bottom_Skin;  //하의 스킨 목록.
     public Pants[] Pants_Skin;  //바지 스킨 목록.
     public Foot[] Foot_Skin;  //신발 스킨 목록.
-    [Space(50)]
+}
 
+public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과 옷 둘다 담당할 예정이지만 일단 옷 코드만.
+{
+    public XMLSkinData xml;
+    [Space(50)]
     public CharSkin []character;
 
     [ContextMenu("SaveXML")]
     void SaveXML()
     {
-        PlayerInfoXML.WriteSkinInfo();
+        PlayerInfoXML.WriteSkinInfo(xml);
     }
     [ContextMenu("LoadXML")]
     void LoadXML()
     {
-        PlayerInfoXML.ReadSkinInfo();
+        xml = PlayerInfoXML.ReadSkinInfo();
     }
 
     public void Awake()
@@ -64,81 +69,81 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
 
     public Fronthair FindFronthairSkin(string _parts)
     {
-        for (int i = 0; i < Fronthair_Skin.Length; i++)
+        for (int i = 0; i < xml.Fronthair_Skin.Length; i++)
         {
-            if (Fronthair_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Fronthair(Fronthair_Skin[i]);
+            if (xml.Fronthair_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Fronthair(xml.Fronthair_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Rearhair FindRearhairSkin(string _parts)
     {
-        for (int i = 0; i < Rearhair_Skin.Length; i++)
+        for (int i = 0; i < xml.Rearhair_Skin.Length; i++)
         {
-            if (Rearhair_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Rearhair(Rearhair_Skin[i]);
+            if (xml.Rearhair_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Rearhair(xml.Rearhair_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Eyeblow FindEyeblowSkin(string _parts)
     {
-        for (int i = 0; i < Eyeblow_Skin.Length; i++)
+        for (int i = 0; i < xml.Eyeblow_Skin.Length; i++)
         {
-            if (Eyeblow_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Eyeblow(Eyeblow_Skin[i]);
+            if (xml.Eyeblow_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Eyeblow(xml.Eyeblow_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Eyelid FindEyelidSkin(string _parts)
     {
-        for (int i = 0; i < Eyelid_Skin.Length; i++)
+        for (int i = 0; i < xml.Eyelid_Skin.Length; i++)
         {
-            if (Eyelid_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Eyelid(Eyelid_Skin[i]);
+            if (xml.Eyelid_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Eyelid(xml.Eyelid_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Eyeball FindEyeballSkin(string _parts)
     {
-        for (int i = 0; i < Eyeball_Skin.Length; i++)
+        for (int i = 0; i < xml.Eyeball_Skin.Length; i++)
         {
-            if (Eyeball_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Eyeball(Eyeball_Skin[i]);
+            if (xml.Eyeball_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Eyeball(xml.Eyeball_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Eyewhite FindEyewhiteSkin(string _parts)
     {
-        for (int i = 0; i < Eyewhite_Skin.Length; i++)
+        for (int i = 0; i < xml.Eyewhite_Skin.Length; i++)
         {
-            if (Eyewhite_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Eyewhite(Eyewhite_Skin[i]);
+            if (xml.Eyewhite_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Eyewhite(xml.Eyewhite_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Mouth FindMouthSkin(string _parts)
     {
-        for (int i = 0; i <Mouth_Skin.Length; i++)
+        for (int i = 0; i < xml.Mouth_Skin.Length; i++)
         {
-            if (Mouth_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Mouth(Mouth_Skin[i]);
+            if (xml.Mouth_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Mouth(xml.Mouth_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Cheek FindCheekSkin(string _parts)
     {
-        for (int i = 0; i < Cheek_Skin.Length; i++)
+        for (int i = 0; i < xml.Cheek_Skin.Length; i++)
         {
-            if (Cheek_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+            if (xml.Cheek_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
             {
-                return new Cheek(Cheek_Skin[i]);
+                return new Cheek(xml.Cheek_Skin[i]);
             }
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
@@ -146,70 +151,70 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
     }
     public Head FindHeadSkin(string _parts)
     {
-        for (int i = 0; i < Head_Skin.Length; i++)
+        for (int i = 0; i < xml.Head_Skin.Length; i++)
         {
-            if (Head_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Head(Head_Skin[i]);
+            if (xml.Head_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Head(xml.Head_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Overcoat FindOvercoatSkin(string _parts)
     {
-        for (int i = 0; i < Overcoat_Skin.Length; i++)
+        for (int i = 0; i < xml.Overcoat_Skin.Length; i++)
         {
-            if (Overcoat_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Overcoat(Overcoat_Skin[i]);
+            if (xml.Overcoat_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Overcoat(xml.Overcoat_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Top FindTopSkin(string _parts)
     {
-        for (int i = 0; i < Top_Skin.Length; i++)
+        for (int i = 0; i < xml.Top_Skin.Length; i++)
         {
-            if (Top_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Top(Top_Skin[i]);
+            if (xml.Top_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Top(xml.Top_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Hand FindHandSkin(string _parts)
     {
-        for (int i = 0; i < Hand_Skin.Length; i++)
+        for (int i = 0; i < xml.Hand_Skin.Length; i++)
         {
-            if (Hand_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Hand(Hand_Skin[i]);
+            if (xml.Hand_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Hand(xml.Hand_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Bottom FindBottomSkin(string _parts)
     {
-        for (int i = 0; i < Bottom_Skin.Length; i++)
+        for (int i = 0; i < xml.Bottom_Skin.Length; i++)
         {
-            if (Bottom_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Bottom(Bottom_Skin[i]);
+            if (xml.Bottom_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Bottom(xml.Bottom_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Pants FindPantsSkin(string _parts)
     {
-        for (int i = 0; i < Pants_Skin.Length; i++)
+        for (int i = 0; i < xml.Pants_Skin.Length; i++)
         {
-            if (Pants_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Pants(Pants_Skin[i]);
+            if (xml.Pants_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Pants(xml.Pants_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;
     }
     public Foot FindFootSkin(string _parts)
     {
-        for (int i = 0; i < Foot_Skin.Length; i++)
+        for (int i = 0; i < xml.Foot_Skin.Length; i++)
         {
-            if (Foot_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
-                return new Foot(Foot_Skin[i]);
+            if (xml.Foot_Skin[i].name == _parts)   //이름이 같은 파츠 검색 성공.
+                return new Foot(xml.Foot_Skin[i]);
         }
         DebugManager.Instance.Log("해당 파츠는 존재하지 않습니다.", LogType.Warning);
         return null;

@@ -1,6 +1,7 @@
 ﻿using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public enum PARTSTYPE //부위 별 분류.
@@ -33,7 +34,10 @@ public class SkinParts
     public string name = null;
     bool isPut = true;    //현재 옷 nullskin 여부(true:옷 입음 false:nullskin/이벤트에서 사용/이벤트 상 name이 nullskin이 아니어도 nullskin인 상태일 수 있어서 사용).
     public Color skincolor = new Color32(255, 255, 255, 255);
+    //sprite_name = xml상에서 저장되는 값 = 스프라이트 이름(스프라이트를 저장 시 스프라이트가 null이 아니더라도 null 에러).
+    [XmlIgnore]
     public Sprite sprite = null;
+    public string sprite_name { get { return (sprite == null ? null : sprite.name); } set { sprite = Resources.Load<Sprite>("Icon/CharSpine_Icon/" + value); } }
 
     public bool IsPut()  //스킨 파츠가 nullskin인지 체크
     {

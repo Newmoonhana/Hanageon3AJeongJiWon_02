@@ -91,14 +91,15 @@ public class CustomizeScene : MonoBehaviour
     //버튼 입력 시 메인 카테고리 UI 변경.
     public void ChangeMainCustomCategory_button(string _type)
     {
+        AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0], TRACKTYPE.FACE, null, false, SkinManager.Instance.character[0].charaSetting.persona.GetEIToAniSpeed());
         switch (_type)
         {
-            case "head":    //머리카락
+            case "head":    //커스터마이징(머리)
                 customPresentCategory.SetActive(false);
                 customHeadCategory.SetActive(true);
                 customPresentCategory = customHeadCategory;
                 break;
-            case "persona": //얼굴
+            case "persona": //성격
                 customPresentCategory.SetActive(false);
                 customPersonaCategory.SetActive(true);
                 customPresentCategory = customPersonaCategory;
@@ -123,84 +124,84 @@ public class CustomizeScene : MonoBehaviour
         switch (_type)
         {
             case PARTSTYPE.FRONTHAIR:
-                size = SkinManager.Instance.Fronthair_Skin.Length;
+                size = SkinManager.Instance.xml.Fronthair_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Fronthair_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Fronthair_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Fronthair_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Fronthair_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.REARHAIR:
-                size = SkinManager.Instance.Rearhair_Skin.Length;
+                size = SkinManager.Instance.xml.Rearhair_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Rearhair_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Rearhair_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Rearhair_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Rearhair_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEBLOW:
-                size = SkinManager.Instance.Eyeblow_Skin.Length;
+                size = SkinManager.Instance.xml.Eyeblow_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Eyeblow_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Eyeblow_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Eyeblow_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Eyeblow_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYELID:
-                size = SkinManager.Instance.Eyelid_Skin.Length;
+                size = SkinManager.Instance.xml.Eyelid_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Eyelid_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Eyelid_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Eyelid_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Eyelid_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEBALL:
-                size = SkinManager.Instance.Eyeball_Skin.Length;
+                size = SkinManager.Instance.xml.Eyeball_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Eyeball_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Eyeball_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Eyeball_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Eyeball_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.EYEWHITE:
-                size = SkinManager.Instance.Eyewhite_Skin.Length;
+                size = SkinManager.Instance.xml.Eyewhite_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Eyewhite_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Eyewhite_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Eyewhite_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Eyewhite_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.MOUTH:
-                size = SkinManager.Instance.Mouth_Skin.Length;
+                size = SkinManager.Instance.xml.Mouth_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Mouth_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Mouth_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Mouth_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Mouth_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.CHEEK:
-                size = SkinManager.Instance.Cheek_Skin.Length;
+                size = SkinManager.Instance.xml.Cheek_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Cheek_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Cheek_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Cheek_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Cheek_Skin[i].sprite;
                 }
                 break;
             case PARTSTYPE.HEAD:
-                size = SkinManager.Instance.Head_Skin.Length;
+                size = SkinManager.Instance.xml.Head_Skin.Length;
                 partsName = new string[size]; partsSprite = new Sprite[size];
                 for (int i = 0; i < size; i++)
                 {
-                    partsName[i] = SkinManager.Instance.Head_Skin[i].name;
-                    partsSprite[i] = SkinManager.Instance.Head_Skin[i].sprite;
+                    partsName[i] = SkinManager.Instance.xml.Head_Skin[i].name;
+                    partsSprite[i] = SkinManager.Instance.xml.Head_Skin[i].sprite;
                 }
                 break;
             default:
@@ -288,27 +289,27 @@ public class CustomizeScene : MonoBehaviour
         {
             case PERSONA.EI:
                 if (tmp.value > center) //E
-                    tmp_string = "personality/E/smile_E";
+                    tmp_string = "personality/E/smile";
                 else if (tmp.value < center)   //I
-                    tmp_string = "personality/I/smile_I";
+                    tmp_string = "personality/I/smile";
                 break;
             case PERSONA.SN:
                 if (tmp.value < center) //S
-                    tmp_string = "personality/S/thinking_S";
+                    tmp_string = "personality/S/thinking";
                 else if (tmp.value > center)    //N
-                    tmp_string = "personality/N/thinking_N";
+                    tmp_string = "personality/N/thinking";
                 break;
             case PERSONA.TF:
                 if (tmp.value < center) //T
-                    tmp_string = "personality/T/reaction_T";
+                    tmp_string = "personality/T/reaction";
                 else if (tmp.value > center)    //F
-                    tmp_string = "personality/F/reaction_F";
+                    tmp_string = "personality/F/reaction";
                 break;
             case PERSONA.JP:
                 if (tmp.value > center) //J
-                    tmp_string = "personality/J/success_J";
+                    tmp_string = "personality/J/success";
                 else if (tmp.value < center)    //P
-                    tmp_string = "personality/P/success_P";
+                    tmp_string = "personality/P/success";
                 break;
         }
         AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0], TRACKTYPE.FACE, tmp_string, false, SkinManager.Instance.character[0].charaSetting.persona.GetEIToAniSpeed());
