@@ -18,10 +18,12 @@ MonoBehaviour:
   skeletonJSON: {fileID: 4900000, guid: 75db83b0e9efecb468dc95150ea05579, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
-    requiresBlendModeMaterials: 0
+    requiresBlendModeMaterials: 1
     applyAdditiveMaterial: 1
     additiveMaterials: []
-    multiplyMaterials: []
+    multiplyMaterials:
+    - pageName: HAD_char.png
+      material: {fileID: 2100000, guid: 7169faf1583e701429fc3da43d3e65d5, type: 2}
     screenMaterials: []
   skeletonDataModifiers: []
   fromAnimation: []
