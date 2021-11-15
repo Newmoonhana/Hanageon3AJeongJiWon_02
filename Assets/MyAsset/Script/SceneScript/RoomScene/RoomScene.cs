@@ -133,13 +133,13 @@ public class RoomScene : MonoBehaviour
         _item.this_outline.enabled = true;  //선택한 아이템만 outline 실행
     }
 
-    public void Input_GiftSelectButton(ROOMSCENE_component _item)
+    public void Input_GiftSelectButton()
     {
         if (state != STATE.INVENTORY)
             return;
         state = STATE.GIFTING;
         InventoryUI_obj.SetActive(false);
-        
+        roomchara.skin.handItem.ChangeSkin(SkinManager.Instance.character[0], inven_selectItem.item_spr);
         AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0], TRACKTYPE.BODY, "public/eat", false, roomchara.persona.GetEIToAniSpeed());
     }
 

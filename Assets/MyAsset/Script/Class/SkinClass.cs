@@ -1,4 +1,6 @@
-﻿using Spine.Unity;
+﻿using Spine;
+using Spine.Unity;
+using Spine.Unity.AttachmentTools;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -993,7 +995,53 @@ public class Foot : SkinParts  //footL & R
 }
 
 [System.Serializable]
-public class Skin
+//신발(발)
+public class HandItem : SkinParts  //손에 든 아이템(스프라이트를 변경해 사용하는 특수형이라 사용법이 차이가 있음)
+{
+    //왼
+    [SpineSlot] string itemLSlot = "itemL";
+    [SpineAttachment] public string itemLKey;
+    //오
+    [SpineSlot] string itemRSlot = "itemR";
+    [SpineAttachment] public string itemRKey;
+
+    public HandItem() { }
+    public HandItem(HandItem _new)
+    {
+        base.name = _new.name;
+        base.skincolor = _new.skincolor;
+        base.sprite = _new.sprite;
+    }
+
+    void Change(CharSkin _chara, Sprite _change_spr, ref string _slot, ref string _key)
+    {
+        Skin baseSkin = _chara.skeleton.skeleton.Data.FindSkin("default"); // 기존에 있는 스킨 가져오기
+        int slotIndex = _chara.skeleton.skeleton.FindSlotIndex(_slot); // 고글 슬롯값 얻어오기
+        Attachment baseAttachment = baseSkin.GetAttachment(slotIndex, _key); // 고글의 어테치먼트 얻어오기
+        Attachment newAttachment = baseAttachment.GetRemappedClone(_change_spr, _chara.charaSetting.skin.baseMaterial); // 변경할 스프라이트로 다시 매핑된 어테치먼트 얻어오기
+        baseSkin.SetAttachment(slotIndex, _key, newAttachment); // 스킨에 변경된 어테치먼트 설정
+    }
+
+    public void ChangeSkin(CharSkin _chara, Sprite _change_spr)
+    {
+        base.name = _change_spr.name;
+        base.sprite = _change_spr;
+
+        Change(_chara, _change_spr, ref itemLSlot, ref itemLKey);
+        Change(_chara, _change_spr, ref itemRSlot, ref itemRKey);
+    }
+    public void RefreshSkin(CharSkin _chara)
+    {
+        ChangeSkin(_chara, base.sprite);
+    }
+    public void NullSkin(CharSkin _chara)
+    {
+        ChangeSkin(_chara, null);
+    }
+}
+
+[System.Serializable]
+public class Skin_lst
 {
     [SpineSkin] public string baseSkinName; // 복사 할 스킨의 이름
     public Material baseMaterial; // 기본 머터리얼
@@ -1014,6 +1062,8 @@ public class Skin
     public Bottom baseBottom = new Bottom();
     public Pants basePants = new Pants();
     public Foot baseFoot = new Foot();
+
+    public HandItem handItem = new HandItem();
 
     public override string ToString()
     {
@@ -1145,7 +1195,7 @@ public class Skin
         ChangeParts(PARTSTYPE.SHOES, "기본", _skeleton, _ischange);
     }
 
-    public void RefreshCustom(Skin _skin, SkeletonAnimation _skeleton)
+    public void RefreshCustom(Skin_lst _skin, SkeletonAnimation _skeleton)
     {
         _skin.baseFronthair.RefreshSkin(_skeleton);
         _skin.baseRearhair.RefreshSkin(_skeleton);
@@ -1164,7 +1214,7 @@ public class Skin
         _skin.baseFoot.RefreshSkin(_skeleton);
     }
 
-    public void OnlyHead(Skin _skin, SkeletonAnimation _skeleton)
+    public void OnlyHead(Skin_lst _skin, SkeletonAnimation _skeleton)
     {
         _skin.baseFronthair.RefreshSkin(_skeleton);
         _skin.baseRearhair.RefreshSkin(_skeleton);

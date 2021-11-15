@@ -100,7 +100,7 @@ public class character //캐릭터 정보 클래스.
     public string name;
     public string nickname;
     public personality persona = new personality();
-    public Skin skin = new Skin();
+    public Skin_lst skin = new Skin_lst();
     public int unit = 0;    //아파트 호 수.
     public Experience exp = new Experience();
 
@@ -110,7 +110,7 @@ public class character //캐릭터 정보 클래스.
         name = "";
         nickname = "";
     }
-    public character(string _name, string _nickname, Skin _skin, personality _persona, int _unit, Experience _exp)
+    public character(string _name, string _nickname, Skin_lst _skin, personality _persona, int _unit, Experience _exp)
     {
         this.name = _name;
         this.nickname = _nickname;
