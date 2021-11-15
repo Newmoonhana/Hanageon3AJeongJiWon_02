@@ -639,6 +639,157 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63622502}
   m_CullTransparentMesh: 0
+--- !u!1 &87450773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87450774}
+  - component: {fileID: 87450777}
+  - component: {fileID: 87450776}
+  - component: {fileID: 87450778}
+  - component: {fileID: 87450775}
+  m_Layer: 5
+  m_Name: GiftSelectButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &87450774
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87450773}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 759138365}
+  m_Father: {fileID: 2098396729}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -50, y: 10}
+  m_SizeDelta: {x: 300, y: 75}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &87450775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87450773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 87450776}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 532756211}
+        m_TargetAssemblyTypeName: RoomScene, Assembly-CSharp
+        m_MethodName: Input_GiftSelectButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 87450778}
+          m_ObjectArgumentAssemblyTypeName: ROOMSCENE_component, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &87450776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87450773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.5647059, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &87450777
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87450773}
+  m_CullTransparentMesh: 0
+--- !u!114 &87450778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87450773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd0a4fe192700c4cb075a6654b09b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  item_name: 
+  item_spr: {fileID: 0}
+  item_count: 0
+  this_btn: {fileID: 0}
+  this_outline: {fileID: 0}
 --- !u!1 &194216226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,180 +1349,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555d734f8160fd249ab9eb3614f11ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fronthair_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    antennahairKey: 
-    fronthairKey: 
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 7b81f6c2718b63844b1e580f4c87b873, type: 3}
-    antennahairKey: 
-    fronthairKey: fronthair00
-  - name: "\uD5E4\uC5B401"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 7b81f6c2718b63844b1e580f4c87b873, type: 3}
-    antennahairKey: antennahair00
-    fronthairKey: fronthair00
-  Rearhair_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    rearhairKey: 
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 49996df2a4880d844b7e6a04b7b5b854, type: 3}
-    rearhairKey: rearhair00
-  Eyeblow_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    eyeblowLKey: 
-    eyeblowRKey: 
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 4069ef8047aa3b94fa488d9d2e6df760, type: 3}
-    eyeblowLKey: eyeblowL00
-    eyeblowRKey: eyeblowR00
-  - name: "\uB208\uC379 01"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 90f307d2cdf64c6428b6ac0be3d5a03b, type: 3}
-    eyeblowLKey: eyeblowL01
-    eyeblowRKey: eyeblowR01
-  - name: "\uB208\uC379 02"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 3e5d64265d54d08419347640f1b7ed67, type: 3}
-    eyeblowLKey: eyeblowL02
-    eyeblowRKey: eyeblowR02
-  Eyelid_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    eyelidLUKey: 
-    eyelidLDKey: 
-    eyelidRUKey: 
-    eyelidRDKey: 
-  - name: "\uB208\uAEBC\uD480 00"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: ffb55ed810aa4774dab094fd8d6f04f8, type: 3}
-    eyelidLUKey: eyelidLU_MOdest00
-    eyelidLDKey: 
-    eyelidRUKey: eyelidRU_MOdest00
-    eyelidRDKey: 
-  - name: "\uB208\uAEBC\uD480 01"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 7a266d6a1d6914543b924c758156f4db, type: 3}
-    eyelidLUKey: eyelidLU_MOdest00
-    eyelidLDKey: eyelidLD00
-    eyelidRUKey: eyelidRU_MOdest00
-    eyelidRDKey: eyelidRD00
-  Eyeball_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    eyeballLKey: 
-    eyeballRKey: 
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 32c9865a17210ea4e9699783dad349d9, type: 3}
-    eyeballLKey: eyeballL00
-    eyeballRKey: eyeballR00
-  - name: "\uB208\uB3D9\uC790 01"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 32c9865a17210ea4e9699783dad349d9, type: 3}
-    eyeballLKey: eyeballL01
-    eyeballRKey: eyeballR01
-  Eyewhite_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    eyewhiteLKey: 
-    eyewhiteRKey: 
-  - name: "\uD770\uC790 00"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 3c8eeeefba170b04cb3f76979d8c1055, type: 3}
-    eyewhiteLKey: eyewhiteL00
-    eyewhiteRKey: eyewhiteR00
-  Mouth_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    mouthKey: 
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 4fe25b5e60784cb449f46aadbd6cc597, type: 3}
-    mouthKey: mouth01
-  Cheek_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    cheekKey: 
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    cheekKey: blow00
-  Head_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    headKey: 
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 667fe37be0201ff45ab6c6e37f96af06, type: 3}
-    headKey: head
-  Overcoat_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    overcoatKey: 
-    overcoatLKey: 
-    overcoatRKey: 
-    overcoatBKey: 
-  - name: "\uCF54\uD2B800"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: f5a1a72c501c2944f8d2c8025573a161, type: 3}
-    overcoatKey: overcoat00
-    overcoatLKey: overcoatL00
-    overcoatRKey: overcoatR00
-    overcoatBKey: overcoatB00
-  Top_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: d8d9610c02ac57946aeea4f7f9404697, type: 3}
-    bodyKey: body
-    bodyBKey: 
-    armL_highKey: armL_high
-    armL_middleKey: armL_middle
-    armL_lowKey: armL_low
-    armR_highKey: armR_high
-    armR_middleKey: armR_middle
-    armR_lowKey: armR_low
-  - name: "\uAE30\uBCF8"
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 0859f1c20fcdf004d8474a5cd47d05af, type: 3}
-    bodyKey: body00
-    bodyBKey: 
-    armL_highKey: armL_high00
-    armL_middleKey: armL_middle
-    armL_lowKey: armL_low
-    armR_highKey: armR_high00
-    armR_middleKey: armR_middle
-    armR_lowKey: armR_low
-  Hand_Skin: []
-  Bottom_Skin:
-  - name: nullskin
-    skincolor: {r: 1, g: 1, b: 1, a: 1}
-    sprite: {fileID: 0}
-    waistKey: waist
-    legL_highKey: legL_high
-    legL_middleKey: legL_middle
-    legL_lowKey: legL_low
-    legR_highKey: legR_high
-    legR_middleKey: legR_middle
-    legR_lowKey: legR_low
-  Pants_Skin: []
-  Foot_Skin: []
+  xml:
+    Fronthair_Skin: []
+    Rearhair_Skin: []
+    Eyeblow_Skin: []
+    Eyelid_Skin: []
+    Eyeball_Skin: []
+    Eyewhite_Skin: []
+    Mouth_Skin: []
+    Cheek_Skin: []
+    Head_Skin: []
+    Overcoat_Skin: []
+    Top_Skin: []
+    Hand_Skin: []
+    Bottom_Skin: []
+    Pants_Skin: []
+    Foot_Skin: []
   character:
   - {fileID: 1601851128}
 --- !u!114 &382056583
@@ -2915,6 +2908,85 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!1 &759138364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 759138365}
+  - component: {fileID: 759138367}
+  - component: {fileID: 759138366}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &759138365
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759138364}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 87450774}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &759138366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759138364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uC120\uBB3C\uD558\uAE30"
+--- !u!222 &759138367
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759138364}
+  m_CullTransparentMesh: 0
 --- !u!1 &777887642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,7 +3542,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1216140682}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 532756210}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1216140682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3525,6 +3609,8 @@ MonoBehaviour:
   item_name: 
   item_spr: {fileID: 0}
   item_count: 0
+  this_btn: {fileID: 0}
+  this_outline: {fileID: 0}
 --- !u!1 &1225583223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3653,6 +3739,7 @@ GameObject:
   - component: {fileID: 1325978136}
   - component: {fileID: 1325978138}
   - component: {fileID: 1325978135}
+  - component: {fileID: 1325978139}
   m_Layer: 5
   m_Name: ItemButton
   m_TagString: Untagged
@@ -3778,6 +3865,23 @@ MonoBehaviour:
   item_name: 
   item_spr: {fileID: 0}
   item_count: 0
+  this_btn: {fileID: 1325978135}
+  this_outline: {fileID: 1325978139}
+--- !u!114 &1325978139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325978133}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.5647059, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1351709129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5127,6 +5231,7 @@ RectTransform:
   - {fileID: 23179357}
   - {fileID: 2108216321}
   - {fileID: 1819408920}
+  - {fileID: 87450774}
   m_Father: {fileID: 1628769883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
