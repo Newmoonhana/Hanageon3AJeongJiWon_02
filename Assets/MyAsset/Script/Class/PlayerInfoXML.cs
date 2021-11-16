@@ -237,7 +237,6 @@ public class PlayerInfoXML
             WriteItemInfo();
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(path_str);
-        Experience_Setting.ClearExpMax();   //기존 경험치 MAX 값 초기화
 
         //음식
         ItemManager.Instance.food_lst.Clear();

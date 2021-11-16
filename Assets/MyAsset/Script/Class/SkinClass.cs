@@ -999,11 +999,11 @@ public class Foot : SkinParts  //footL & R
 public class HandItem : SkinParts  //손에 든 아이템(스프라이트를 변경해 사용하는 특수형이라 사용법이 차이가 있음)
 {
     //왼
-    [SpineSlot] string itemLSlot = "itemL";
+    [SpineSlot] string itemLSlot = "ItemL";
     [SpineAttachment] public string itemLKey;
     //오
-    [SpineSlot] string itemRSlot = "itemR";
-    [SpineAttachment] public string itemRKey;
+    [SpineSlot] string itemRSlot = "ItemR";
+    [SpineAttachment] public string itemRKey = "item_spr";
 
     public HandItem() { }
     public HandItem(HandItem _new)
@@ -1018,8 +1018,10 @@ public class HandItem : SkinParts  //손에 든 아이템(스프라이트를 변
         Skin baseSkin = _chara.skeleton.skeleton.Data.FindSkin("default"); // 기존에 있는 스킨 가져오기
         int slotIndex = _chara.skeleton.skeleton.FindSlotIndex(_slot); // 고글 슬롯값 얻어오기
         Attachment baseAttachment = baseSkin.GetAttachment(slotIndex, _key); // 고글의 어테치먼트 얻어오기
-        Attachment newAttachment = baseAttachment.GetRemappedClone(_change_spr, _chara.charaSetting.skin.baseMaterial); // 변경할 스프라이트로 다시 매핑된 어테치먼트 얻어오기
+        Texture2D spr = DBM.Instance.txtu_Food_Sprite.FindR(_change_spr.name);
+        Attachment newAttachment = baseAttachment.GetRemappedClone(spr, SkinManager.Instance.baseMaterial); // 변경할 스프라이트로 다시 매핑된 어테치먼트 얻어오기
         baseSkin.SetAttachment(slotIndex, _key, newAttachment); // 스킨에 변경된 어테치먼트 설정
+        _chara.skeleton.skeleton.SetSkin(baseSkin);
     }
 
     public void ChangeSkin(CharSkin _chara, Sprite _change_spr)
@@ -1027,7 +1029,7 @@ public class HandItem : SkinParts  //손에 든 아이템(스프라이트를 변
         base.name = _change_spr.name;
         base.sprite = _change_spr;
 
-        Change(_chara, _change_spr, ref itemLSlot, ref itemLKey);
+        //Change(_chara, _change_spr, ref itemLSlot, ref itemLKey);
         Change(_chara, _change_spr, ref itemRSlot, ref itemRKey);
     }
     public void RefreshSkin(CharSkin _chara)

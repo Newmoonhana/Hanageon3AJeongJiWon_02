@@ -2516,9 +2516,9 @@ RectTransform:
   m_Father: {fileID: 1680716646}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 500, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -85}
   m_SizeDelta: {x: 1000, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &585494241
@@ -3230,6 +3230,12 @@ MonoBehaviour:
         footRKey: 
         footL_middleKey: 
         footR_middleKey: 
+      handItem:
+        name: 
+        skincolor: {r: 1, g: 1, b: 1, a: 1}
+        sprite: {fileID: 0}
+        itemLKey: 
+        itemRKey: item_spr
     unit: 0
     exp:
       level: 1
@@ -3545,6 +3551,7 @@ MonoBehaviour:
       footR_middleKey: footR_middle
   character:
   - {fileID: 1753979801}
+  baseMaterial: {fileID: 0}
 --- !u!1 &732721261
 GameObject:
   m_ObjectHideFlags: 0

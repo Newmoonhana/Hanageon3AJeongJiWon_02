@@ -32,6 +32,7 @@ public class SkinManager : SingletonPattern_IsA_Mono<SkinManager>    //얼굴과
     public XMLSkinData xml;
     [Space(50)]
     public CharSkin []character;
+    public Material baseMaterial;
 
     [ContextMenu("SaveXML")]
     void SaveXML()

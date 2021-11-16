@@ -1348,6 +1348,7 @@ MonoBehaviour:
     Foot_Skin: []
   character:
   - {fileID: 1601851128}
+  baseMaterial: {fileID: 2100000, guid: 949703f654934fb4b99d6781f2cff907, type: 2}
 --- !u!114 &382056583
 MonoBehaviour:
   m_ObjectHideFlags: 0
