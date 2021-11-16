@@ -140,7 +140,7 @@ public class RoomScene : MonoBehaviour
         state = STATE.GIFTING;
         InventoryUI_obj.SetActive(false);
         roomchara.skin.handItem.ChangeSkin(SkinManager.Instance.character[0], inven_selectItem.item_spr);
-        AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0], TRACKTYPE.BODY, "public/eat", false, roomchara.persona.GetEIToAniSpeed());
+        AnimationManager.Instance.ChangeCharaAni(SkinManager.Instance.character[0], TRACKTYPE.BODY, "public/Eat", false, roomchara.persona.GetEIToAniSpeed());
     }
 
     void RefreshItemList()

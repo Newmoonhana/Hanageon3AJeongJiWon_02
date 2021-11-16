@@ -1019,7 +1019,7 @@ public class HandItem : SkinParts  //손에 든 아이템(스프라이트를 변
         int slotIndex = _chara.skeleton.skeleton.FindSlotIndex(_slot); // 고글 슬롯값 얻어오기
         Attachment baseAttachment = baseSkin.GetAttachment(slotIndex, _key); // 고글의 어테치먼트 얻어오기
         Texture2D spr = DBM.Instance.txtu_Food_Sprite.FindR(_change_spr.name);
-        Attachment newAttachment = baseAttachment.GetRemappedClone(spr, SkinManager.Instance.baseMaterial); // 변경할 스프라이트로 다시 매핑된 어테치먼트 얻어오기
+        Attachment newAttachment = baseAttachment.GetRemappedClone(_change_spr, SkinManager.Instance.baseMaterial); // 변경할 스프라이트로 다시 매핑된 어테치먼트 얻어오기
         baseSkin.SetAttachment(slotIndex, _key, newAttachment); // 스킨에 변경된 어테치먼트 설정
         _chara.skeleton.skeleton.SetSkin(baseSkin);
     }
